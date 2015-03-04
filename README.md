@@ -1,25 +1,11 @@
-# Ember-component-css
+# ember-component-css
 
-This README outlines the details of collaborating on this Ember addon.
+An Ember CLI addon which allows you to specify CSS inside of component pod directories
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+`ember install:npm ember-component-css`
 
-## Running
+## Usage
 
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+This addon allows you to specify a `styles.css` file inside of your component's pod folder.
