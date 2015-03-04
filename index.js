@@ -120,10 +120,99 @@ ComponentCSSPreprocessor.prototype.toTree = function(tree, inputPath, outputPath
   return new BrocComponentCssPreprocessor(filteredTree);
 };
 
+function monkeyPatch(EmberApp) {
+  var pickFiles   = require('ember-cli/lib/broccoli/custom-static-compiler');
+  var upstreamMergeTrees  = require('broccoli-merge-trees');
+  var p     = require('ember-cli/lib/preprocessors');
+  var preprocessCss = p.preprocessCss;
+
+  function mergeTrees(inputTree, options) {
+    var tree = upstreamMergeTrees(inputTree, options);
+
+    tree.description = options && options.description;
+
+    return tree;
+  }
+
+  EmberApp.prototype._filterAppTree = function() {
+    if (this._cachedFilterAppTree) {
+      return this._cachedFilterAppTree;
+    }
+
+    var excludePatterns = [].concat(
+      this._podTemplatePatterns(),
+      this._podStylePatterns(),
+      [
+        // note: do not use path.sep here Funnel uses
+        // walk-sync which always joins with `/` (not path.sep)
+        new RegExp('^styles/'),
+        new RegExp('^templates/'),
+      ]
+    );
+
+    return this._cachedFilterAppTree = new Funnel(this.trees.app, {
+      exclude: excludePatterns,
+      description: 'Funnel: Filtered App'
+    });
+  };
+
+  EmberApp.prototype._podStylePatterns = function() {
+    return this.registry.extensionsForType('css').map(function(extension) {
+      return new RegExp(extension + '$');
+    });
+  };
+
+  EmberApp.prototype.styles = function() {
+    var addonTrees = this.addonTreesFor('styles');
+    var external = this._processedExternalTree();
+    var styles = pickFiles(this.trees.styles, {
+      srcDir: '/',
+      destDir: '/app/styles'
+    });
+
+    var podStyles = new Funnel(this.trees.app, {
+      include: this._podStylePatterns(),
+      exclude: [ /^styles/ ],
+      destDir: '/app',
+      description: 'Funnel: Pod Styles'
+    });
+
+    var trees = [external].concat(addonTrees, podStyles, styles);
+
+    var stylesAndVendor = mergeTrees(trees, {
+      description: 'TreeMerger (stylesAndVendor)'
+    });
+
+    var options = { outputPaths: this.options.outputPaths.app.css };
+    options.registry = this.registry;
+    var processedStyles = preprocessCss(stylesAndVendor, '/app/styles', '/assets', options);
+    var vendorStyles    = this.concatFiles(stylesAndVendor, {
+      inputFiles: this.vendorStaticStyles.concat(['vendor/addons.css']),
+      outputFile: this.options.outputPaths.vendor.css,
+      description: 'Concat: Vendor Styles'
+    });
+
+    if (this.options.minifyCSS.enabled === true) {
+      options = this.options.minifyCSS.options || {};
+      options.registry = this.registry;
+      processedStyles = preprocessMinifyCss(processedStyles, options);
+      vendorStyles    = preprocessMinifyCss(vendorStyles, options);
+    }
+
+    return mergeTrees([
+        processedStyles,
+        vendorStyles
+      ], {
+        description: 'styles'
+      });
+  };
+}
+
 module.exports = {
   name: 'ember-component-css',
 
   included: function(app) {
+    monkeyPatch(app.constructor);
     this.app = app;
     var plugin = new ComponentCSSPreprocessor();
     this.app.registry.add('css', plugin);
