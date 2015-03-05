@@ -26,15 +26,15 @@ var CSS_SUFFIX = /\.css$/;
 
 var podLookup = Object.create(null);
 
-var HAS_AMPERSAND = /&/;
+var HAS_HOST = /:host/;
 
 function transformCSS(podGuid, parsedCss) {
   var rules = parsedCss.stylesheet.rules;
 
   rules.forEach(function(rule) {
     rule.selectors = rule.selectors.map(function(selector) {
-      if (HAS_AMPERSAND.test(selector)) {
-        return selector.replace('&', '.' + podGuid);
+      if (HAS_HOST.test(selector)) {
+        return selector.replace(':host', '.' + podGuid);
       } else {
         return '.' + podGuid + " " + selector;
       }
