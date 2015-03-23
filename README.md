@@ -2,6 +2,9 @@
 
 An Ember CLI addon which allows you to specify CSS inside of component pod directories
 
+[The announcement from EmberConf 2015](https://youtu.be/T1zxaEKeq3E)
+[![CSS is hard - EmberConf 2015](http://f.cl.ly/items/1a3a3r1C1y0D060D3j3u/EmberConf%202015%20-%20CSS%20Is%20Hard%20-%20YouTube%202015-03-22%2018-33-41.jpg)](https://youtu.be/T1zxaEKeq3E)
+
 ## Installation
 
 `ember install:npm ember-component-css`
