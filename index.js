@@ -114,7 +114,7 @@ function ComponentCSSPreprocessor(options) {
 
 ComponentCSSPreprocessor.prototype.toTree = function(tree, inputPath, outputPath) {
   var filteredTree = new Funnel(tree, {
-    srcDir: 'app',
+    srcDir: this.options.podDir || 'app',
     exclude: [/^styles/]
   });
   return new BrocComponentCssPreprocessor(filteredTree);
@@ -211,10 +211,18 @@ function monkeyPatch(EmberApp) {
 module.exports = {
   name: 'ember-component-css',
 
+  // Gets the path to the pods folder
+  podDir: function() {
+    var podModulePrefix = this.app.project.config().podModulePrefix;
+    if (!podModulePrefix) { return 'app'; }
+    var podPath = podModulePrefix.substr(podModulePrefix.indexOf('/') + 1);
+    return path.join('app', podPath);
+  },
+
   included: function(app) {
     monkeyPatch(app.constructor);
     this.app = app;
-    var plugin = new ComponentCSSPreprocessor();
+    var plugin = new ComponentCSSPreprocessor({ podDir: this.podDir() });
     this.app.registry.add('css', plugin);
   },
 
