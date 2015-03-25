@@ -26,15 +26,16 @@ var CSS_SUFFIX = /\.css$/;
 
 var podLookup = Object.create(null);
 
-var HAS_AMPERSAND = /&/;
+var HAS_SELF_SELECTOR = /&|:--component/;
 
 function transformCSS(podGuid, parsedCss) {
   var rules = parsedCss.stylesheet.rules;
 
   rules.forEach(function(rule) {
     rule.selectors = rule.selectors.map(function(selector) {
-      if (HAS_AMPERSAND.test(selector)) {
-        return selector.replace('&', '.' + podGuid);
+      var selfSelectorMatch = HAS_SELF_SELECTOR.exec(selector);
+      if (selfSelectorMatch) {
+        return selector.replace(selfSelectorMatch[0], '.' + podGuid);
       } else {
         return '.' + podGuid + " " + selector;
       }
