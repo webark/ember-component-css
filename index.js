@@ -8,6 +8,7 @@ var fs = require('fs');
 var path = require('path');
 var symlinkOrCopy = require('symlink-or-copy');
 var css = require('css');
+var sass = require('node-sass');
 
 var guid = function fn (n) {
   return n ?
@@ -22,7 +23,8 @@ function BrocComponentCssPreprocessor(inputTree) {
 BrocComponentCssPreprocessor.prototype = Object.create(Writer.prototype);
 BrocComponentCssPreprocessor.prototype.constructor = BrocComponentCssPreprocessor;
 
-var CSS_SUFFIX = /\.css$/;
+var CSS_SUFFIX = /\.(scss|sass|css)$/;
+var SASS_SUFFIX = /\.(scss|sass)$/;
 
 var podLookup = Object.create(null);
 
@@ -56,9 +58,24 @@ BrocComponentCssPreprocessor.prototype.write = function (readTree, destDir) {
       var podPath = filepath.split('/').slice(0, -1);
       var podGuid = podPath.join('--') + '-' + guid();
       var cssFileContents = fs.readFileSync(path.join(srcDir, filepath)).toString();
+
+      if (SASS_SUFFIX.test(filepath)) {
+        // Wrap the file contents in the component class
+        cssFileContents = '.' + podGuid + '{' + cssFileContents + '}';
+
+        // Do extra Sass pre-processing
+        cssFileContents = sass.renderSync({data: cssFileContents}).css;
+      }
+
       var parsedCss = css.parse(cssFileContents);
-      var transformedParsedCSS = transformCSS(podGuid, parsedCss);
-      buffer.push(css.stringify(transformedParsedCSS));
+
+      if (!SASS_SUFFIX.test(filepath)) {
+        var transformedParsedCSS = transformCSS(podGuid, parsedCss);
+        buffer.push(css.stringify(transformedParsedCSS));
+      } else {
+        buffer.push(css.stringify(parsedCss));
+      }
+
       podLookup[podPath.join('/')] = podGuid;
     }
 
