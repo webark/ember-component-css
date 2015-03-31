@@ -122,7 +122,6 @@ ComponentCSSPreprocessor.prototype.toTree = function(tree, inputPath, outputPath
 };
 
 function monkeyPatch(EmberApp) {
-  var pickFiles   = require('ember-cli/lib/broccoli/custom-static-compiler');
   var upstreamMergeTrees  = require('broccoli-merge-trees');
   var p     = require('ember-cli/lib/preprocessors');
   var preprocessCss = p.preprocessCss;
@@ -166,7 +165,7 @@ function monkeyPatch(EmberApp) {
   EmberApp.prototype.styles = function() {
     var addonTrees = this.addonTreesFor('styles');
     var external = this._processedExternalTree();
-    var styles = pickFiles(this.trees.styles, {
+    var styles = new Funnel(this.trees.styles, {
       srcDir: '/',
       destDir: '/app/styles'
     });
