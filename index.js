@@ -53,13 +53,13 @@ BrocComponentCssPreprocessor.prototype.write = function (readTree, destDir) {
     for (var i = 0, l = paths.length; i < l; i++) {
       filepath = paths[i];
       if (!CSS_SUFFIX.test(filepath)) { continue; }
-      var podName = filepath.split('/')[0];
-      var podGuid = podName + '-' + guid();
+      var podPath = filepath.split('/').slice(0, -1);
+      var podGuid = podPath.join('--') + '-' + guid();
       var cssFileContents = fs.readFileSync(path.join(srcDir, filepath)).toString();
       var parsedCss = css.parse(cssFileContents);
       var transformedParsedCSS = transformCSS(podGuid, parsedCss);
       buffer.push(css.stringify(transformedParsedCSS));
-      podLookup[podName] = podGuid;
+      podLookup[podPath.join('/')] = podGuid;
     }
 
     fs.writeFileSync(path.join(destDir, 'pod-styles.css'), buffer.join(''));
