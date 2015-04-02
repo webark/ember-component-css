@@ -62,6 +62,7 @@ BrocComponentCssPreprocessor.prototype.write = function (readTree, destDir) {
       if (cssMatch[1] !== 'css') {
         // Wrap the file contents in the component class
         cssFileContents = '.' + podGuid + '{\n' + cssFileContents + '\n}';
+        cssFileContents = cssFileContents.replace(':--component', '&');
 
         // Do extra Sass pre-processing
         var preprocessor = require('./preprocessors/' + cssMatch[1]);
