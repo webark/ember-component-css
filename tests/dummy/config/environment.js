@@ -1,5 +1,8 @@
 /* jshint node: true */
 
+var fs = require('fs');
+var path = require('path');
+
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'dummy',
@@ -16,7 +19,9 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+
+    ACCEPTANCE_TESTS: fs.readdirSync(path.join(__dirname, '..', 'app', 'acceptance', 'tests'))
   };
 
   if (environment === 'development') {
