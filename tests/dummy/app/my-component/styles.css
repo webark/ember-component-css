@@ -1,3 +1,11 @@
+& {
+  border: 1px solid green;
+}
+
 .foo {
   color: blue;
+}
+
+.bar {
+  color: red;
 }
