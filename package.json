@@ -42,6 +42,7 @@
     "ember-addon"
   ],
   "ember-addon": {
+    "before": ["ember-cli-sass"],
     "configPath": "tests/dummy/config"
   },
   "dependencies": {

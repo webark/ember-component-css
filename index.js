@@ -4,12 +4,12 @@
 var Funnel = require('broccoli-funnel');
 var path = require('path');
 
-var ComponentCSSPreprocessor = require('./ComponentCSSPreprocessor');
+var ComponentCssPreprocessor = require('./ComponentCssPreprocessor');
 var ComponentCssPostprocessor = require('./ComponentCssPostprocessor');
 
 function monkeyPatch(EmberApp) {
-  var upstreamMergeTrees  = require('broccoli-merge-trees');
-  var p     = require('ember-cli/lib/preprocessors');
+  var upstreamMergeTrees = require('broccoli-merge-trees');
+  var p = require('ember-cli/lib/preprocessors');
   var preprocessCss = p.preprocessCss;
 
   function mergeTrees(inputTree, options) {
@@ -51,19 +51,14 @@ function monkeyPatch(EmberApp) {
   EmberApp.prototype.styles = function() {
     var addonTrees = this.addonTreesFor('styles');
     var external = this._processedExternalTree();
-    var styles = new Funnel(this.trees.styles, {
-      srcDir: '/',
-      destDir: '/app/styles'
-    });
 
     var podStyles = new Funnel(this.trees.app, {
       include: this._podStylePatterns(),
-      exclude: [ /^styles/ ],
       destDir: '/app',
       description: 'Funnel: Pod Styles'
     });
 
-    var trees = [external].concat(addonTrees, podStyles, styles);
+    var trees = [external].concat(addonTrees, podStyles);
 
     var stylesAndVendor = mergeTrees(trees, {
       description: 'TreeMerger (stylesAndVendor)'
@@ -94,6 +89,11 @@ function monkeyPatch(EmberApp) {
   };
 }
 
+var pod = {
+  lookup: Object.create(null),
+  styles: ''
+};
+
 module.exports = {
   name: 'ember-component-css',
 
@@ -108,13 +108,18 @@ module.exports = {
   included: function(app) {
     monkeyPatch(app.constructor);
     this.app = app;
-    var plugin = new ComponentCSSPreprocessor({ podDir: this.podDir() });
+    var plugin = new ComponentCssPreprocessor({
+      podDir: this.podDir(),
+      pod: pod
+    });
     this.app.registry.add('css', plugin);
   },
 
   postprocessTree: function(type, workingTree) {
     if (type === 'all') {
-      return new ComponentCssPostprocessor(workingTree);
+      return new ComponentCssPostprocessor(workingTree, {
+        pod: pod
+      });
     }
 
     return workingTree;

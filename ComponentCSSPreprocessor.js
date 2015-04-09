@@ -3,19 +3,27 @@
 
 var Funnel = require('broccoli-funnel');
 var BrocComponentCssPreprocessor = require('./BrocComponentCssPreprocessor');
+var mergeTrees = require('broccoli-merge-trees');
 
-function ComponentCSSPreprocessor(options) {
+function ComponentCssPreprocessor(options) {
   this.name = 'component-css';
   this.options = options || {};
 }
 
-ComponentCSSPreprocessor.prototype.toTree = function(tree, inputPath, outputPath) {
+ComponentCssPreprocessor.prototype.toTree = function(tree, inputPath, outputPath) {
+  // Filter out just the stylesheets in pods
   var filteredTree = new Funnel(tree, {
     srcDir: this.options.podDir || 'app',
     exclude: [/^styles/]
   });
 
-  return new BrocComponentCssPreprocessor(filteredTree);
+  // Process the tree from above, outputs pod-styles and pod-lookup
+  var processedTree = new BrocComponentCssPreprocessor(filteredTree, {
+    pod: this.options.pod
+  });
+
+  // Merge the processed tree into the original tree to add the `styles` dir back in
+  return mergeTrees([tree, processedTree]);
 };
 
-module.exports = ComponentCSSPreprocessor;
+module.exports = ComponentCssPreprocessor;
