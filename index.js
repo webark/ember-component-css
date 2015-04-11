@@ -52,14 +52,19 @@ function monkeyPatch(EmberApp) {
   EmberApp.prototype.styles = function() {
     var addonTrees = this.addonTreesFor('styles');
     var external = this._processedExternalTree();
+    var styles = new Funnel(this.trees.styles, {
+      srcDir: '/',
+      destDir: '/app/styles'
+    });
 
     var podStyles = new Funnel(this.trees.app, {
       include: this._podStylePatterns(),
+      exclude: [ /^styles/ ],
       destDir: '/app',
       description: 'Funnel: Pod Styles'
     });
 
-    var trees = [external].concat(addonTrees, podStyles);
+    var trees = [external].concat(addonTrees, podStyles, styles);
 
     var stylesAndVendor = mergeTrees(trees, {
       description: 'TreeMerger (stylesAndVendor)'
