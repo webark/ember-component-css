@@ -5,8 +5,8 @@ var Funnel = require('broccoli-funnel');
 var versionChecker = require('ember-cli-version-checker');
 var path = require('path');
 
-var ComponentCssPreprocessor = require('./ComponentCssPreprocessor');
-var ComponentCssPostprocessor = require('./ComponentCssPostprocessor');
+var ComponentCssPreprocessor = require('./lib/component-css-preprocessor');
+var ComponentCssPostprocessor = require('./lib/component-css-postprocessor');
 
 function monkeyPatch(EmberApp) {
   var upstreamMergeTrees = require('broccoli-merge-trees');
