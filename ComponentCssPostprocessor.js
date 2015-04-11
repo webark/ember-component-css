@@ -17,7 +17,7 @@ ComponentCssPostprocessor.prototype = Object.create(Writer.prototype);
 ComponentCssPostprocessor.prototype.constructor = ComponentCssPostprocessor;
 
 ComponentCssPostprocessor.prototype.write = function (readTree, destDir) {
-  var pod = this.options.pod;
+  var pod = this.options.addon.pod;
 
   return readTree(this.inputTree).then(function(srcDir) {
     var paths = walkSync(srcDir);
