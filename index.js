@@ -124,7 +124,8 @@ module.exports = {
     this.app = app;
     this.pod = {
       lookup: Object.create(null),
-      styles: ''
+      styles: '',
+      extension: ''
     };
   },
 
