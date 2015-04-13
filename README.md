@@ -1,4 +1,4 @@
-# ember-component-css ![travis status](https://travis-ci.org/ebryn/ember-component-css.svg?branch=master)
+# ember-component-css [![Build Status](https://travis-ci.org/ebryn/ember-component-css.svg?branch=master)](https://travis-ci.org/ebryn/ember-component-css)
 
 An Ember CLI addon which allows you to specify CSS inside of component pod directories
 
