@@ -44,3 +44,22 @@ A typical component invocation that looks like this:
 will generated markup like:
 
 `<div class="my-component-a34fba"></div>`
+
+### With Preprocessors
+
+To use this addon with another preprocessor (such as Sass or Less), simply import `pod-styles` into your base app stylesheet.
+
+For example, if you're using Sass:
+
+```scss
+// app/styles/app.scss
+@import "pod-styles";
+```
+
+And that is it! The `pod-styles` file is generated during the build and will then be pulled into your other stylesheet to be processed like normal.
+
+**Approved preprocessors:**
+
+ - [`ember-cli-sass`](https://github.com/aexmachina/ember-cli-sass)
+ - [`ember-cli-less`](https://github.com/gdub22/ember-cli-less)
+ - [`ember-cli-stylus`](https://github.com/drewcovi/ember-cli-stylus)
