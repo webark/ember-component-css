@@ -7,7 +7,7 @@ An Ember CLI addon which allows you to specify CSS inside of component pod direc
 
 ## Installation
 
-`npm install ember-component-css`
+`npm install ember-component-css --save-dev`
 
 ## Usage
 
