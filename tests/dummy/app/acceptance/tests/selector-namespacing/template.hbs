@@ -1,0 +1,26 @@
+<div data-component-text>
+  This text should be magenta, inherited from the component's class.
+</div>
+
+<div data-namespaced-green class="{{class-for 'green-text'}}">
+  This text should be green, due to a namespaced <code>green-text</code> class.
+
+  <span data-global-child>
+    This text should be cyan, as an unscoped <code>&lt;span&gt;</code> descendant
+    of the <code>.green-text</code> element.
+  </span>
+</div>
+
+<div data-global-green class="green-text">
+  This text should still be magenta, because there is no global
+  <code>green-text</code> class.
+</div>
+
+<div data-global-blue class="global-blue-text">
+  This text should be blue due to an un-namespaced <code>global-blue-text</code> class.
+</div>
+
+<div data-namespaced-blue class="{{class-for 'global-blue-text'}}">
+  This text should still be magenta, because there is no namespaced
+  <code>global-blue-text</code> class.
+</div>
