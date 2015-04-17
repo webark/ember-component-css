@@ -32,7 +32,7 @@ Your generated CSS output will look something like:
 .my-component-a34fba {
   padding: 2px;
 }
-.my-component-a34fba .urgent {
+.my-component-a34fba-urgent {
   color: red;
 }
 ```
@@ -44,6 +44,12 @@ A typical component invocation that looks like this:
 will generated markup like:
 
 `<div class="my-component-a34fba"></div>`
+
+Within the template for your component, you can reference the generated version of the `urgent` class using the `{{class-for}}` helper:
+
+`<div class="{{class-for 'urgent'}}">Alert!</div>`
+
+If you ever wish to opt out of the namespacing for a particular class, e.g. if you're tweaking the behavior of an existing framework utility class, you can wrap it in the `:--global` pseudoselector.
 
 ### With Preprocessors
 
