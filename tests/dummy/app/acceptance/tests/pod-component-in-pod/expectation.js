@@ -1,6 +1,6 @@
 export default {
   styles: {
-    '.location-explanation': {
+    '[data-location-explanation]': {
       color: 'rgb(255, 0, 0)'
     }
   }

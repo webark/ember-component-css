@@ -1,0 +1,15 @@
+:--component {
+  color: rgb(255, 0, 255);
+}
+
+.green-text {
+  color: rgb(0, 255, 0);
+}
+
+.green-text > :--global(span) {
+  color: rgb(0, 255, 255);
+}
+
+:--global(.global-blue-text) {
+  color: rgb(0, 0, 255);
+}
