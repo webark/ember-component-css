@@ -4,6 +4,7 @@
 var Funnel = require('broccoli-funnel');
 var versionChecker = require('ember-cli-version-checker');
 var path = require('path');
+var fs = require('fs');
 
 var ComponentCssPreprocessor = require('./lib/component-css-preprocessor');
 var ComponentCssPostprocessor = require('./lib/component-css-postprocessor');
@@ -12,6 +13,7 @@ function monkeyPatch(EmberApp) {
   var upstreamMergeTrees = require('broccoli-merge-trees');
   var p = require('ember-cli/lib/preprocessors');
   var preprocessCss = p.preprocessCss;
+  var preprocessMinifyCss = p.preprocessMinifyCss;
 
   function mergeTrees(inputTree, options) {
     var tree = upstreamMergeTrees(inputTree, options);
@@ -50,6 +52,10 @@ function monkeyPatch(EmberApp) {
   };
 
   EmberApp.prototype.styles = function() {
+    if (fs.existsSync('app/styles/' + this.name + '.css')) {
+      throw new SilentError('Style file cannot have the name of the application - ' + this.name);
+    }
+
     var addonTrees = this.addonTreesFor('styles');
     var external = this._processedExternalTree();
     var styles = new Funnel(this.trees.styles, {
@@ -72,7 +78,8 @@ function monkeyPatch(EmberApp) {
 
     var options = { outputPaths: this.options.outputPaths.app.css };
     options.registry = this.registry;
-    var processedStyles = preprocessCss(stylesAndVendor, '/app/styles', '/assets', options);
+    var preprocessedStyles = preprocessCss(stylesAndVendor, '/app/styles', '/assets', options);
+
     var vendorStyles    = this.concatFiles(stylesAndVendor, {
       inputFiles: this.vendorStaticStyles.concat(['vendor/addons.css']),
       outputFile: this.options.outputPaths.vendor.css,
@@ -82,16 +89,17 @@ function monkeyPatch(EmberApp) {
     if (this.options.minifyCSS.enabled === true) {
       options = this.options.minifyCSS.options || {};
       options.registry = this.registry;
-      processedStyles = preprocessMinifyCss(processedStyles, options);
+      preprocessedStyles = preprocessMinifyCss(preprocessedStyles, options);
       vendorStyles    = preprocessMinifyCss(vendorStyles, options);
     }
 
-    return mergeTrees([
-        processedStyles,
+    var mergedTrees = mergeTrees([
+        preprocessedStyles,
         vendorStyles
       ], {
         description: 'styles'
       });
+    return this.addonPostprocessTree('css', mergedTrees);
   };
 }
 
