@@ -21,6 +21,7 @@
   "author": "Erik Bryn",
   "license": "MIT",
   "devDependencies": {
+    "broccoli": "^0.16.2",
     "broccoli-asset-rev": "^2.0.0",
     "ember-cli": "^0.2.3",
     "ember-cli-app-version": "0.3.1",
@@ -34,8 +35,10 @@
     "ember-cli-uglify": "1.0.1",
     "ember-data": "1.0.0-beta.15",
     "ember-export-application-global": "^1.0.2",
+    "expect.js": "^0.3.1",
     "express": "^4.8.5",
-    "glob": "^4.0.5"
+    "glob": "^4.0.5",
+    "mocha": "^2.2.4"
   },
   "keywords": [
     "ember-addon"
