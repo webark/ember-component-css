@@ -21,7 +21,12 @@
     "andThen",
     "currentURL",
     "currentPath",
-    "currentRouteName"
+    "currentRouteName",
+
+    /* MOCHA */
+    "describe",
+    "afterEach",
+    "it"
   ],
   "node": false,
   "browser": false,

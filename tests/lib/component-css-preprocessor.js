@@ -13,7 +13,7 @@ describe('component-css-preprocessor', function(){
   var scssFixturePath = path.join(__dirname, 'scss_fixtures');
   var addon = {
     podDir: function() {
-      return null
+      return null;
     },
     pod: {
       lookup: Object.create(null)
@@ -25,7 +25,7 @@ describe('component-css-preprocessor', function(){
     if (treeBuilder) {
       return treeBuilder.cleanup();
     }
-  })
+  });
 
   describe('constructor', function() {
     it('is named component-css and acquires the passed in options', function() {
