@@ -63,7 +63,8 @@ function monkeyPatch(EmberApp) {
       destDir: '/app/styles'
     });
 
-    var podStyles = new Funnel(this.trees.app, {
+    var allTrees = [this.trees.app].concat(this.addonTreesFor('app'));
+    var podStyles = new Funnel(mergeTrees(allTrees, {overwrite: true}), {
       include: this._podStylePatterns(),
       exclude: [ /^styles/ ],
       destDir: '/app',
