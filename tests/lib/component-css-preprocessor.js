@@ -19,13 +19,6 @@ describe('component-css-preprocessor', function(){
       lookup: Object.create(null)
     }
   };
-  var treeBuilder;
-
-  afterEach(function() {
-    if (treeBuilder) {
-      return treeBuilder.cleanup();
-    }
-  });
 
   describe('constructor', function() {
     it('is named component-css and acquires the passed in options', function() {
@@ -33,40 +26,6 @@ describe('component-css-preprocessor', function(){
 
       expect(plugin.name).to.eql('component-css');
       expect(plugin.options).to.eql({ addon: addon });
-    });
-  });
-
-  describe('toTree', function() {
-    it('returns the styles directory + pod-styles.css', function() {
-      var stylesPath = 'app/styles';
-      var tree = new ComponentCssPreprocessor({
-        addon: addon
-      }).toTree(cssFixturePath, stylesPath);
-
-      treeBuilder = new broccoli.Builder(tree);
-
-      return treeBuilder.build().then(function(results) {
-        var actual = walkSync(results.directory);
-        var expected = ['app/', 'app/styles/', 'app/styles/app.css', 'pod-styles.css'];
-
-        expect(actual).to.eql(expected);
-      });
-    });
-
-    it('returns the styles directory + pod-styles.scss', function() {
-      var stylesPath = 'app/styles';
-      var tree = new ComponentCssPreprocessor({
-        addon: addon
-      }).toTree(scssFixturePath, stylesPath);
-
-      treeBuilder = new broccoli.Builder(tree);
-
-      return treeBuilder.build().then(function(results) {
-        var actual = walkSync(results.directory);
-        var expected = ['app/', 'app/styles/', 'app/styles/app.scss', 'pod-styles.scss'];
-
-        expect(actual).to.eql(expected);
-      });
     });
   });
 });
