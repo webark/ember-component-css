@@ -56,6 +56,7 @@
     "broccoli-merge-trees": "^0.2.1",
     "broccoli-writer": "^0.1.1",
     "css": "^2.2.0",
+    "ember-cli-preprocess-registry": "^1.0.2",
     "ember-cli-version-checker": "^1.0.2",
     "symlink-or-copy": "^1.0.1",
     "walk-sync": "^0.1.3"

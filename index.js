@@ -11,7 +11,7 @@ var ComponentCssPostprocessor = require('./lib/component-css-postprocessor');
 
 function monkeyPatch(EmberApp) {
   var upstreamMergeTrees = require('broccoli-merge-trees');
-  var p = require('ember-cli/lib/preprocessors');
+  var p = require('ember-cli-preprocess-registry/preprocessors');
   var preprocessCss = p.preprocessCss;
   var preprocessMinifyCss = p.preprocessMinifyCss;
 
