@@ -58,7 +58,7 @@
     "ember-cli-preprocess-registry": "^1.0.1",
     "ember-cli-version-checker": "^1.0.2",
     "postcss": "^5.0.14",
-    "postcss-selector-namespace": "^1.0.4",
+    "postcss-selector-namespace": "^1.0.5",
     "symlink-or-copy": "^1.0.1",
     "walk-sync": "^0.1.3"
   }
