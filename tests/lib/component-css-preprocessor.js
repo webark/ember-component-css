@@ -1,16 +1,11 @@
 /* jshint node: true */
 'use strict';
 
-var path = require('path');
 var expect = require('expect.js');
-var walkSync = require('walk-sync');
-var broccoli = require('broccoli');
 
 var ComponentCssPreprocessor = require('../../lib/component-css-preprocessor');
 
 describe('component-css-preprocessor', function(){
-  var cssFixturePath = path.join(__dirname, 'css_fixtures');
-  var scssFixturePath = path.join(__dirname, 'scss_fixtures');
   var addon = {
     podDir: function() {
       return null;
