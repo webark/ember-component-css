@@ -19,6 +19,12 @@ module('Acceptance - Computed Styles', {
   }
 });
 
+function lookup(app, thing) {
+  if (app.lookup) return app.lookup(thing);
+  if (app.__container__) return app.__container__.lookup(thing);
+
+  return app.registry.lookup(thing);
+}
 
 Environment.ACCEPTANCE_TESTS.forEach(function(name) {
   test(name, function(assert) {
@@ -28,7 +34,7 @@ Environment.ACCEPTANCE_TESTS.forEach(function(name) {
       var $root = Ember.$(application.rootElement);
 
       // Look up the expected styles for this test
-      var expectation = application.registry.lookup('expectation:acceptance/tests/' + name);
+      var expectation = lookup(application, 'expectation:acceptance/tests/' + name);
       var selectors = Object.keys(expectation.styles);
 
       // Locate each element with an expected set of styles, and assert that it matches those styles
