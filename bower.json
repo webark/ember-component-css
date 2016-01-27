@@ -1,7 +1,7 @@
 {
   "name": "ember-component-css",
   "dependencies": {
-    "jquery": "^1.11.1",
+    "jquery": "1.11.3",
     "ember": "1.13.0-beta.1",
     "ember-data": "1.0.0-beta.15",
     "ember-resolver": "~0.1.11",
