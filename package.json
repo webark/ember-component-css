@@ -1,15 +1,15 @@
 {
   "name": "ember-component-css",
-  "version": "0.1.8",
+  "version": "0.2.0-beta.1",
   "description": "An Ember CLI addon which allows you to specify CSS inside of component pod directories",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
   "scripts": {
-    "start": "ember server",
     "build": "ember build",
-    "test": "ember test && mocha tests/lib"
+    "start": "ember server",
+    "test": "ember try:testall"
   },
   "repository": {
     "type": "git",
@@ -22,49 +22,39 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
-    "ember-cli": "1.13.15",
+    "broccoli-concat": "^2.2.0",
+    "broccoli-filter": "^1.2.3",
+    "broccoli-funnel": "^1.0.1",
+    "broccoli-merge-trees": "^1.1.1",
+    "broccoli-plugin": "^1.2.1",
+    "ember-ajax": "0.7.1",
+    "ember-cli": "2.4.2",
     "ember-cli-app-version": "^1.0.0",
-    "ember-cli-content-security-policy": "0.4.0",
-    "ember-cli-dependency-checker": "^1.1.0",
+    "ember-cli-dependency-checker": "^1.2.0",
     "ember-cli-htmlbars": "^1.0.1",
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
-    "ember-cli-ic-ajax": "0.2.4",
     "ember-cli-inject-live-reload": "^1.3.1",
-    "ember-cli-qunit": "^1.0.4",
+    "ember-cli-qunit": "^1.2.1",
     "ember-cli-release": "0.2.8",
-    "ember-cli-sri": "^1.2.0",
-    "ember-cli-uglify": "1.2.0",
-    "ember-data": "1.13.15",
+    "ember-cli-sri": "^2.1.0",
+    "ember-cli-uglify": "^1.2.0",
+    "ember-data": "^2.4.0",
+    "ember-disable-prototype-extensions": "^1.1.0",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.4",
-    "ember-disable-prototype-extensions": "^1.0.0",
-    "ember-try": "~0.0.8",
-    "expect.js": "^0.3.1",
-    "express": "^4.8.5",
-    "glob": "^4.0.5",
-    "mocha": "^2.2.4"
+    "ember-load-initializers": "^0.5.0",
+    "ember-resolver": "^2.0.3",
+    "ember-try": "^0.1.2",
+    "loader.js": "^4.0.0",
+    "walk-sync": "^0.2.6"
   },
   "keywords": [
     "ember-addon"
   ],
-  "ember-addon": {
-    "before": [
-      "ember-cli-sass",
-      "ember-cli-less",
-      "ember-cli-stylus"
-    ],
-    "configPath": "tests/dummy/config"
-  },
   "dependencies": {
-    "ember-cli-babel": "^5.1.5",
-    "broccoli-funnel": "^1.0.1",
-    "broccoli-merge-trees": "^1.1.1",
-    "broccoli-writer": "^0.1.1",
-    "postcss": "^5.0.14",
-    "postcss-selector-namespace": "^1.0.5",
-    "ember-cli-preprocess-registry": "^1.1.0",
-    "ember-cli-version-checker": "^1.1.5",
-    "symlink-or-copy": "^1.0.1",
-    "walk-sync": "^0.2.6"
+    "ember-cli-babel": "^5.1.5"
+  },
+  "ember-addon": {
+    "configPath": "tests/dummy/config"
   }
 }
