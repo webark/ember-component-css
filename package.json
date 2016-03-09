@@ -23,9 +23,9 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
     "broccoli-concat": "^2.2.0",
-    "broccoli-filter": "^1.2.3",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
+    "broccoli-persistent-filter": "^1.2.0",
     "broccoli-plugin": "^1.2.1",
     "ember-ajax": "0.7.1",
     "ember-cli": "2.4.2",
