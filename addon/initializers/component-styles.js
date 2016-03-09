@@ -18,14 +18,15 @@ export function initialize() {
   });
 
   Component.reopen({
-    addPodStyleName: Ember.on('init', function() {
+    init() {
+      this._super(...arguments);
       if (this.tagName !== '' && this._debugContainerKey) {
         const name = this._debugContainerKey.replace('component:', '');
         if (podNames[name]) {
           this.classNames.push(podNames[name]);
         }
       }
-    }),
+    }
   });
 }
 
