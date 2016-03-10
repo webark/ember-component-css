@@ -20,7 +20,7 @@ export function initialize() {
   Component.reopen({
     init() {
       this._super(...arguments);
-      if (this.tagName !== '' && this._debugContainerKey) {
+      if (this.get('tagName') !== '' && this._debugContainerKey) {
         const name = this._debugContainerKey.replace('component:', '');
         if (podNames[name]) {
           this.classNames.push(podNames[name]);
