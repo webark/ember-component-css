@@ -46,6 +46,8 @@
     "ember-resolver": "^2.0.3",
     "ember-try": "^0.1.2",
     "loader.js": "^4.0.0",
+    "postcss": "^5.0.19",
+    "postcss-selector-namespace": "^1.2.4",
     "walk-sync": "^0.2.6"
   },
   "keywords": [
