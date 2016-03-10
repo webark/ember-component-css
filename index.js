@@ -16,7 +16,7 @@ module.exports = {
       exclude: ['styles/**/*'],
       include: this.allowedStyleExtentions.map(function(ext) { return new RegExp(ext + '$'); }),
       allowEmpty: true,
-      annotation: 'Funnel (pod styles)'
+      annotation: 'Funnel (ember-component-css grab files)'
     });
   },
 
@@ -31,7 +31,7 @@ module.exports = {
         inputFiles: ['**/*.' + extension],
         sourceMapConfig: { enabled: true },
         allowNone: true,
-        annotation: 'Concat (pod styles ' + extension + ')'
+        annotation: 'Concat (ember-component-css pod-styles.' + extension + ')'
       }));
     }
 
@@ -39,9 +39,7 @@ module.exports = {
   },
 
   _allowedStyleExtentions() {
-    return this.registry.extensionsForType('css').filter(function(extension) {
-      return extension !== 'css' && extension !== 'sass';
-    });
+    return this.registry.extensionsForType('css');
   },
 
   _podDirectory() {
@@ -57,12 +55,12 @@ module.exports = {
   treeForAddon(tree) {
     var podStyles = this._getPodStyleFunnel();
     var podNames = new ExtractNames(podStyles, {
-      annotation: 'Walk (extract pod style names from style files)'
+      annotation: 'Walk (ember-component-css extract class names from style paths)'
     });
 
     var treeAndNames = new Merge([tree, podNames], {
       overwrite: true,
-      annotation: 'Merge (pod style names with addon tree)'
+      annotation: 'Merge (ember-component-css merge names with addon tree)'
     });
 
     return this._super.treeForAddon.call(this, treeAndNames);
@@ -73,7 +71,7 @@ module.exports = {
 
     var wrappedStyles = new WrappedStyles(podStyles, {
       extensions: this.allowedStyleExtentions,
-      annotation: 'Filter (wrap pod styles with class names)'
+      annotation: 'Filter (ember-component-css wrap process :--component with class names)'
     });
 
     var concatStyles = this._concatenatedPodStyles(wrappedStyles);
