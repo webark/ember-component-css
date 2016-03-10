@@ -6,6 +6,7 @@ var Concat = require('broccoli-concat');
 var Merge = require('broccoli-merge-trees');
 var WrappedStyles = require('./lib/pod-style.js');
 var ExtractNames = require('./lib/pod-names.js');
+var RemoveEmpty = require('./lib/remove-empty.js');
 
 module.exports = {
   name: 'ember-component-css',
@@ -25,7 +26,6 @@ module.exports = {
 
     for (var i = 0; i < this.allowedStyleExtentions.length; i++) {
       var extension = this.allowedStyleExtentions[i];
-
       concatenatedStyles.push(new Concat(wrappedStyles, {
         outputFile: 'pod-styles.' + extension,
         inputFiles: ['**/*.' + extension],
@@ -35,7 +35,9 @@ module.exports = {
       }));
     }
 
-    return new Merge(concatenatedStyles);
+    return new Merge(concatenatedStyles, {
+      annotation: 'Merge (ember-component-css merge concatenated styles)'
+    });
   },
 
   _allowedStyleExtentions() {
@@ -76,7 +78,11 @@ module.exports = {
 
     var concatStyles = this._concatenatedPodStyles(wrappedStyles);
 
-    return this._super.treeForStyles.call(this, concatStyles);
+    var removeEmptyFiles = new RemoveEmpty(concatStyles, {
+      annotation: 'RemoveEmpty (ember-component-css remove empty files)'
+    });
+
+    return this._super.treeForStyles.call(this, removeEmptyFiles);
   },
 
 };
