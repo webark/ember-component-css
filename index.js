@@ -9,7 +9,6 @@ var ExtractNames = require('./lib/pod-names.js');
 var RemoveEmpty = require('./lib/remove-empty.js');
 
 module.exports = {
-  name: 'ember-component-css',
 
   _getPodStyleFunnel() {
     return new Funnel('app', {
@@ -85,4 +84,5 @@ module.exports = {
     return this._super.treeForStyles.call(this, removeEmptyFiles);
   },
 
+  name: 'ember-component-css'
 };
