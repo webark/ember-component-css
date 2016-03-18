@@ -52,8 +52,10 @@
     "broccoli-persistent-filter": "^1.2.0",
     "broccoli-plugin": "^1.2.1",
     "ember-cli-babel": "^5.1.5",
+    "fs-tree-diff": "^0.4.4",
     "postcss": "^5.0.19",
     "postcss-selector-namespace": "^1.2.4",
+    "rsvp": "^3.2.1",
     "walk-sync": "^0.2.6"
   },
   "ember-addon": {
