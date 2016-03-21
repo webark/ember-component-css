@@ -4,9 +4,9 @@
 var Funnel = require('broccoli-funnel');
 var Concat = require('broccoli-concat');
 var Merge = require('broccoli-merge-trees');
-var WrappedStyles = require('./lib/pod-style.js');
+var ProcessStyles = require('./lib/pod-style.js');
 var ExtractNames = require('./lib/pod-names.js');
-var RemoveEmpty = require('./lib/remove-empty.js');
+var IncludeAll = require('./lib/include-all.js');
 
 module.exports = {
 
@@ -17,25 +17,6 @@ module.exports = {
       include: ['**/*.{' + this.allowedStyleExtentions + '}'],
       allowEmpty: true,
       annotation: 'Funnel (ember-component-css grab files)'
-    });
-  },
-
-  _concatenatedPodStyles(wrappedStyles) {
-    var concatenatedStyles = [];
-
-    for (var i = 0; i < this.allowedStyleExtentions.length; i++) {
-      var extension = this.allowedStyleExtentions[i];
-      concatenatedStyles.push(new Concat(wrappedStyles, {
-        outputFile: 'pod-styles.' + extension,
-        inputFiles: ['**/*.' + extension],
-        sourceMapConfig: { enabled: true },
-        allowNone: true,
-        annotation: 'Concat (ember-component-css pod-styles.' + extension + ')'
-      }));
-    }
-
-    return new Merge(concatenatedStyles, {
-      annotation: 'Merge (ember-component-css merge concatenated styles)'
     });
   },
 
@@ -70,18 +51,16 @@ module.exports = {
   treeForStyles(tree) {
     var podStyles = this._getPodStyleFunnel();
 
-    var wrappedStyles = new WrappedStyles(podStyles, {
+    var processedStyles = new ProcessStyles(podStyles, {
       extensions: this.allowedStyleExtentions,
-      annotation: 'Filter (ember-component-css wrap process :--component with class names)'
+      annotation: 'Filter (ember-component-css process :--component with class names)'
     });
 
-    var concatStyles = this._concatenatedPodStyles(wrappedStyles);
-
-    var removeEmptyFiles = new RemoveEmpty(concatStyles, {
-      annotation: 'RemoveEmpty (ember-component-css remove empty files)'
+    var podStyles = new IncludeAll(processedStyles, {
+      annotation: 'IncludeAll (ember-component-css combining all style files that there are extentions for)'
     });
 
-    return this._super.treeForStyles.call(this, removeEmptyFiles);
+    return this._super.treeForStyles.call(this, podStyles);
   },
 
   name: 'ember-component-css'
