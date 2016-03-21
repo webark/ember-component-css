@@ -8,8 +8,8 @@ const {
 
 ComponentLookup.reopen({
   componentFor(name, owner) {
-    if (podNames[name] && !owner.application.hasRegistration('component:' + name)) {
-      owner.application.register('component:' + name, Component);
+    if (podNames[name] && !owner.hasRegistration('component:' + name)) {
+      owner.register('component:' + name, Component);
     }
     return this._super(...arguments);
   }
