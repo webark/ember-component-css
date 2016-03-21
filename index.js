@@ -10,7 +10,7 @@ var IncludeAll = require('./lib/include-all.js');
 
 module.exports = {
 
-  _getPodStyleFunnel() {
+  _getPodStyleFunnel: function() {
     return new Funnel('app', {
       srcDir: this._podDirectory(),
       exclude: ['styles/**/*'],
@@ -20,21 +20,21 @@ module.exports = {
     });
   },
 
-  _allowedStyleExtentions() {
+  _allowedStyleExtentions: function() {
     return this.registry.extensionsForType('css');
   },
 
-  _podDirectory() {
+  _podDirectory: function() {
     return this.appConfig.podModulePrefix ? this.appConfig.podModulePrefix.replace(this.appConfig.modulePrefix, '') : '';
   },
 
-  included(app) {
+  included: function(app) {
     this._super.included.apply(this, arguments);
     this.appConfig = app.project.config(); 
     this.allowedStyleExtentions = this._allowedStyleExtentions();
   },
 
-  treeForAddon(tree) {
+  treeForAddon: function(tree) {
     var podStyles = this._getPodStyleFunnel();
     var podNames = new ExtractNames(podStyles, {
       annotation: 'Walk (ember-component-css extract class names from style paths)'
@@ -48,7 +48,7 @@ module.exports = {
     return this._super.treeForAddon.call(this, treeAndNames);
   },
 
-  treeForStyles(tree) {
+  treeForStyles: function(tree) {
     var podStyles = this._getPodStyleFunnel();
 
     var processedStyles = new ProcessStyles(podStyles, {
