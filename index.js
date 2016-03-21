@@ -48,7 +48,7 @@ module.exports = {
   },
 
   included(app) {
-    this._super.included(app);
+    this._super.included.apply(this, arguments);
     this.appConfig = app.project.config(); 
     this.allowedStyleExtentions = this._allowedStyleExtentions();
   },
