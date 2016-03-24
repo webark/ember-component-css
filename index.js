@@ -24,35 +24,44 @@ module.exports = {
     return this.appConfig.podModulePrefix ? this.appConfig.podModulePrefix.replace(this.appConfig.modulePrefix, '') : '';
   },
 
+  _namespacingIsEnabled: function() {
+    return this.addonConfig.namespacing !== false;
+  },
+
   included: function(app) {
     this._super.included.apply(this, arguments);
     this.appConfig = app.project.config();
+    this.addonConfig = this.app.project.config(app.env)['ember-component-css'] || {};
     this.allowedStyleExtensions = app.registry.extensionsForType('css').filter(Boolean);
   },
 
   treeForAddon: function(tree) {
-    var podStyles = this._getPodStyleFunnel();
-    var podNames = new ExtractNames(podStyles, {
-      annotation: 'Walk (ember-component-css extract class names from style paths)'
-    });
+    if (this._namespacingIsEnabled()) {
+      var podStyles = this._getPodStyleFunnel();
+      var podNames = new ExtractNames(podStyles, {
+        annotation: 'Walk (ember-component-css extract class names from style paths)'
+      });
 
-    var treeAndNames = new Merge([tree, podNames], {
-      overwrite: true,
-      annotation: 'Merge (ember-component-css merge names with addon tree)'
-    });
+      tree = new Merge([tree, podNames], {
+        overwrite: true,
+        annotation: 'Merge (ember-component-css merge names with addon tree)'
+      });
+    }
 
-    return this._super.treeForAddon.call(this, treeAndNames);
+    return this._super.treeForAddon.call(this, tree);
   },
 
   treeForStyles: function(tree) {
     var podStyles = this._getPodStyleFunnel();
 
-    var processedStyles = new ProcessStyles(podStyles, {
-      extensions: this.allowedStyleExtensions,
-      annotation: 'Filter (ember-component-css process :--component with class names)'
-    });
+    if (this._namespacingIsEnabled()) {
+      podStyles = new ProcessStyles(podStyles, {
+        extensions: this.allowedStyleExtensions,
+        annotation: 'Filter (ember-component-css process :--component with class names)'
+      });
+    }
 
-    var podStyles = new IncludeAll(processedStyles, {
+    podStyles = new IncludeAll(podStyles, {
       annotation: 'IncludeAll (ember-component-css combining all style files that there are extensions for)'
     });
 
