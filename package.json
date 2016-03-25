@@ -54,6 +54,7 @@
     "ember-cli-babel": "^5.1.5",
     "ember-getowner-polyfill": "1.0.1",
     "fs-tree-diff": "^0.4.4",
+    "md5": "^2.1.0",
     "postcss": "^5.0.19",
     "postcss-selector-namespace": "^1.2.4",
     "rsvp": "^3.2.1",
