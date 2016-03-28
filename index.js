@@ -20,10 +20,6 @@ module.exports = {
     });
   },
 
-  _allowedStyleExtentions: function() {
-    return this.registry.extensionsForType('css');
-  },
-
   _podDirectory: function() {
     return this.appConfig.podModulePrefix ? this.appConfig.podModulePrefix.replace(this.appConfig.modulePrefix, '') : '';
   },
@@ -31,7 +27,7 @@ module.exports = {
   included: function(app) {
     this._super.included.apply(this, arguments);
     this.appConfig = app.project.config(); 
-    this.allowedStyleExtentions = this._allowedStyleExtentions();
+    this.allowedStyleExtentions = app.registry.extensionsForType('css');
   },
 
   treeForAddon: function(tree) {
