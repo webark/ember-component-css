@@ -1,6 +1,6 @@
 {
   "name": "ember-component-css",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "description": "An Ember CLI addon which allows you to specify CSS inside of component pod directories",
   "directories": {
     "doc": "doc",
