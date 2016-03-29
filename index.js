@@ -26,8 +26,8 @@ module.exports = {
 
   included: function(app) {
     this._super.included.apply(this, arguments);
-    this.appConfig = app.project.config(); 
-    this.allowedStyleExtentions = app.registry.extensionsForType('css');
+    this.appConfig = app.project.config();
+    this.allowedStyleExtentions = app.registry.extensionsForType('css').filter(Boolean);
   },
 
   treeForAddon: function(tree) {
