@@ -64,8 +64,12 @@ module.exports = {
       });
     }
 
-    podStyles = new IncludeAll(podStyles, {
+    var styleManifest = new IncludeAll(podStyles, {
       annotation: 'IncludeAll (ember-component-css combining all style files that there are extensions for)'
+    });
+
+    podStyles = new Merge([podStyles, styleManifest, tree].filter(Boolean), {
+      annotation: 'Merge (ember-component-css merge namespacedStyles with style manafest)'
     });
 
     return this._super.treeForStyles.call(this, podStyles);
