@@ -14,7 +14,7 @@ module.exports = {
     return new Funnel('app', {
       srcDir: this._podDirectory(),
       exclude: ['styles/**/*'],
-      include: ['**/*.{' + this.allowedStyleExtentions + '}'],
+      include: ['**/*.{' + this.allowedStyleExtensions + '}'],
       allowEmpty: true,
       annotation: 'Funnel (ember-component-css grab files)'
     });
@@ -27,7 +27,7 @@ module.exports = {
   included: function(app) {
     this._super.included.apply(this, arguments);
     this.appConfig = app.project.config();
-    this.allowedStyleExtentions = app.registry.extensionsForType('css').filter(Boolean);
+    this.allowedStyleExtensions = app.registry.extensionsForType('css').filter(Boolean);
   },
 
   treeForAddon: function(tree) {
@@ -48,12 +48,12 @@ module.exports = {
     var podStyles = this._getPodStyleFunnel();
 
     var processedStyles = new ProcessStyles(podStyles, {
-      extensions: this.allowedStyleExtentions,
+      extensions: this.allowedStyleExtensions,
       annotation: 'Filter (ember-component-css process :--component with class names)'
     });
 
     var podStyles = new IncludeAll(processedStyles, {
-      annotation: 'IncludeAll (ember-component-css combining all style files that there are extentions for)'
+      annotation: 'IncludeAll (ember-component-css combining all style files that there are extensions for)'
     });
 
     return this._super.treeForStyles.call(this, podStyles);
