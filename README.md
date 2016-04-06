@@ -56,7 +56,7 @@ To use this addon with a CSS pre-processor, import `pod-styles` into your base s
 
 ```less
 // app/styles/app.less
-@import "pod-styles.less";
+@import "pod-styles";
 ```
 
 ```stylus
