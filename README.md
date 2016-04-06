@@ -18,7 +18,7 @@ Rules defined in the style-sheet will automatically be namespaced with an autoge
 For example, given this `app/my-component/styles.css` file:
 
 ```css
-& {
+& {  // ampersand refers to the component itself (parent selector)
   padding: 2px;
 }
 .urgent {
