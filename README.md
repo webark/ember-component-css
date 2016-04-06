@@ -47,9 +47,7 @@ will generated markup like:
 
 ### With Preprocessors
 
-To use this addon with another preprocessor (such as Sass or Less), simply import `pod-styles` into your base app stylesheet.
-
-For example, if you're using Sass:
+To use this addon with a CSS pre-processor, import `pod-styles` into your base stylesheet. (see your pre-processor docs)
 
 ```scss
 // app/styles/app.scss
