@@ -66,6 +66,8 @@ To use this addon with a CSS pre-processor, import `pod-styles` into your base s
 
 And that is it! The `pod-styles` file is generated during the build and will then be pulled into your other stylesheet to be processed like normal.
 
+Note: If you are using more then one type of component style files (ie a .less file and a .scss file) then you will need to add the extension to the @import. Otherwise the extension can be left off.
+
 **Approved preprocessors:**
 
  - [`ember-cli-sass`](https://github.com/aexmachina/ember-cli-sass)
