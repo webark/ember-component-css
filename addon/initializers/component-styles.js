@@ -8,6 +8,7 @@ const {
 
 ComponentLookup.reopen({
   componentFor(name, owner) {
+    debugger;
     if (podNames[name] && !owner.hasRegistration('component:' + name)) {
       owner.register('component:' + name, Component);
     }
