@@ -6,9 +6,17 @@ const {
   ComponentLookup,
 } = Ember;
 
+function hasRegistration(owner, name) {
+  if (owner.hasRegistration) {
+    return owner.hasRegistration(name);
+  } else {
+    return owner._registry.has(name);
+  }
+}
+
 ComponentLookup.reopen({
   componentFor(name, owner) {
-    if (podNames[name] && !owner.hasRegistration('component:' + name)) {
+    if (podNames[name] && !hasRegistration(owner, 'component:' + name)) {
       owner.register('component:' + name, Component);
     }
     return this._super(...arguments);
