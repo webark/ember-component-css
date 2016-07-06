@@ -11,7 +11,7 @@ var IncludeAll = require('./lib/include-all.js');
 module.exports = {
 
   _getPodStyleFunnel: function() {
-    return new Funnel('app', {
+    return new Funnel(this.projectRoot, {
       srcDir: this._podDirectory(),
       exclude: ['styles/**/*'],
       include: ['**/*.{' + this.allowedStyleExtensions + '}'],
@@ -29,9 +29,17 @@ module.exports = {
   },
 
   included: function(app) {
+    if (app.app) { app = app.app; }
+
     this._super.included.apply(this, arguments);
-    this.appConfig = app.project.config();
-    this.addonConfig = this.app.project.config(app.env)['ember-component-css'] || {};
+
+    this.projectRoot = Merge([app.trees.app].concat(app.addonTreesFor('app')), {
+      overwrite: true,
+      annotation: 'Merge (merging addons app namespace in)'
+    });
+    this.appName = app.project.name();
+    this.appConfig = app.project.config(app.env);
+    this.addonConfig = this.appConfig['ember-component-css'] || {};
     this.allowedStyleExtensions = app.registry.extensionsForType('css').filter(Boolean);
   },
 
