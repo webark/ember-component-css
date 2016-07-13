@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import podNames from 'ember-component-css/pod-names';
+import getOwner from 'ember-getowner-polyfill';
 
 const {
   Component,
@@ -8,6 +9,8 @@ const {
 
 ComponentLookup.reopen({
   componentFor(name, owner) {
+    owner = Boolean(owner.hasRegistration) ? owner : getOwner(this);
+
     if (podNames[name] && !owner.hasRegistration('component:' + name)) {
       owner.register('component:' + name, Component);
     }
