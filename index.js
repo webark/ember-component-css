@@ -1,6 +1,5 @@
 /* jshint node: true */
 'use strict';
-
 var Funnel = require('broccoli-funnel');
 var Concat = require('broccoli-concat');
 var Merge = require('broccoli-merge-trees');
@@ -33,11 +32,7 @@ module.exports = {
 
     this._super.included.apply(this, arguments);
 
-    this.projectRoot = Merge([app.trees.app].concat(app.addonTreesFor('app')), {
-      overwrite: true,
-      annotation: 'Merge (merging addons app namespace in)'
-    });
-    this.appName = app.project.name();
+    this.projectRoot = app.trees.app;
     this.appConfig = app.project.config(app.env);
     this.addonConfig = this.appConfig['ember-component-css'] || {};
     this.allowedStyleExtensions = app.registry.extensionsForType('css').filter(Boolean);
