@@ -1,6 +1,5 @@
 /* jshint node: true */
 'use strict';
-
 var Funnel = require('broccoli-funnel');
 var Concat = require('broccoli-concat');
 var Merge = require('broccoli-merge-trees');
@@ -11,7 +10,7 @@ var IncludeAll = require('./lib/include-all.js');
 module.exports = {
 
   _getPodStyleFunnel: function() {
-    return new Funnel('app', {
+    return new Funnel(this.projectRoot, {
       srcDir: this._podDirectory(),
       exclude: ['styles/**/*'],
       include: ['**/*.{' + this.allowedStyleExtensions + '}'],
@@ -29,9 +28,13 @@ module.exports = {
   },
 
   included: function(app) {
+    if (app.app) { app = app.app; }
+
     this._super.included.apply(this, arguments);
-    this.appConfig = app.project.config();
-    this.addonConfig = this.app.project.config(app.env)['ember-component-css'] || {};
+
+    this.projectRoot = app.trees.app;
+    this.appConfig = app.project.config(app.env);
+    this.addonConfig = this.appConfig['ember-component-css'] || {};
     this.allowedStyleExtensions = app.registry.extensionsForType('css').filter(Boolean);
   },
 
