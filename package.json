@@ -58,6 +58,8 @@
     "fs-tree-diff": "^0.5.0",
     "md5": "^2.1.0",
     "postcss": "^5.0.19",
+    "postcss-less": "^0.8.0",
+    "postcss-scss": "^0.1.7",
     "postcss-selector-namespace": "^1.2.4",
     "rsvp": "^3.2.1",
     "walk-sync": "^0.2.6"
