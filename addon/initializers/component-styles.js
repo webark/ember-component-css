@@ -22,7 +22,7 @@ Component.reopen({
   init() {
     this._super(...arguments);
     if (this.get('tagName') !== '' && this._debugContainerKey) {
-      const name = this._debugContainerKey.replace('component:', '');
+      const name = this._debugContainerKey.replace('component:', '').replace('components/', '');
       if (podNames[name]) {
         this.classNames.push(podNames[name]);
       }
