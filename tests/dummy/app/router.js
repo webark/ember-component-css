@@ -11,6 +11,8 @@ Router.map(function() {
   this.route('sass');
   this.route('styl');
   this.route('less');
+
+  this.route('template-style-only');
 });
 
 export default Router;
