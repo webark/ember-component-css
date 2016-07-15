@@ -5,6 +5,7 @@ import getOwner from 'ember-getowner-polyfill';
 const {
   Component,
   ComponentLookup,
+  computed,
 } = Ember;
 
 ComponentLookup.reopen({
@@ -19,13 +20,25 @@ ComponentLookup.reopen({
 });
 
 Component.reopen({
+  _componentIdentifier: computed({
+    get() {
+      return (this._debugContainerKey || '').replace('component:', '');
+    }
+  }),
+
+  componentCssClassName: computed({
+    get() {
+      return podNames[this.get('_componentIdentifier')] || '';
+    }
+  }),
+
   init() {
     this._super(...arguments);
-    if (this.get('tagName') !== '' && this._debugContainerKey) {
-      const name = this._debugContainerKey.replace('component:', '');
-      if (podNames[name]) {
-        this.classNames.push(podNames[name]);
-      }
+
+    const name = this.get('componentCssClassName');
+
+    if (this.get('tagName') !== '' && name) {
+      this.classNames.push(name);
     }
   }
 });
