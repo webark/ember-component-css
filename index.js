@@ -27,12 +27,25 @@ module.exports = {
     return this.addonConfig.namespacing !== false;
   },
 
+  _isAddon: function() {
+    return Boolean(this.parent.parent);
+  },
+
+  _allPodStyles: [],
+
   included: function(app) {
     if (app.app) { app = app.app; }
 
     this._super.included.apply(this, arguments);
 
     this.projectRoot = app.trees.app;
+
+    if (this._isAddon()) {
+      this.parent.treeForMethods['addon-styles'] = 'treeForParentAddonStyles';
+      this.parent.treeForParentAddonStyles = this.treeForParentAddonStyles.bind(this);
+      this.projectRoot = this.parent.root + '/addon';
+    }
+
     this.appConfig = app.project.config(app.env);
     this.addonConfig = this.appConfig['ember-component-css'] || {};
     this.allowedStyleExtensions = app.registry.extensionsForType('css').filter(Boolean);
@@ -40,8 +53,11 @@ module.exports = {
 
   treeForAddon: function(tree) {
     if (this._namespacingIsEnabled()) {
-      var podStyles = this._getPodStyleFunnel();
-      var podNames = new ExtractNames(podStyles, {
+      var allPodStyles = new Merge(this._allPodStyles, {
+        annotation: 'Merge (ember-component-css merge all process styles for a complete list of styles)'
+      });
+
+      var podNames = new ExtractNames(allPodStyles, {
         annotation: 'Walk (ember-component-css extract class names from style paths)'
       });
 
@@ -54,8 +70,20 @@ module.exports = {
     return this._super.treeForAddon.call(this, tree);
   },
 
+  treeForParentAddonStyles: function(tree) {
+    return this.processComponentStyles(tree);
+  },
+
   treeForStyles: function(tree) {
+    if (!this._isAddon()) {
+      tree = this.processComponentStyles(tree);
+    }
+    return this._super.treeForStyles.call(this, tree);
+  },
+
+  processComponentStyles: function(tree) {
     var podStyles = this._getPodStyleFunnel();
+    this._allPodStyles.push(podStyles);
 
     if (this._namespacingIsEnabled()) {
       podStyles = new ProcessStyles(podStyles, {
@@ -68,11 +96,11 @@ module.exports = {
       annotation: 'IncludeAll (ember-component-css combining all style files that there are extensions for)'
     });
 
-    podStyles = new Merge([podStyles, styleManifest, tree].filter(Boolean), {
+    tree = new Merge([podStyles, styleManifest, tree].filter(Boolean), {
       annotation: 'Merge (ember-component-css merge namespacedStyles with style manafest)'
     });
 
-    return this._super.treeForStyles.call(this, podStyles);
+    return tree;
   },
 
   name: 'ember-component-css'
