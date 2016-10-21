@@ -54,6 +54,7 @@ module.exports = {
   treeForAddon: function(tree) {
     if (this._namespacingIsEnabled()) {
       var allPodStyles = new Merge(this._allPodStyles, {
+        overwrite: true, // there are times (specifically with ember engines) where we run over the tree for twice. Should revist and find a way to prevent that in the future.
         annotation: 'Merge (ember-component-css merge all process styles for a complete list of styles)'
       });
 
