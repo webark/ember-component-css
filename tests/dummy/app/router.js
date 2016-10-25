@@ -13,6 +13,11 @@ Router.map(function() {
   this.route('less');
 
   this.route('template-style-only');
+
+  this.route('addon', function() {
+    this.route('scss');
+    this.route('less');
+  });
 });
 
 export default Router;
