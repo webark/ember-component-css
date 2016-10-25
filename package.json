@@ -73,7 +73,8 @@
       "ember-cli-css-extensions",
       "ember-cli-less",
       "ember-cli-sass",
-      "ember-cli-stylus"
+      "ember-cli-stylus",
+      "ember-cli-postcss"
     ]
   }
 }

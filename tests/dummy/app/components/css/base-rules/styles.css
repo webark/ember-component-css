@@ -1,0 +1,19 @@
+.base {
+  color: rgb(0, 0, 1);
+}
+
+.base .nested {
+  color: rgb(0, 0, 2);
+}
+
+span > span > span {
+  color: rgb(0, 0, 3);
+}
+
+&__element {
+  color: rgb(0, 0, 4);
+}
+
+&__element--variant {
+  color: rgb(0, 0, 5);
+}
