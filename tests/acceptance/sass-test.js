@@ -33,7 +33,7 @@ test('BEM rule followed', function(assert) {
   visit('/' + TYPE);
 
   andThen(function() {
-    assert.equal(find('[class$=-element]').css('color'), 'rgb(0, 0, 4)');
+    assert.equal(find('[class$=__element]').css('color'), 'rgb(0, 0, 4)');
   });
 });
 
@@ -41,6 +41,6 @@ test('BEM variant rule followed', function(assert) {
   visit('/' + TYPE);
 
   andThen(function() {
-    assert.equal(find('[class$=-element_variant]').css('color'), 'rgb(0, 0, 5)');
+    assert.equal(find('[class$=__element--variant]').css('color'), 'rgb(0, 0, 5)');
   });
 });
