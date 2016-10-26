@@ -44,6 +44,7 @@
     "ember-resolver": "^2.0.3",
     "ember-welcome-page": "^1.0.3",
     "loader.js": "^4.0.10",
+    "no-style-files-yet": "file:./tests/dummy/lib/no-style-files-yet",
     "second-test-addon": "file:./tests/dummy/lib/second-test-addon",
     "test-addon": "file:./tests/dummy/lib/test-addon"
   },

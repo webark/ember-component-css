@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('css');
 
   this.route('template-style-only');
+  this.route('no-style-files-yet');
 
   this.route('addon', function() {
     this.route('scss');
