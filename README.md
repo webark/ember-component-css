@@ -78,6 +78,11 @@ And that is it! The `pod-styles` file is generated during the build and will the
 
 Note: If you are using more then one type of component style files (ie a .less file and a .scss file) then you will need to add the extension to the @import. Otherwise the extension can be left off.
 
+### Use in addons
+In order to use this inside of an addon, you need to add your style files inside of the components in the
+addon directory. You will then be able to import the 'pod-styles' file inside of your addon style file which
+is in the `/addon/styles` directory. These styles will then be added to the `vendor.css` file like normal.
+
 ### Plain css usage
 In order to use this with plain css files, you need to install [`ember-cli-postcss`](https://github.com/jeffjewiss/ember-cli-postcss) and configure it with [`postcss-import`](https://github.com/postcss/postcss-import).
 
