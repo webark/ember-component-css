@@ -76,7 +76,7 @@ To use this addon you *MUST*, import `pod-styles` into your base stylesheet.
 
 And that is it! The `pod-styles` file is generated during the build and will then be pulled into your other stylesheet to be processed like normal.
 
-Note: If you are using more then one type of component style files (ie a .less file and a .scss file) then you will need to add the extension to the @import. Otherwise the extension can be left off.
+Note: If you are using more than one type of component style files (ie a .less file and a .scss file) then you will need to add the extension to the @import. Otherwise the extension can be left off.
 
 ### Use in addons
 In order to use this inside of an addon, you need to add your style files inside of the components in the
