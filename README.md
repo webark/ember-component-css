@@ -83,6 +83,14 @@ In order to use this inside of an addon, you need to add your style files inside
 addon directory. You will then be able to import the 'pod-styles' file inside of your addon style file which
 is in the `/addon/styles` directory. These styles will then be added to the `vendor.css` file like normal.
 
+If you are extending the `include` method in your addon, please make sure you call the super like this
+```js
+  included: function(app) {
+    this._super.included.apply(this, arguments);
+    ...
+  }
+```
+
 ### Plain css usage
 In order to use this with plain css files, you need to install [`ember-cli-postcss`](https://github.com/jeffjewiss/ember-cli-postcss) and configure it with [`postcss-import`](https://github.com/postcss/postcss-import).
 
