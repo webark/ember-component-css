@@ -1,6 +1,8 @@
-# ember-component-css [![Build Status](https://travis-ci.org/ebryn/ember-component-css.svg?branch=master)](https://travis-ci.org/ebryn/ember-component-css)
+# ember-component-css [![Build Status](https://travis-ci.org/ebryn/ember-component-css.svg?branch=master)](https://travis-ci.org/ebryn/ember-component-css) [![Ember Observer Score](https://emberobserver.com/badges/ember-css-modules.svg)](https://emberobserver.com/addons/ember-css-modules)
 
 An Ember CLI addon which allows you to specify a component-specific style sheet inside of component pod directories in an app, addon, engine, or in-repo addon.
+
+Contributions are welcome! Feel free to open up a pull request or issue, and join the [#e-component-css](https://embercommunity.slack.com/messages/e-component-css/) channel in the [Ember Slack community](https://ember-community-slackin.herokuapp.com/) if you have further questions, concerns, or ideas. Thanks! :smile:
 
 
 ## Installation
