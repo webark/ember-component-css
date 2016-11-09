@@ -1,4 +1,4 @@
-# ember-component-css [![Build Status](https://travis-ci.org/ebryn/ember-component-css.svg?branch=master)](https://travis-ci.org/ebryn/ember-component-css) [![Ember Observer Score](https://emberobserver.com/badges/ember-css-modules.svg)](https://emberobserver.com/addons/ember-css-modules)
+# ember-component-css [![Build Status](https://travis-ci.org/ebryn/ember-component-css.svg?branch=master)](https://travis-ci.org/ebryn/ember-component-css) [![Ember Observer Score](https://emberobserver.com/badges/ember-component-css.svg)](https://emberobserver.com/addons/ember-component-css)
 
 An Ember CLI addon which allows you to specify a component-specific style sheet inside of component pod directories in an app, addon, engine, or in-repo addon.
 
