@@ -93,6 +93,8 @@ If you are extending the `include` method in your addon, please make sure you ca
   }
 ```
 
+Finally, be sure "ember-component-css" is listed under the "dependencies" key of your addon's `package.json` file, rather than "devDependencies".
+
 ### Plain css usage
 In order to use this with plain css files, you need to install [`ember-cli-postcss`](https://github.com/jeffjewiss/ember-cli-postcss) and configure it with [`postcss-import`](https://github.com/postcss/postcss-import).
 
