@@ -38,7 +38,9 @@ module.exports = {
 
     this._super.included.apply(this, arguments);
 
-    this.projectRoot = app.trees.app;
+    if (app.trees) {
+      this.projectRoot = app.trees.app;
+    }
 
     if (this._isAddon()) {
       this.parent.treeForMethods['addon-styles'] = 'treeForParentAddonStyles';
