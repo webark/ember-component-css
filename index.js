@@ -33,17 +33,29 @@ module.exports = {
 
   _allPodStyles: [],
 
+  _projectRoot: function(trees) {
+    var projectRoot;
+    if (this._isAddon()) {
+      projectRoot = this.parent.root + '/addon';
+    } else if (trees && trees.app) {
+      projectRoot = trees.app;
+    } else {
+      projectRoot = this.parent.root + '/app';
+    }
+
+    return projectRoot;
+  },
+
   included: function(app) {
     if (app.app) { app = app.app; }
 
     this._super.included.apply(this, arguments);
 
-    this.projectRoot = app.trees.app;
+    this.projectRoot = this._projectRoot(app.trees);
 
     if (this._isAddon()) {
       this.parent.treeForMethods['addon-styles'] = 'treeForParentAddonStyles';
       this.parent.treeForParentAddonStyles = this.treeForParentAddonStyles.bind(this);
-      this.projectRoot = this.parent.root + '/addon';
     }
 
     this.appConfig = app.project.config(app.env);
