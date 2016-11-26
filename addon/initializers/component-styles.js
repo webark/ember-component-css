@@ -38,7 +38,7 @@ Component.reopen({
     const name = this.get('componentCssClassName');
 
     if (this.get('tagName') !== '' && name) {
-      this.classNames.push(name);
+      this.classNames = [name].pushObjects(this.classNames);
     }
   }
 });
