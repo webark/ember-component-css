@@ -1,3 +1,9 @@
+@mixin mixin() {
+  &.mixin-extra {
+    color: rgb(0, 0, 6);
+  }
+}
+
 .base {
   color: rgb(0, 0, 1);
 
@@ -20,6 +26,7 @@ span {
 
     &--variant {
       color: rgb(0, 0, 5);
+      @include mixin;
     }
   }
 }

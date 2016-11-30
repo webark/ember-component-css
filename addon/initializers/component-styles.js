@@ -10,10 +10,10 @@ const {
 
 ComponentLookup.reopen({
   componentFor(name, owner) {
-    owner = Boolean(owner.hasRegistration) ? owner : getOwner(this);
+    owner = owner.hasRegistration ? owner : getOwner(this);
 
-    if (podNames[name] && !owner.hasRegistration('component:' + name)) {
-      owner.register('component:' + name, Component);
+    if (podNames[name] && !owner.hasRegistration(`component:${name}`)) {
+      owner.register(`component:${name}`, Component);
     }
     return this._super(...arguments);
   }
@@ -35,7 +35,7 @@ Component.reopen({
   init() {
     this._super(...arguments);
 
-    const name = this.get('componentCssClassName');
+    let name = this.get('componentCssClassName');
 
     if (this.get('tagName') !== '' && name) {
       this.classNames.push(name);

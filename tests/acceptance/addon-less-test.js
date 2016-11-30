@@ -4,7 +4,7 @@ import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 const TYPE = 'less';
 const PATH = `/addon/${TYPE}`;
 
-moduleForAcceptance('Acceptance | Addon for ' + TYPE);
+moduleForAcceptance(`Acceptance | Addon for ${TYPE}`);
 
 test('base rule followed', function(assert) {
   visit(PATH);
