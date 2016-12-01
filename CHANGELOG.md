@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.6"></a>
+## [0.2.6](https://github.com/ebryn/ember-component-css/compare/v0.2.5...v0.2.6) (2016-12-01)
+
+
+### Bug Fixes
+
+* **ember-2.11:** moving to concatinating and reasinging the classnames incase a classname is already in the array before the init call per [@rwjblue](https://github.com/rwjblue) suggestion ([40113e6](https://github.com/ebryn/ember-component-css/commit/40113e6))
+
+
+
 <a name="0.2.5"></a>
 ## [0.2.5](https://github.com/ebryn/ember-component-css/compare/v0.2.4...v0.2.5) (2016-12-01)
 
