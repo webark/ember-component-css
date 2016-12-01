@@ -6,6 +6,7 @@ const {
   Component,
   ComponentLookup,
   computed,
+  inject,
 } = Ember;
 
 ComponentLookup.reopen({
@@ -20,9 +21,11 @@ ComponentLookup.reopen({
 });
 
 Component.reopen({
+  _componentNamespacingExtras: inject.service('component-namespacing-extras'),
+
   _componentIdentifier: computed({
     get() {
-      return (this._debugContainerKey || '').replace('component:', '');
+      return this.get('_componentNamespacingExtras').componentIdentifier(this._debugContainerKey);
     }
   }),
 
