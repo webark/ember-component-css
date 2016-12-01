@@ -1,7 +1,7 @@
-/* jshint node: true */
+/* eslint-env node */
 'use strict';
+
 var Funnel = require('broccoli-funnel');
-var Concat = require('broccoli-concat');
 var Merge = require('broccoli-merge-trees');
 var ProcessStyles = require('./lib/pod-style.js');
 var ExtractNames = require('./lib/pod-names.js');
