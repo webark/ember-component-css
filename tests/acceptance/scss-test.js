@@ -45,12 +45,12 @@ test('BEM variant rule followed', function(assert) {
   });
 });
 
-// test('mixin psudo elements do not get scoped', function(assert) {
-//   visit(`/${TYPE}`);
-//
-//   andThen(function() {
-//     let item = find('[class$=__element--variant]');
-//     item.addClass('mixin-extra');
-//     assert.equal(item.css('color'), 'rgb(0, 0, 6)');
-//   });
-// });
+test('mixin psudo elements do not get scoped', function(assert) {
+  visit(`/${TYPE}`);
+
+  andThen(function() {
+    let item = find('[class$=__element--variant]');
+    item.addClass('mixin-extra');
+    assert.equal(item.css('color'), 'rgb(0, 0, 6)');
+  });
+});
