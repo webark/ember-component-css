@@ -44,3 +44,13 @@ test('BEM variant rule followed', function(assert) {
     assert.equal(find('[class$=__element--variant]').css('color'), 'rgb(0, 0, 5)');
   });
 });
+
+test('mixin psudo elements do not get scoped', function(assert) {
+  visit(`/${TYPE}`);
+
+  andThen(function() {
+    let item = find('[class$=__element--variant]');
+    item.addClass('mixin-extra');
+    assert.equal(item.css('color'), 'rgb(0, 0, 6)');
+  });
+});

@@ -34,7 +34,7 @@
     "postcss": "^5.2.6",
     "postcss-less": "^0.15.0",
     "postcss-scss": "^0.4.0",
-    "postcss-selector-namespace": "^1.2.4",
+    "postcss-selector-namespace": "^1.2.8",
     "rsvp": "^3.2.1",
     "walk-sync": "^0.3.1"
   },
