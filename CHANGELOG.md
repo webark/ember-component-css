@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.7"></a>
+## [0.2.7](https://github.com/ebryn/ember-component-css/compare/v0.2.6...v0.2.7) (2016-12-01)
+
+
+### Bug Fixes
+
+* **namespacing:** no longer namespacing children of @ rules ([489f23f](https://github.com/ebryn/ember-component-css/commit/489f23f)), closes [#191](https://github.com/ebryn/ember-component-css/issues/191)
+
+
+
 <a name="0.2.6"></a>
 ## [0.2.6](https://github.com/ebryn/ember-component-css/compare/v0.2.5...v0.2.6) (2016-12-01)
 
