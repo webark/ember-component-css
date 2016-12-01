@@ -33,13 +33,13 @@ Component.reopen({
   }),
 
   init() {
+    this._super(...arguments);
+
     let name = this.get('componentCssClassName');
 
     if (this.get('tagName') !== '' && name) {
-      this.classNames = [name];
+      this.classNames = this.classNames.concat(name);
     }
-
-    this._super(...arguments);
   }
 });
 
