@@ -1,6 +1,19 @@
-/*jshint node:true*/
+/* eslint-env node */
+'use strict';
+
 module.exports = {
   scenarios: [
+    {
+      name: 'ember-1-13',
+      bower: {
+        dependencies: {
+          'ember': '~1.13.0'
+        },
+        resolutions: {
+          'ember': '~1.13.0'
+        }
+      }
+    },
     {
       name: 'ember-lts-2.4',
       bower: {
