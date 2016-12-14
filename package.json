@@ -28,7 +28,7 @@
     "broccoli-persistent-filter": "^1.2.6",
     "broccoli-plugin": "^1.2.1",
     "ember-cli-babel": "^5.1.7",
-    "ember-getowner-polyfill": "^1.0.1",
+    "ember-getowner-polyfill": "^1.1.1",
     "fs-tree-diff": "^0.5.4",
     "md5": "^2.1.0",
     "postcss": "^5.2.6",

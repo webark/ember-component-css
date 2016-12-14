@@ -1,11 +1,11 @@
 import Ember from 'ember';
 import podNames from 'ember-component-css/pod-names';
-import getOwner from 'ember-getowner-polyfill';
 
 const {
   Component,
   ComponentLookup,
   computed,
+  getOwner
 } = Ember;
 
 ComponentLookup.reopen({
