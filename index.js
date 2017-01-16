@@ -47,8 +47,6 @@ module.exports = {
   },
 
   included: function(app) {
-    if (app.app) { app = app.app; }
-
     this._super.included.apply(this, arguments);
 
     this.projectRoot = this._projectRoot(app.trees);

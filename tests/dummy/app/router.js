@@ -1,12 +1,14 @@
 import Ember from 'ember';
 import config from './config/environment';
 
-const Router = Ember.Router.extend({
+const {
+  Router,
+} = Ember;
+
+export default Router.extend({
   location: config.locationType,
   rootURL: config.rootURL
-});
-
-Router.map(function() {
+}).map(function() {
   this.route('scss');
   this.route('sass');
   this.route('styl');
@@ -21,5 +23,3 @@ Router.map(function() {
     this.route('less');
   });
 });
-
-export default Router;
