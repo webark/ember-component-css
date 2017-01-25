@@ -10,10 +10,8 @@ const {
 export default function startApp(attrs) {
   let application;
 
-  // use defaults, but you can override
-  // let attributes = Ember.assign({}, config.APP, attrs);
   let attributes = merge({}, config.APP);
-  attributes = merge(attributes, attrs);
+  attributes = merge(attributes, attrs); // use defaults, but you can override
 
   run(() => {
     application = Application.create(attributes);
