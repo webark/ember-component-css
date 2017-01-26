@@ -13,7 +13,7 @@ module.exports = {
     return new Funnel(this.projectRoot, {
       srcDir: this._podDirectory(),
       exclude: ['styles/**/*'],
-      include: ['**/*.{' + this.allowedStyleExtensions + '}'],
+      include: ['**/*.{' + this.allowedStyleExtensions + ',}'],
       allowEmpty: true,
       annotation: 'Funnel (ember-component-css grab files)'
     });
