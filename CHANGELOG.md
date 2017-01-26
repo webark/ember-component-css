@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.10"></a>
+## [0.2.10](https://github.com/ebryn/ember-component-css/compare/v0.2.9...v0.2.10) (2017-01-26)
+
+
+### Bug Fixes
+
+* **plain css:** Due to the odd nature of 'glob', you can't have a set of just one item. ([fd0d770](https://github.com/ebryn/ember-component-css/commit/fd0d770)), closes [#178](https://github.com/ebryn/ember-component-css/issues/178) [#204](https://github.com/ebryn/ember-component-css/issues/204)
+
+
+
 <a name="0.2.9"></a>
 ## [0.2.9](https://github.com/ebryn/ember-component-css/compare/v0.2.8...v0.2.9) (2017-01-16)
 
