@@ -128,7 +128,6 @@ You can also add in [`postcss-cssnext`](https://github.com/MoOx/postcss-cssnext)
 postcss plugins in this way too.
 
 *Things like [`ember-cli-autoprefixer`](https://github.com/kimroen/ember-cli-autoprefixer) will work out of the box and do not need to be added in as a postcss plugin.*
-*Currently there is a bug where the pod-styles file will only run and be generated if there more the just the 'css' stylesheet extension registered. Until a proper fix for this is in place, you can refer to issue #178, and run `ember install buschtoens/fix-ember-component-css`. Thank you for your patience while we get this issue resolved.*
 
 ### Getting the generated class name
 
