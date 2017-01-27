@@ -168,6 +168,32 @@ An example of BEM usage would be
 }
 ```
 
+#### Using the generated class name in `classNameBindings`
+
+You can build your own computed properties on top of `componentCssClassName`. One use case is using it to build a `classNameBinding`:
+
+`my-component/component.hbs`
+```js
+classNameBindings: ['customBinding'],
+  stateProperty: false,
+  customBinding: computed('componentCssClassName', 'stateProperty', function() {
+    if (this.get('stateProperty') {
+      return `${this.get('componentCssClassName')}--state`;
+    } else {
+      return '';
+    }
+  }),
+```
+`my-component/styles.scss`
+```scss
+& {
+  background: blue;
+}
+&--state {
+  background: red;
+}
+```
+
 ### Configuration
 
 You can set the following configuration options in your `config/environment.js` file:
