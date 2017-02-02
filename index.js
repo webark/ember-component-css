@@ -9,6 +9,12 @@ var IncludeAll = require('./lib/include-all.js');
 
 module.exports = {
 
+  _getStyleFunnel: function() {
+    return new Merge([this._getPodStyleFunnel(), this._getClassicStyleFunnel()], {
+      annotation: 'Merge (ember-component-css merge pod and classic styles)'
+    });
+  },
+
   _getPodStyleFunnel: function() {
     return new Funnel(this.projectRoot, {
       srcDir: this._podDirectory(),
@@ -16,6 +22,14 @@ module.exports = {
       include: ['**/*.{' + this.allowedStyleExtensions + ',}'],
       allowEmpty: true,
       annotation: 'Funnel (ember-component-css grab files)'
+    });
+  },
+
+  _getClassicStyleFunnel: function() {
+    return new Funnel(this.projectRoot, {
+      include: ['styles/' + this.classicStyleDir + '/**/*.{' + this.allowedStyleExtensions + ',}'],
+      allowEmpty: true,
+      annotation: 'Funnel (ember-component-css grab classic files)'
     });
   },
 
@@ -58,6 +72,7 @@ module.exports = {
 
     this.appConfig = app.project.config(app.env);
     this.addonConfig = this.appConfig['ember-component-css'] || {};
+    this.classicStyleDir = this.addonConfig.classicStyleDir || 'component-styles';
     this.allowedStyleExtensions = app.registry.extensionsForType('css').filter(Boolean);
   },
 
@@ -69,6 +84,7 @@ module.exports = {
       });
 
       var podNames = new ExtractNames(allPodStyles, {
+        classicStyleDir: this.classicStyleDir,
         annotation: 'Walk (ember-component-css extract class names from style paths)'
       });
 
@@ -93,12 +109,13 @@ module.exports = {
   },
 
   processComponentStyles: function(tree) {
-    var podStyles = this._getPodStyleFunnel();
+    var podStyles = this._getStyleFunnel();
     this._allPodStyles.push(podStyles);
 
     if (this._namespacingIsEnabled()) {
       podStyles = new ProcessStyles(podStyles, {
         extensions: this.allowedStyleExtensions,
+        classicStyleDir: this.classicStyleDir,
         annotation: 'Filter (ember-component-css process :--component with class names)'
       });
     }

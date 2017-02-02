@@ -17,6 +17,8 @@ export default Router.extend({
 
   this.route('template-style-only');
   this.route('no-style-files-yet');
+  this.route('classic-structure');
+  this.route('classic-structure-nested');
 
   this.route('addon', function() {
     this.route('scss');
