@@ -54,3 +54,14 @@ test('mixin psudo elements do not get scoped', function(assert) {
     assert.equal(item.css('color'), 'rgb(0, 0, 6)');
   });
 });
+
+test('children of root @for rules are namspaced', function(assert) {
+  visit(`/${TYPE}`);
+
+  andThen(function() {
+    for (let index of Array(10).keys()) {
+      let item = find(`[class$=__element--${index}]`);
+      assert.equal(item.css('color'), `rgb(0, 0, ${index})`);
+    }
+  });
+});
