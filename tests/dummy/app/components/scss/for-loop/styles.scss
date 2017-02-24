@@ -1,0 +1,5 @@
+@for $index from 0 through 9 {
+  &__element--#{$index} {
+    color: rgb(0, 0, $index);
+  }
+}
