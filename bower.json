@@ -1,4 +1,5 @@
 {
   "name": "ember-component-css",
-  "dependencies": {}
+  "dependencies": {},
+  "version": "0.2.12"
 }

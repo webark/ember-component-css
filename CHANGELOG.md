@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.12"></a>
+## [0.2.12](https://github.com/ebryn/ember-component-css/compare/v0.2.11...v0.2.12) (2017-02-24)
+
+
+### Bug Fixes
+
+* **description:** removed pod specificity ([16eae3b](https://github.com/ebryn/ember-component-css/commit/16eae3b))
+* **scss @ rules:** now allowing namespaceing of rules deinfed inside of a scss @ for rule. Fixes [#216](https://github.com/ebryn/ember-component-css/issues/216) ([6840c5e](https://github.com/ebryn/ember-component-css/commit/6840c5e))
+
+
+
 <a name="0.2.11"></a>
 ## [0.2.11](https://github.com/ebryn/ember-component-css/compare/v0.2.10...v0.2.11) (2017-02-03)
 
