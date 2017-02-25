@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/ebryn/ember-component-css/compare/v0.2.12...v0.3.0) (2017-02-25)
+
+
+### Features
+
+* **extensable identifier:** moved the geration of the namespace identifier and if the class should be added to a mixin for easier exensability ([e3c627b](https://github.com/ebryn/ember-component-css/commit/e3c627b))
+
+
+
 <a name="0.2.12"></a>
 ## [0.2.12](https://github.com/ebryn/ember-component-css/compare/v0.2.11...v0.2.12) (2017-02-24)
 
