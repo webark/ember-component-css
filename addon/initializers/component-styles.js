@@ -10,7 +10,6 @@ const {
 } = Ember;
 
 export function initialize() {
-  console.log('initialize ember-component-css', this);
   ComponentLookup.reopen({
     componentFor(name, owner) {
       owner = owner.hasRegistration ? owner : getOwner(this);
@@ -30,13 +29,6 @@ export function initialize() {
     }),
 
     init() {
-      console.log('init component',
-        this.get('_shouldAddNamespacedClassName'),
-        this.get('componentCssClassName'),
-        this.get('_componentIdentifier'),
-        this,
-        podNames
-      );
       this._super(...arguments);
       if (this.get('_shouldAddNamespacedClassName')) {
         this.classNames = this.classNames.concat(this.get('componentCssClassName'));
