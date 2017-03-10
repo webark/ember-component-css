@@ -18,7 +18,7 @@ export function initialize() {
         owner.register(`component:${name}`, Component);
       }
       return this._super(...arguments);
-    } 
+    }
   });
 
   Component.reopen(StyleNamespacingExtras, {
@@ -29,6 +29,7 @@ export function initialize() {
     }),
 
     init() {
+      console.log('init component', this, this.get('_shouldAddNamespacedClassName'), this.get('componentCssClassName'));
       this._super(...arguments);
       if (this.get('_shouldAddNamespacedClassName')) {
         this.classNames = this.classNames.concat(this.get('componentCssClassName'));
