@@ -10,7 +10,7 @@ const {
 } = Ember;
 
 export function initialize() {
-  console.log('initialize', this);
+  console.log('initialize', this, podNames);
   ComponentLookup.reopen({
     componentFor(name, owner) {
       owner = owner.hasRegistration ? owner : getOwner(this);
