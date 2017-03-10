@@ -10,6 +10,7 @@ const {
 } = Ember;
 
 export function initialize() {
+  console.log('initialize', this);
   ComponentLookup.reopen({
     componentFor(name, owner) {
       owner = owner.hasRegistration ? owner : getOwner(this);
@@ -38,6 +39,6 @@ export function initialize() {
 }
 
 export default {
-  name: 'component-styles',
+  //name: 'component-styles',
   initialize
 };
