@@ -46,6 +46,6 @@ export function initialize() {
 }
 
 export default {
-  //name: 'component-styles',
+  name: 'component-styles',
   initialize
 };
