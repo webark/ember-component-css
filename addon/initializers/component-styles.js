@@ -10,6 +10,7 @@ const {
 } = Ember;
 
 export function initialize() {
+  console.log('initialize ember-component-css', this);
   ComponentLookup.reopen({
     componentFor(name, owner) {
       owner = owner.hasRegistration ? owner : getOwner(this);
