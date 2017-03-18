@@ -2,6 +2,7 @@
   "name": "no-style-files-yet",
   "version": "0.0.0",
   "dependencies": {
+    "ember-cli-babel": "^5.1.7",
     "ember-cli-css-extensions": "*",
     "ember-cli-htmlbars": "*"
   },

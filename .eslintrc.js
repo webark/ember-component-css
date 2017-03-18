@@ -4,14 +4,10 @@ module.exports = {
     ecmaVersion: 6,
     sourceType: 'module'
   },
-  extends: [
-    'plugin:ember-suave/recommended'
-  ],
+  extends: 'eslint:recommended',
   env: {
-    'browser': true
+    browser: true
   },
   rules: {
-    "comma-dangle": "off",
-    "ember-suave/no-direct-property-access": "warn"
   }
 };
