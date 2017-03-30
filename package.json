@@ -41,7 +41,6 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
     "ember-cli": "2.12.0",
-    "ember-cli-css-extensions": "git://github.com/webark/ember-cli-css-extensions.git",
     "ember-cli-dependency-checker": "^1.3.0",
     "ember-cli-eslint": "^3.0.0",
     "ember-cli-htmlbars": "^1.1.1",
@@ -50,6 +49,7 @@
     "ember-cli-qunit": "^3.1.0",
     "ember-cli-shims": "^1.0.2",
     "ember-cli-sri": "^2.1.0",
+    "ember-cli-styles-preprocessor": "0.0.6",
     "ember-cli-uglify": "^1.2.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
@@ -68,7 +68,7 @@
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "before": [
-      "ember-cli-css-extensions",
+      "ember-cli-styles-preprocessor",
       "ember-cli-less",
       "ember-cli-sass",
       "ember-cli-stylus",
