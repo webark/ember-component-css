@@ -5,7 +5,7 @@ var Funnel = require('broccoli-funnel');
 var Merge = require('broccoli-merge-trees');
 var ProcessStyles = require('./lib/pod-style.js');
 var ExtractNames = require('./lib/pod-names.js');
-var IncludeAll = require('./lib/include-all.js');
+var IncludeAll = require('broccoli-style-manifest');
 
 module.exports = {
 
@@ -121,6 +121,7 @@ module.exports = {
     }
 
     var styleManifest = new IncludeAll(podStyles, {
+      outputFileName: 'pod-styles',
       annotation: 'IncludeAll (ember-component-css combining all style files that there are extensions for)'
     });
 
