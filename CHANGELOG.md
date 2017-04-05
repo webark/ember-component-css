@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.2"></a>
+## [0.3.2](https://github.com/ebryn/ember-component-css/compare/v0.3.1...v0.3.2) (2017-04-05)
+
+
+### Bug Fixes
+
+* **style manifest:** updated to new brocoli-style-mainifest properties that are more explicit ([5e848ca](https://github.com/ebryn/ember-component-css/commit/5e848ca))
+
+
+### Features
+
+* **optimization:** ability to use terse class names to reduce css size ([d53ead8](https://github.com/ebryn/ember-component-css/commit/d53ead8))
+
+
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/ebryn/ember-component-css/compare/v0.3.0...v0.3.1) (2017-03-30)
 
