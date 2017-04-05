@@ -27,7 +27,7 @@
     "broccoli-merge-trees": "^2.0.0",
     "broccoli-persistent-filter": "1.2.13",
     "broccoli-plugin": "^1.2.1",
-    "broccoli-style-manifest": "^1.1.0",
+    "broccoli-style-manifest": "^1.2.2",
     "ember-cli-babel": "^5.1.7",
     "ember-getowner-polyfill": "^1.1.1",
     "fs-tree-diff": "^0.5.6",
