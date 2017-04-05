@@ -5,7 +5,7 @@ var Funnel = require('broccoli-funnel');
 var Merge = require('broccoli-merge-trees');
 var ProcessStyles = require('./lib/pod-style.js');
 var ExtractNames = require('./lib/pod-names.js');
-var IncludeAll = require('broccoli-style-manifest');
+var StyleManifest = require('broccoli-style-manifest');
 
 module.exports = {
 
@@ -135,9 +135,9 @@ module.exports = {
       });
     }
 
-    var styleManifest = new IncludeAll(podStyles, {
-      outputFileName: 'pod-styles',
-      annotation: 'IncludeAll (ember-component-css combining all style files that there are extensions for)'
+    var styleManifest = new StyleManifest(podStyles, {
+      outputFileNameWithoutExtension: 'pod-styles',
+      annotation: 'StyleManifest (ember-component-css combining all style files that there are extensions for)'
     });
 
     tree = new Merge([podStyles, styleManifest, tree].filter(Boolean), {
