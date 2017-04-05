@@ -73,7 +73,20 @@ module.exports = {
     this.appConfig = app.project.config(app.env);
     this.addonConfig = this.appConfig['ember-component-css'] || {};
     this.classicStyleDir = this.addonConfig.classicStyleDir || 'component-styles';
+    this.terseClassNames = Boolean(this.addonConfig.terseClassNames);
     this.allowedStyleExtensions = app.registry.extensionsForType('css').filter(Boolean);
+  },
+
+  config: function(enviroment) {
+    var config = {
+      "ember-component-css": {
+        terseClassNames: false,
+      },
+    };
+    if (enviroment === 'production') {
+      config["ember-component-css"].terseClassNames = true;
+    }
+    return config;
   },
 
   treeForAddon: function(tree) {
@@ -85,6 +98,7 @@ module.exports = {
 
       var podNames = new ExtractNames(allPodStyles, {
         classicStyleDir: this.classicStyleDir,
+        terseClassNames: this.terseClassNames,
         annotation: 'Walk (ember-component-css extract class names from style paths)'
       });
 
@@ -116,6 +130,7 @@ module.exports = {
       podStyles = new ProcessStyles(podStyles, {
         extensions: this.allowedStyleExtensions,
         classicStyleDir: this.classicStyleDir,
+        terseClassNames: this.terseClassNames,
         annotation: 'Filter (ember-component-css process :--component with class names)'
       });
     }
