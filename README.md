@@ -96,7 +96,26 @@ the same component both are included but the pod style will take precedence.
 ### Use in addons
 In order to use this inside of an addon, you need to add your style files inside of the components in the
 addon directory. You will then be able to import the 'pod-styles' file inside of your addon style file which
-is in the `/addon/styles` directory. These styles will then be added to the `vendor.css` file like normal.
+is in the `/addon/styles` directory. These styles will then be added to the `vendor.css` file like normal. 
+
+If you are using classic (non pod) structure, your addon directory structure might look like:
+```
+yourAddonDirectory
+│   index.js
+│   ... etc    
+└───addon
+│   └───components
+│       │   yourAddonComponent.js
+│   └───templates
+│       │   yourAddonComponent.hbs
+│   └───styles
+│       │   addon.scss (includes the 'pod-styles' import)
+│       └───component-styles (this dir name is configurable)
+│           │   yourAddonComponent.scss
+└───app
+    └───components
+        │   yourAddonComponent.js
+```
 
 If you are extending the `include` method in your addon, please make sure you call the super like this
 ```js
