@@ -25,7 +25,7 @@
     "broccoli-concat": "^3.0.5",
     "broccoli-funnel": "^1.0.9",
     "broccoli-merge-trees": "^2.0.0",
-    "broccoli-persistent-filter": "1.2.13",
+    "broccoli-persistent-filter": "^1.2.13",
     "broccoli-plugin": "^1.2.1",
     "broccoli-style-manifest": "^1.2.2",
     "ember-cli-babel": "^5.1.7",
