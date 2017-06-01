@@ -60,6 +60,21 @@ module.exports = {
     return projectRoot;
   },
 
+  _getEnvironment: function() {
+    if (!this._findHost) {
+      this._findHost = function findHostShim() {
+        let current = this;
+        let app;
+        do {
+          app = current.app || app;
+        } while (current.parent.parent && (current = current.parent));
+        return app;
+      };
+    }
+
+    return this._findHost().env;
+  },
+
   included: function(app) {
     this._super.included.apply(this, arguments);
 
@@ -70,7 +85,7 @@ module.exports = {
       this.parent.treeForParentAddonStyles = this.treeForParentAddonStyles.bind(this);
     }
 
-    this.appConfig = app.project.config(app.env);
+    this.appConfig = app.project.config(this._getEnvironment());
     this.addonConfig = this.appConfig['ember-component-css'] || {};
     this.classicStyleDir = this.addonConfig.classicStyleDir || 'component-styles';
     this.terseClassNames = Boolean(this.addonConfig.terseClassNames);
