@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.4"></a>
+## [0.3.4](https://github.com/ebryn/ember-component-css/compare/v0.3.3...v0.3.4) (2017-06-01)
+
+
+### Bug Fixes
+
+* **ensure environment:** getting the 'root host', and using a shim if the find host method isn't present, Closes [#231](https://github.com/ebryn/ember-component-css/issues/231) ([09fa5ec](https://github.com/ebryn/ember-component-css/commit/09fa5ec))
+
+
+
 <a name="0.3.3"></a>
 ## [0.3.3](https://github.com/ebryn/ember-component-css/compare/v0.3.2...v0.3.3) (2017-04-24)
 
