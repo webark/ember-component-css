@@ -15,6 +15,7 @@ export default Ember.Router.extend({
   this.route('no-style-files-yet');
   this.route('classic-structure');
   this.route('classic-structure-nested');
+  this.route('unique-component-paths');
 
   this.route('addon', function() {
     this.route('scss');
