@@ -2,7 +2,7 @@
   "name": "test-addon",
   "version": "0.0.0",
   "dependencies": {
-    "ember-cli-babel": "^5.1.7",
+    "ember-cli-babel": "*",
     "ember-cli-styles-preprocessor": "*",
     "ember-cli-htmlbars": "*"
   },

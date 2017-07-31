@@ -3,15 +3,7 @@ import Resolver from './resolver';
 import loadInitializers from 'ember-load-initializers';
 import config from './config/environment';
 
-const {
-  Application,
-} = Ember;
-
-let App;
-
-Ember.MODEL_FACTORY_INJECTIONS = true;
-
-App = Application.extend({
+const App = Ember.Application.extend({
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
   Resolver
