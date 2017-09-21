@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 
@@ -52,5 +53,13 @@ test('mixin psudo elements do not get scoped', function(assert) {
     let item = find('[class$=__element--variant]');
     item.addClass('mixin-extra');
     assert.equal(item.css('color'), 'rgb(0, 0, 6)');
+  });
+});
+
+test('route style followed', function(assert) {
+  visit(`/${TYPE}`);
+
+  andThen(function() {
+    assert.equal($('body').css('color'), 'rgb(0, 1, 0)');
   });
 });

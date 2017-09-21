@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 
@@ -42,5 +43,13 @@ test('BEM variant rule followed', function(assert) {
 
   andThen(function() {
     assert.equal(find('[class$=__element--variant]').css('color'), 'rgb(0, 0, 5)');
+  });
+});
+
+test('route style followed', function(assert) {
+  visit(`/${TYPE}`);
+
+  andThen(function() {
+    assert.equal($('body').css('color'), 'rgb(0, 1, 0)');
   });
 });
