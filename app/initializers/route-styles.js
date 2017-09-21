@@ -4,8 +4,7 @@ import StyleNamespacingExtras from '../mixins/style-namespacing-extras';
 
 const {
   $,
-  Route,
-  computed
+  Route
 } = Ember;
 
 Route.reopen(StyleNamespacingExtras, {
