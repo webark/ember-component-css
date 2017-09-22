@@ -3,21 +3,31 @@ import podNames from 'ember-component-css/pod-names';
 import StyleNamespacingExtras from '../mixins/style-namespacing-extras';
 
 const {
-  $,
-  Route
+  Route,
+  computed
 } = Ember;
 
 Route.reopen(StyleNamespacingExtras, {
+  routeCssClassName: computed({
+    get() {
+      return podNames[this.get('_routeIdentifier')] || '';
+    }
+  }),
+
   activate() {
     this._super(...arguments);
 
-    $('body').addClass(podNames[this.get('_componentIdentifier').replace('route:', '')] || '');
+    if (this.get('routeCssClassName')) {
+      document.querySelector('.ember-application').classList.add(this.get('routeCssClassName'));
+    }
   },
 
   deactivate() {
     this._super(...arguments);
 
-    $('body').removeClass(podNames[this.get('_componentIdentifier').replace('route:', '')] || '');
+    if (this.get('routeCssClassName')) {
+      document.querySelector('.ember-application').classList.remove(this.get('routeCssClassName'));
+    }
   }
 });
 
