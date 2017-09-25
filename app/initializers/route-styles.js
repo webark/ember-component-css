@@ -29,7 +29,7 @@ Route.reopen(StyleNamespacingExtras, {
   activate() {
     this._super(...arguments);
 
-    if (this.get('routeCssClassName')) {
+    if (typeof FastBoot === 'undefined' && this.get('routeCssClassName')) {
       this.get('appRoot').setAttribute(
         'class',
         `${this.get('appRoot').getAttribute('class') || ''} ${this.get('routeCssClassName')}`
@@ -40,7 +40,7 @@ Route.reopen(StyleNamespacingExtras, {
   deactivate() {
     this._super(...arguments);
 
-    if (this.get('routeCssClassName')) {
+    if (typeof FastBoot === 'undefined' && this.get('routeCssClassName')) {
       this.get('appRoot').setAttribute(
         'class',
         this.get('appRoot').getAttribute('class').replace(this.get('routeCssClassName'), '')
