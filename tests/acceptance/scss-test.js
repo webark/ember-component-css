@@ -71,6 +71,6 @@ test('route style followed', function(assert) {
   visit(`/${TYPE}`);
 
   andThen(function() {
-    assert.equal($('body').css('color'), 'rgb(0, 1, 0)');
+    assert.equal(find(document.getElementById('ember-testing')).css('color'), 'rgb(0, 1, 0)');
   });
 });
