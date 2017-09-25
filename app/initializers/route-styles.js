@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import Ember from 'ember';
 import podNames from 'ember-component-css/pod-names';
 import StyleNamespacingExtras from '../mixins/style-namespacing-extras';
