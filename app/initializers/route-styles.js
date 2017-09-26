@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import podNames from 'ember-component-css/pod-names';
+import { querySelector } from 'ember-component-css/utils/dom';
 import StyleNamespacingExtras from '../mixins/style-namespacing-extras';
 
 const {
@@ -15,7 +16,7 @@ Route.reopen(StyleNamespacingExtras, {
         ? '#ember-testing'
         : getOwner(this).lookup('application:main').rootElement;
 
-      return self.document.querySelector(rootSelector);
+      return querySelector(getOwner(this).lookup('service:-document'), rootSelector);
     }
   }),
 
@@ -28,7 +29,7 @@ Route.reopen(StyleNamespacingExtras, {
   activate() {
     this._super(...arguments);
 
-    if (typeof FastBoot === 'undefined' && this.get('routeCssClassName')) {
+    if (this.get('routeCssClassName')) {
       this.get('appRoot').setAttribute(
         'class',
         `${this.get('appRoot').getAttribute('class') || ''} ${this.get('routeCssClassName')}`
@@ -39,7 +40,7 @@ Route.reopen(StyleNamespacingExtras, {
   deactivate() {
     this._super(...arguments);
 
-    if (typeof FastBoot === 'undefined' && this.get('routeCssClassName')) {
+    if (this.get('routeCssClassName')) {
       this.get('appRoot').setAttribute(
         'class',
         this.get('appRoot').getAttribute('class').replace(this.get('routeCssClassName'), '')
