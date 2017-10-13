@@ -5,13 +5,25 @@ export default Ember.Router.extend({
   location: config.locationType,
   rootURL: config.rootURL
 }).map(function() {
-  this.route('scss');
-  this.route('sass');
-  this.route('styl');
-  this.route('less', function() {
-    this.route('bar');
+  this.route('css', function() {
+    this.route('nested');
   });
-  this.route('css');
+
+  this.route('scss', function() {
+    this.route('nested');
+  });
+
+  this.route('sass', function() {
+    this.route('nested');
+  });
+
+  this.route('styl', function() {
+    this.route('nested');
+  });
+
+  this.route('less', function() {
+    this.route('nested');
+  });
 
   this.route('template-style-only');
   this.route('no-style-files-yet');

@@ -51,4 +51,16 @@ test('route style followed', function(assert) {
   andThen(function() {
     assert.equal(find(`div[class^="__${TYPE}"]`).css('color'), 'rgb(0, 1, 0)');
   });
+
+  andThen(function() {
+    visit(`/${TYPE}/nested`);
+  });
+});
+
+test('nested route style followed', function(assert) {
+  visit(`/${TYPE}/nested`);
+
+  andThen(function() {
+    assert.equal(find(`div[class^="__${TYPE}__nested"]`).css('color'), 'rgb(0, 2, 0)');
+  });
 });
