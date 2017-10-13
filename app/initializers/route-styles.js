@@ -5,26 +5,9 @@ import StyleNamespacingExtras from '../mixins/style-namespacing-extras';
 const {
   A,
   Route,
-  Controller,
   computed,
   getOwner
 } = Ember;
-
-Controller.reopen({
-  routeCssClassName: computed({
-    get() {
-      return this.get('routeCssClassNames').join(' ');
-    }
-  }),
-
-  routeCssClassNames: undefined,
-
-  init() {
-    this._super(...arguments);
-
-    this.set('routeCssClassNames', A([]));
-  }
-});
 
 Route.reopen(StyleNamespacingExtras, {
   routeCssClassName: computed({
@@ -38,7 +21,9 @@ Route.reopen(StyleNamespacingExtras, {
 
     if (this.get('routeCssClassName')) {
       let controller = this.controllerFor('application');
-      controller.get('routeCssClassNames').pushObject(this.get('routeCssClassName'));
+      let routeCssClassName = controller.getWithDefault('routeCssClassName', '');
+
+      controller.set('routeCssClassName', `${routeCssClassName} ${this.get('routeCssClassName')}`);
     }
   },
 
@@ -47,7 +32,9 @@ Route.reopen(StyleNamespacingExtras, {
 
     if (this.get('routeCssClassName')) {
       let controller = this.controllerFor('application');
-      controller.set('routeCssClassNames', controller.get('routeCssClassNames').without(this.get('routeCssClassName')));
+      let routeCssClassName = controller.getWithDefault('routeCssClassName', '');
+
+      controller.set('routeCssClassName', routeCssClassName.replace(this.get('routeCssClassName'), ''));
     }
   }
 });
