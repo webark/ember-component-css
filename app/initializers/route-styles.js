@@ -3,10 +3,8 @@ import podNames from 'ember-component-css/pod-names';
 import StyleNamespacingExtras from '../mixins/style-namespacing-extras';
 
 const {
-  A,
   Route,
-  computed,
-  getOwner
+  computed
 } = Ember;
 
 Route.reopen(StyleNamespacingExtras, {
