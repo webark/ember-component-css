@@ -59,6 +59,6 @@ test('route style followed', function(assert) {
   visit(`/${TYPE}`);
 
   andThen(function() {
-    assert.equal(find(document.getElementById('ember-testing')).css('color'), 'rgb(0, 1, 0)');
+    assert.equal(find(`div[class^="__${TYPE}"]`).css('color'), 'rgb(0, 1, 0)');
   });
 });

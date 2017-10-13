@@ -8,7 +8,9 @@ export default Ember.Router.extend({
   this.route('scss');
   this.route('sass');
   this.route('styl');
-  this.route('less');
+  this.route('less', function() {
+    this.route('bar');
+  });
   this.route('css');
 
   this.route('template-style-only');
