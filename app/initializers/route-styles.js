@@ -1,25 +1,32 @@
 import Ember from 'ember';
 import podNames from 'ember-component-css/pod-names';
-import { querySelector } from 'ember-component-css/utils/dom';
 import StyleNamespacingExtras from '../mixins/style-namespacing-extras';
 
 const {
+  A,
   Route,
+  Controller,
   computed,
   getOwner
 } = Ember;
 
-Route.reopen(StyleNamespacingExtras, {
-  appRoot: computed({
+Controller.reopen({
+  routeCssClassName: computed({
     get() {
-      const rootSelector = Ember.testing
-        ? '#ember-testing'
-        : getOwner(this).lookup('application:main').rootElement;
-
-      return querySelector(getOwner(this).lookup('service:-document'), rootSelector);
+      return this.get('routeCssClassNames').join(' ');
     }
   }),
 
+  routeCssClassNames: undefined,
+
+  init() {
+    this._super(...arguments);
+
+    this.set('routeCssClassNames', A([]));
+  }
+});
+
+Route.reopen(StyleNamespacingExtras, {
   routeCssClassName: computed({
     get() {
       return podNames[this.get('_routeIdentifier')] || '';
@@ -30,10 +37,8 @@ Route.reopen(StyleNamespacingExtras, {
     this._super(...arguments);
 
     if (this.get('routeCssClassName')) {
-      this.get('appRoot').setAttribute(
-        'class',
-        `${this.get('appRoot').getAttribute('class') || ''} ${this.get('routeCssClassName')}`
-      );
+      let controller = this.controllerFor('application');
+      controller.get('routeCssClassNames').pushObject(this.get('routeCssClassName'));
     }
   },
 
@@ -41,10 +46,8 @@ Route.reopen(StyleNamespacingExtras, {
     this._super(...arguments);
 
     if (this.get('routeCssClassName')) {
-      this.get('appRoot').setAttribute(
-        'class',
-        this.get('appRoot').getAttribute('class').replace(this.get('routeCssClassName'), '')
-      );
+      let controller = this.controllerFor('application');
+      controller.set('routeCssClassNames', controller.get('routeCssClassNames').without(this.get('routeCssClassName')));
     }
   }
 });
