@@ -1269,13 +1269,13 @@ broccoli-stew@^1.2.0, broccoli-stew@^1.3.3:
     symlink-or-copy "^1.1.8"
     walk-sync "^0.3.0"
 
-broccoli-style-manifest@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/broccoli-style-manifest/-/broccoli-style-manifest-1.2.2.tgz#4a91bde0a44d82beb51a55c838270c8dbc2a59d9"
+broccoli-style-manifest@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/broccoli-style-manifest/-/broccoli-style-manifest-1.3.0.tgz#1940ee5f0e0e4b02486f01b968a0b419a4567f25"
   dependencies:
     broccoli-plugin "^1.3.0"
     fs-tree-diff "^0.5.6"
-    rsvp "^3.5.0"
+    rsvp "^4.7.0"
     walk-sync "^0.3.1"
 
 broccoli-stylus-single@^1.0.0:
@@ -4885,6 +4885,10 @@ rsvp@^3.0.14, rsvp@^3.0.16, rsvp@^3.0.17, rsvp@^3.0.18, rsvp@^3.0.21, rsvp@^3.0.
 rsvp@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.0.1.tgz#589fb1004cf5ea3c0c1ace5c655546906559ce11"
+
+rsvp@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.7.0.tgz#dc1b0b1a536f7dec9d2be45e0a12ad4197c9fd96"
 
 rsvp@~3.0.6:
   version "3.0.21"
