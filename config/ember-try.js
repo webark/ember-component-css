@@ -1,5 +1,6 @@
 /* eslint-env node */
 module.exports = {
+  useYarn: true,
   scenarios: [
     {
       name: 'ember-1.13',
@@ -9,22 +10,6 @@ module.exports = {
         },
         resolutions: {
           'ember': 'release-1-13'
-        }
-      },
-      npm: {
-        devDependencies: {
-          'ember-source': null
-        }
-      }
-    },
-    {
-      name: 'ember-lts-2.4',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#lts-2-4'
-        },
-        resolutions: {
-          'ember': 'lts-2-4'
         }
       },
       npm: {
