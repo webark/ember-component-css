@@ -1,39 +1,23 @@
-import Ember from 'ember';
+import Router from '@ember/routing/router';
+import { getOwner } from '@ember/application';
 import podNames from 'ember-component-css/pod-names';
 import StyleNamespacingExtras from '../mixins/style-namespacing-extras';
 
-const {
-  Route,
-  computed
-} = Ember;
-
-Route.reopen(StyleNamespacingExtras, {
-  routeCssClassName: computed({
-    get() {
-      return podNames[this.get('_routeIdentifier')] || '';
-    }
-  }),
-
-  activate() {
+Router.reopen(StyleNamespacingExtras, {
+  didTransition(routes) {
     this._super(...arguments);
 
-    if (this.get('routeCssClassName')) {
-      let controller = this.controllerFor('application');
-      let routeCssClassName = controller.getWithDefault('routeCssClassName', '');
+    const classes = [];
+    for (let route of routes) {
+      let currentPath = route.name.replace(/\./g, '/');
 
-      controller.set('routeCssClassName', `${routeCssClassName} ${this.get('routeCssClassName')}`);
+      if (podNames[currentPath]) {
+        getOwner(this).lookup(`controller:${route.name}`).set('namespacedClass', podNames[currentPath]);
+        classes.push(podNames[currentPath]);
+      }
     }
-  },
 
-  deactivate() {
-    this._super(...arguments);
-
-    if (this.get('routeCssClassName')) {
-      let controller = this.controllerFor('application');
-      let routeCssClassName = controller.getWithDefault('routeCssClassName', '');
-
-      controller.set('routeCssClassName', routeCssClassName.replace(this.get('routeCssClassName'), ''));
-    }
+    getOwner(this).lookup('controller:application').set('namespacedClassList', classes.join(' '));
   }
 });
 
