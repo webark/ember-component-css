@@ -1,9 +1,8 @@
 import Router from '@ember/routing/router';
 import { getOwner } from '@ember/application';
 import podNames from 'ember-component-css/pod-names';
-import StyleNamespacingExtras from '../mixins/style-namespacing-extras';
 
-Router.reopen(StyleNamespacingExtras, {
+Router.reopen({
   didTransition(routes) {
     this._super(...arguments);
 
