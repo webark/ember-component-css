@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.7"></a>
+## [0.3.7](https://github.com/ebryn/ember-component-css/compare/v0.3.6...v0.3.7) (2017-11-02)
+
+
+### Features
+
+* **mainfet-ordering:** updated broccoli style manifest to now have the order of files in the manifest be sorted first by depth, then by alphanumeric ([fd710bf](https://github.com/ebryn/ember-component-css/commit/fd710bf))
+
+
+
 <a name="0.3.6"></a>
 ## [0.3.6](https://github.com/ebryn/ember-component-css/compare/v0.3.5...v0.3.6) (2017-11-01)
 
