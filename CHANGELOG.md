@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* **mainfet-ordering:** updated broccoli style manifest to now have the order of files in the manifest be sorted first by depth, then by alphanumeric ([fd710bf](https://github.com/ebryn/ember-component-css/commit/fd710bf))
+* **manifest ordering:** updated broccoli style manifest to now have the order of files in the manifest be sorted first by depth, then by alphanumeric ([fd710bf](https://github.com/ebryn/ember-component-css/commit/fd710bf))
 
 
 
@@ -23,7 +23,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* **component name parsing:** only switching out the word 'compoent/' if it is what starts the path, not for nest options. This should be revisited with unification Closes [#236](https://github.com/ebryn/ember-component-css/issues/236) ([54e087e](https://github.com/ebryn/ember-component-css/commit/54e087e))
+* **component name parsing:** only switching out the word 'component/' if it is what starts the path, not for nest options. This should be revisited with unification Closes [#236](https://github.com/ebryn/ember-component-css/issues/236) ([54e087e](https://github.com/ebryn/ember-component-css/commit/54e087e))
 
 
 
@@ -73,7 +73,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* **extensable identifier:** moved the geration of the namespace identifier and if the class should be added to a mixin for easier exensability ([e3c627b](https://github.com/ebryn/ember-component-css/commit/e3c627b))
+* **extensible identifier:** moved the generation of the namespace identifier and if the class should be added to a mixin for easier extensibility ([e3c627b](https://github.com/ebryn/ember-component-css/commit/e3c627b))
 
 
 
@@ -114,7 +114,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* **nested addons:** no loonger swithing to the parent app so that addon's specific settings can be used ([849a72d](https://github.com/ebryn/ember-component-css/commit/849a72d))
+* **nested addons:** no longer switching to the parent app so that addon's specific settings can be used ([849a72d](https://github.com/ebryn/ember-component-css/commit/849a72d))
 
 
 
@@ -139,7 +139,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* **ember-2.11:** moving to concatinating and reasinging the classnames incase a classname is already in the array before the init call per [@rwjblue](https://github.com/rwjblue) suggestion ([40113e6](https://github.com/ebryn/ember-component-css/commit/40113e6))
+* **ember-2.11:** moving to concatenating and reassigning the classnames in case a classname is already in the array before the init call per [@rwjblue](https://github.com/rwjblue) suggestion ([40113e6](https://github.com/ebryn/ember-component-css/commit/40113e6))
 
 
 
