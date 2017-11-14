@@ -96,7 +96,7 @@ Let's assume your `application.hbs` template looks like this:
 To be able to use this for routes, you need to add a wrapping `div` around the outlet:
 
 ```hbs
-<div class={{namespacedClassList}}>
+<div class={{routeStyleNamespaceClassSet}}>
   {{outlet}}
 </div>
 ```

@@ -11,12 +11,12 @@ Router.reopen({
       let currentPath = route.name.replace(/\./g, '/');
 
       if (podNames[currentPath]) {
-        getOwner(this).lookup(`controller:${route.name}`).set('namespacedClass', podNames[currentPath]);
+        getOwner(this).lookup(`controller:${route.name}`).set('routeStyleNamespaceClass', podNames[currentPath]);
         classes.push(podNames[currentPath]);
       }
     }
 
-    getOwner(this).lookup('controller:application').set('namespacedClassList', classes.join(' '));
+    getOwner(this).lookup('controller:application').set('routeStyleNamespaceClassSet', classes.join(' '));
   }
 });
 
