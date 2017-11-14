@@ -6,12 +6,6 @@ const {
 } = Ember;
 
 export default Mixin.create({
-  _routeIdentifier: computed({
-    get() {
-      return (this._debugContainerKey || '').replace('route:', '');
-    }
-  }),
-
   _componentIdentifier: computed({
     get() {
       return (this._debugContainerKey || '').replace('component:', '');
