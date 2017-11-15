@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/ebryn/ember-component-css/compare/v0.3.7...v0.4.0) (2017-11-15)
+
+
+### Features
+
+* **route-namesapce:** Enable name-spacing of route styles ([114fe3b](https://github.com/ebryn/ember-component-css/commit/114fe3b))
+* **route-namespace:** added documentation about an individual controllers styleNamespace property ([cb94979](https://github.com/ebryn/ember-component-css/commit/cb94979))
+
+
+
 <a name="0.3.7"></a>
 ## [0.3.7](https://github.com/ebryn/ember-component-css/compare/v0.3.6...v0.3.7) (2017-11-02)
 
