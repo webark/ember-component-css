@@ -84,6 +84,25 @@ Note: If you are using more than one type of component style files (ie a .less f
 
 To use this with pods, you just need to include a style file in your component pods directory alongside your `template.hbs` or `component.js` files.
 
+### Usage with routes
+
+To use this with routes you need to use pods for the routes and modify the `application.hbs` template a little bit.
+Let's assume your `application.hbs` template looks like this:
+
+```hbs
+{{outlet}}
+```
+
+To be able to use this for routes, you need to add a wrapping `div` around the outlet:
+
+```hbs
+<div class={{routeStyleNamespaceClassSet}}>
+  {{outlet}}
+</div>
+```
+
+After that it's quite easy: add a style file in your route directory alongside your `route.js` or `template.hbs` files.
+
 ### Usage with classic (non pod) structure
 
 You can use classic Ember app structure by placing component styles in
@@ -96,13 +115,13 @@ the same component both are included but the pod style will take precedence.
 ### Use in addons
 In order to use this inside of an addon, you need to add your style files inside of the components in the
 addon directory. You will then be able to import the 'pod-styles' file inside of your addon style file which
-is in the `/addon/styles` directory. These styles will then be added to the `vendor.css` file like normal. 
+is in the `/addon/styles` directory. These styles will then be added to the `vendor.css` file like normal.
 
 If you are using classic (non pod) structure, your addon directory structure might look like:
 ```
 yourAddonDirectory
 │   index.js
-│   ... etc    
+│   ... etc
 └───addon
 │   └───components
 │       │   yourAddonComponent.js

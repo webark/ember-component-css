@@ -54,3 +54,19 @@ test('mixin psudo elements do not get scoped', function(assert) {
     assert.equal(item.css('color'), 'rgb(0, 0, 6)');
   });
 });
+
+test('route style followed', function(assert) {
+  visit(`/${TYPE}`);
+
+  andThen(function() {
+    assert.equal(find(`div[class^="__${TYPE}"]`).css('color'), 'rgb(0, 1, 0)');
+  });
+});
+
+test('nested route style followed', function(assert) {
+  visit(`/${TYPE}/nested`);
+
+  andThen(function() {
+    assert.equal(find(`div[class*="__${TYPE}__nested"]`).css('color'), 'rgb(0, 2, 0)');
+  });
+});

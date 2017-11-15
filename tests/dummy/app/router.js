@@ -4,14 +4,26 @@ import config from './config/environment';
 const Router = EmberRouter.extend({
   location: config.locationType,
   rootURL: config.rootURL
-});
+}).map(function() {
+  this.route('css', function() {
+    this.route('nested');
+  });
 
-Router.map(function() {
-  this.route('scss');
-  this.route('sass');
-  this.route('styl');
-  this.route('less');
-  this.route('css');
+  this.route('scss', function() {
+    this.route('nested');
+  });
+
+  this.route('sass', function() {
+    this.route('nested');
+  });
+
+  this.route('styl', function() {
+    this.route('nested');
+  });
+
+  this.route('less', function() {
+    this.route('nested');
+  });
 
   this.route('template-style-only');
   this.route('no-style-files-yet');
