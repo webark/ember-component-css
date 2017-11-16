@@ -103,7 +103,7 @@ To be able to use this for routes, you need to add a wrapping `div` around the o
 
 After that it's quite easy: add a style file in your route directory alongside your `route.js` or `template.hbs` files.
 
-An individual controller also has access to a `styleNamespace` property that is the namespace for a given route. This can be used for various use cases. (like enabling BEM style similar to how the `componentCssClassName` is used in a component)
+An individual controller also has access to a `routeStyleNamespaceClass` property that is the namespace for a given route. This can be used for various use cases. (like enabling BEM style similar to how the `componentCssClassName` is used in a component)
 
 ### Usage with classic (non pod) structure
 
