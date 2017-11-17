@@ -11,7 +11,7 @@ Router.reopen({
       let currentPath = route.name.replace(/\./g, '/');
 
       if (podNames[currentPath]) {
-        getOwner(this).lookup(`controller:${route.name}`).set('routeStyleNamespaceClass', podNames[currentPath]);
+        getOwner(this).lookup(`controller:${route.name}`).set('styleNamespace', podNames[currentPath]);
         classes.push(podNames[currentPath]);
       }
     }
