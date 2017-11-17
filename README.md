@@ -103,7 +103,7 @@ To be able to use this for routes, you need to add a wrapping `div` around the o
 
 After that it's quite easy: add a style file in your route directory alongside your `route.js` or `template.hbs` files.
 
-An individual controller also has access to a `styleNamespace` property that is the namespace for a given route. This can be used for various use cases. (like enabling BEM style similar to how the `componentCssClassName` is used in a component)
+An individual controller also has access to a `styleNamespace` property that is the namespace for a given route. This can be used for various use cases. (like enabling BEM style similar to how the `styleNamespace` is used in a component)
 
 ### Usage with classic (non pod) structure
 
@@ -184,18 +184,18 @@ postcss plugins in this way too.
 
 ### Getting the generated class name
 
-You also have access to the generated class name to use in your templates. There is a computed property `componentCssClassName` This can be used to pass the class name to things like [`ember-wormhole`](https://github.com/yapplabs/ember-wormhole) or for use in BEM style classnames.
+You also have access to the generated class name to use in your templates. There is a computed property `styleNamespace` This can be used to pass the class name to things like [`ember-wormhole`](https://github.com/yapplabs/ember-wormhole) or for use in BEM style classnames.
 An example of BEM usage would be
 
 `my-component/template.hbs`
 ```handlebars
-<button class="{{componentCssClassName}}__button">
+<button class="{{styleNamespace}}__button">
   Normal button
 </button>
-<button class="{{componentCssClassName}}__button {{componentCssClassName}}__button--state-success">
+<button class="{{styleNamespace}}__button {{styleNamespace}}__button--state-success">
 	Success button
 </button>
-<button class="{{componentCssClassName}}__button {{componentCssClassName}}__button--state-danger">
+<button class="{{styleNamespace}}__button {{styleNamespace}}__button--state-danger">
 	Danger button
 </button>
 ```
@@ -221,17 +221,19 @@ An example of BEM usage would be
 }
 ```
 
+*`componentCssClassName` will be officially deprecated, then removed in future versions. Will be migrating to the more appropriately named `styleNamespace`*
+
 #### Using the generated class name in `classNameBindings`
 
-You can build your own computed properties on top of `componentCssClassName`. One use case is using it to build a `classNameBinding`:
+You can build your own computed properties on top of `styleNamespace`. One use case is using it to build a `classNameBinding`:
 
 `my-component/component.hbs`
 ```js
 classNameBindings: ['customBinding'],
   stateProperty: false,
-  customBinding: computed('componentCssClassName', 'stateProperty', function() {
+  customBinding: computed('styleNamespace', 'stateProperty', function() {
     if (this.get('stateProperty') {
-      return `${this.get('componentCssClassName')}--state`;
+      return `${this.get('styleNamespace')}--state`;
     } else {
       return '';
     }

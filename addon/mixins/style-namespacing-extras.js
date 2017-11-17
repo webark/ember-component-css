@@ -14,7 +14,7 @@ export default Mixin.create({
 
   _shouldAddNamespacedClassName: computed({
     get() {
-      return this.get('tagName') !== '' && this.get('componentCssClassName');
+      return this.get('tagName') !== '' && this.get('styleNamespace');
     }
   }),
 });

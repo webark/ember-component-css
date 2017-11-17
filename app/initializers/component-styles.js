@@ -6,6 +6,10 @@ const {
   Component,
   ComponentLookup,
   computed,
+  computed: {
+    // deprecatingAlias,
+    alias,
+  },
   getOwner
 } = Ember;
 
@@ -21,17 +25,24 @@ ComponentLookup.reopen({
 });
 
 Component.reopen(StyleNamespacingExtras, {
-  componentCssClassName: computed({
+  styleNamespace: computed({
     get() {
       return podNames[this.get('_componentIdentifier')] || '';
     }
   }),
 
+  // componentCssClassName: deprecatingAlias('styleNamespace', {
+  //   id: 'ember-component-css.deprecate-componentCssClassName',
+  //   until: '0.7.0',
+  // }),
+
+  componentCssClassName: alias('styleNamespace'),
+
   init() {
     this._super(...arguments);
 
     if (this.get('_shouldAddNamespacedClassName')) {
-      this.classNames = this.classNames.concat(this.get('componentCssClassName'));
+      this.classNames = this.classNames.concat(this.get('styleNamespace'));
     }
   }
 });
