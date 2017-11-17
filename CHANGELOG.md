@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/ebryn/ember-component-css/compare/v0.4.0...v0.5.0) (2017-11-17)
+
+
+### Features
+
+* **styleNamespace:** now upgrading to using 'styleNamespace' for the namespace computed property. Will offically deprecate componentCssClassName in the future ([#254](https://github.com/ebryn/ember-component-css/issues/254)) ([4bb72f9](https://github.com/ebryn/ember-component-css/commit/4bb72f9))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/ebryn/ember-component-css/compare/v0.3.7...v0.4.0) (2017-11-15)
 
