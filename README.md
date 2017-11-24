@@ -71,9 +71,9 @@ To use this addon you *MUST*, import `pod-styles` into your base stylesheet.
 @import 'pod-styles'
 ```
 
-```scss
-// app/styles/app.css
-@import "pod-styles";
+```css
+/* app/styles/app.css */
+@import "pod-styles.css";
 ```
 
 And that is it! The `pod-styles` file is generated during the build and will then be pulled into your other stylesheet to be processed like normal.
