@@ -117,6 +117,7 @@ module.exports = {
 
       var podNames = new ExtractNames(allPodStyles, {
         classicStyleDir: this.classicStyleDir,
+        classicRouteStyleDir: this.classicRouteStyleDir,
         terseClassNames: this.terseClassNames,
         annotation: 'Walk (ember-component-css extract class names from style paths)'
       });
