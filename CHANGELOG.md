@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/ebryn/ember-component-css/compare/v0.5.0...v0.6.0) (2017-11-17)
+
+
+### Features
+* **route-styles** slightly modified to allow 'app/styles/route-styles/my-route.scss' to be scoped like components
+  * the addon lets you define route/styles.scss when in pods layout. The changes leverage this to do similar things in classic layout with route-styles/ folder.
+  * there is a flaw that causes components and routes with the same relative path to resolve to the same class name.
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/ebryn/ember-component-css/compare/v0.4.0...v0.5.0) (2017-11-17)
 
