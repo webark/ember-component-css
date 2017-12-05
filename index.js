@@ -27,7 +27,10 @@ module.exports = {
 
   _getClassicStyleFunnel: function() {
     return new Funnel(this.projectRoot, {
-      include: ['styles/' + this.classicStyleDir + '/**/*.{' + this.allowedStyleExtensions + ',}'],
+      include: [
+        'styles/' + this.classicStyleDir + '/**/*.{' + this.allowedStyleExtensions + ',}',
+        'styles/' + this.classicRouteStyleDir + '/**/*.{' + this.allowedStyleExtensions + ',}'
+      ],
       allowEmpty: true,
       annotation: 'Funnel (ember-component-css grab classic files)'
     });
@@ -88,6 +91,7 @@ module.exports = {
     this.appConfig = app.project.config(this._getEnvironment());
     this.addonConfig = this.appConfig['ember-component-css'] || {};
     this.classicStyleDir = this.addonConfig.classicStyleDir || 'component-styles';
+    this.classicRouteStyleDir = this.addonConfig.classicRouteStyleDir || 'route-styles';
     this.terseClassNames = Boolean(this.addonConfig.terseClassNames);
     this.allowedStyleExtensions = app.registry.extensionsForType('css').filter(Boolean);
   },
@@ -145,6 +149,7 @@ module.exports = {
       podStyles = new ProcessStyles(podStyles, {
         extensions: this.allowedStyleExtensions,
         classicStyleDir: this.classicStyleDir,
+        classicRouteStyleDir: this.classicRouteStyleDir,
         terseClassNames: this.terseClassNames,
         annotation: 'Filter (ember-component-css process :--component with class names)'
       });
