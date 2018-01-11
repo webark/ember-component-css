@@ -5,7 +5,8 @@ import podNames from 'ember-component-css/pod-names';
 Router.reopen({
   didTransition(routes) {
     const classes = [];
-    for (let route of routes) {
+    for (let i = 0; i < routes.length; i++) {
+      let route = routes[i];
       let currentPath = route.name.replace(/\./g, '/');
 
       if (podNames[currentPath]) {
