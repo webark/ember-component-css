@@ -7,7 +7,8 @@ Router.reopen({
     this._super(...arguments);
 
     const classes = [];
-    for (let route of routes) {
+    for (let i = 0; i < routes.length; i++) {
+      let route = routes[i];
       let currentPath = route.name.replace(/\./g, '/');
 
       if (podNames[currentPath]) {
