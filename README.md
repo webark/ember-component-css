@@ -249,6 +249,10 @@ classNameBindings: ['customBinding'],
 }
 ```
 
+### Special Tag-less components
+
+On the special cases of tag-less components (this functionality is used putting a `tagName: ''` value in the component), the styles are not attached to the DOM, as this addon needs a tag to attach the generated class name. In those special cases, you can use the `styleNamespace`* classname if you want to attach to a another element in the application (or more coherently inside the tag-less component).
+
 ### Configuration
 
 You can set the following configuration options in your `config/environment.js` file:
