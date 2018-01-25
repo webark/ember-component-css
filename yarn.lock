@@ -2350,9 +2350,22 @@ ember-cli-string-utils@^1.0.0, ember-cli-string-utils@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-string-utils/-/ember-cli-string-utils-1.1.0.tgz#39b677fc2805f55173735376fcef278eaa4452a1"
 
-ember-cli-styles-preprocessor@*, ember-cli-styles-preprocessor@^0.1.0:
+ember-cli-styles-preprocessor@*:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-styles-preprocessor/-/ember-cli-styles-preprocessor-0.1.0.tgz#4e2a37394ecfdd8e465059df254597e68effd7d6"
+  dependencies:
+    broccoli-file-creator "^1.1.1"
+    broccoli-less-single "^0.6.4"
+    broccoli-merge-trees "^2.0.0"
+    broccoli-postcss-single "^1.6.0"
+    broccoli-sass-source-maps "^2.2.0"
+    broccoli-stylus-single "^1.0.0"
+    ember-cli-babel "^6.11.0"
+    postcss-import "^11.0.0"
+
+ember-cli-styles-preprocessor@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-styles-preprocessor/-/ember-cli-styles-preprocessor-0.1.1.tgz#4cb8c5d8d9a17a9ed72200c60b29970640efbef6"
   dependencies:
     broccoli-file-creator "^1.1.1"
     broccoli-less-single "^0.6.4"
