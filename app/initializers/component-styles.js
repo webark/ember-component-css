@@ -1,16 +1,14 @@
-import Ember from 'ember';
+import Ember from "ember";
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import { getOwner } from '@ember/application';
+
 import podNames from 'ember-component-css/pod-names';
 import StyleNamespacingExtras from '../mixins/style-namespacing-extras';
 
 const {
-  Component,
   ComponentLookup,
-  computed,
-  computed: {
-    // deprecatingAlias,
-    alias,
-  },
-  getOwner
 } = Ember;
 
 ComponentLookup.reopen({
