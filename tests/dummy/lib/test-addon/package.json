@@ -3,15 +3,15 @@
   "version": "0.0.0",
   "dependencies": {
     "ember-cli-babel": "*",
-    "ember-cli-styles-preprocessor": "*",
-    "ember-cli-htmlbars": "*"
+    "ember-cli-htmlbars": "*",
+    "ember-cli-styles-preprocessor": "*"
   },
   "keywords": [
     "ember-addon"
   ],
   "ember-addon": {
     "paths": [
-      "../.."
+      "../../../.."
     ]
   }
 }
