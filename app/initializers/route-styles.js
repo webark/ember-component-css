@@ -4,6 +4,8 @@ import podNames from 'ember-component-css/pod-names';
 
 Router.reopen({
   didTransition(routes) {
+    this._super(...arguments);
+
     const classes = [];
     for (let i = 0; i < routes.length; i++) {
       let route = routes[i];
