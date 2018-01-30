@@ -18,6 +18,7 @@ Router.reopen({
     }
 
     getOwner(this).lookup('controller:application').set('routeStyleNamespaceClassSet', classes.join(' '));
+    this._super(...arguments);
   }
 });
 
