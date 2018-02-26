@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.3"></a>
+## [0.6.3](https://github.com/ebryn/ember-component-css/compare/v0.6.2...v0.6.3) (2018-02-26)
+
+
+### Bug Fixes
+
+* **ember inspector:** Mixins created with an empty create breaks ember-inspector fixes [#275](https://github.com/ebryn/ember-component-css/issues/275) ([5533674](https://github.com/ebryn/ember-component-css/commit/5533674))
+
+
+
 <a name="0.6.2"></a>
 ## [0.6.2](https://github.com/ebryn/ember-component-css/compare/v0.6.1...v0.6.2) (2018-02-06)
 
