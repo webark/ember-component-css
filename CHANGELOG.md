@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.3"></a>
+## [0.6.3](https://github.com/ebryn/ember-component-css/compare/v0.6.2...v0.6.3) (2018-02-26)
+
+
+### Bug Fixes
+
+* **ember inspector:** Mixins created with an empty create breaks ember-inspector fixes [#275](https://github.com/ebryn/ember-component-css/issues/275) ([5533674](https://github.com/ebryn/ember-component-css/commit/5533674))
+
+
+
+<a name="0.6.2"></a>
+## [0.6.2](https://github.com/ebryn/ember-component-css/compare/v0.6.1...v0.6.2) (2018-02-06)
+
+
+### Bug Fixes
+
+* **module imports:** moved functionality that belonged to just the addon, over to the addon. fix [#259](https://github.com/ebryn/ember-component-css/issues/259) ([c016731](https://github.com/ebryn/ember-component-css/commit/c016731))
+
+
+
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/ebryn/ember-component-css/compare/v0.6.0...v0.6.1) (2018-01-30)
+
+
+### Bug Fixes
+
+* **router:** accidentally removed a import super call in the routers didTransition. fixes [#266](https://github.com/ebryn/ember-component-css/issues/266) ([446a368](https://github.com/ebryn/ember-component-css/commit/446a368))
+
+
+
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/ebryn/ember-component-css/compare/v0.5.0...v0.6.0) (2018-01-26)
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/ebryn/ember-component-css/compare/v0.4.0...v0.5.0) (2017-11-17)
 
