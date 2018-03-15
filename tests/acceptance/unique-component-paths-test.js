@@ -1,12 +1,16 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-moduleForAcceptance(`Acceptance | Unique Paths`);
+import styleForSetup from 'dummy/tests/setup/style-for';
 
-test('base rule followed', function(assert) {
-  visit(`/unique-component-paths`);
+module(`Acceptance | Unique Paths`, function(hooks) {
+  setupApplicationTest(hooks);
+  styleForSetup(hooks);
 
-  andThen(function() {
-    assert.equal(find('h1').css('color'), 'rgb(0, 0, 14)');
+  test('base rule followed', async function(assert) {
+    await visit(`/unique-component-paths`);
+
+    assert.equal(this.styleFor('h1').color, 'rgb(0, 0, 14)');
   });
 });

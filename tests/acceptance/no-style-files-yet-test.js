@@ -1,12 +1,16 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-moduleForAcceptance('Acceptance | no style files yet');
+import styleForSetup from 'dummy/tests/setup/style-for';
 
-test('should not have to include a style file inorder to build and render', function(assert) {
-  visit('/no-style-files-yet');
+module('Acceptance | no style files yet', function(hooks) {
+  setupApplicationTest(hooks);
+  styleForSetup(hooks);
 
-  andThen(function() {
-    assert.equal(find('.base').css('color'), 'rgb(0, 0, 0)');
+  test('should not have to include a style file inorder to build and render', async function(assert) {
+    await visit('/no-style-files-yet');
+
+    assert.equal(this.styleFor('.base').color, 'rgb(0, 0, 0)');
   });
 });

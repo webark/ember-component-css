@@ -4,7 +4,9 @@ import config from './config/environment';
 const Router = EmberRouter.extend({
   location: config.locationType,
   rootURL: config.rootURL
-}).map(function() {
+});
+
+Router.map(function() {
   this.route('css', function() {
     this.route('nested');
   });
