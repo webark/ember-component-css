@@ -12,12 +12,10 @@
 /.eslintignore
 /.eslintrc.js
 /.gitignore
-/.template-lintrc.js
-/.travis.yml
 /.watchmanconfig
+/.travis.yml
 /bower.json
 /config/ember-try.js
-/CONTRIBUTING.md
 /ember-cli-build.js
 /testem.js
 /tests/
