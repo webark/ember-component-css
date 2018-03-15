@@ -3,7 +3,7 @@ language: node_js
 node_js:
   # we recommend testing addons with the same minimum supported node version as Ember CLI
   # so that your addon works for all apps
-  - "10"
+  - "6"
 
 sudo: false
 dist: trusty
@@ -18,12 +18,6 @@ env:
   global:
     # See https://git.io/vdao3 for details.
     - JOBS=1
-
-branches:
-  only:
-    - master
-    # npm version tags
-    - /^v\d+\.\d+\.\d+/
 
 jobs:
   fail_fast: true

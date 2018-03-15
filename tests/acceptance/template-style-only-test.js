@@ -1,12 +1,16 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-moduleForAcceptance('Acceptance | template style only');
+import styleForSetup from 'dummy/tests/setup/style-for';
 
-test('should be able to use a pod style with only the style file and a template', function(assert) {
-  visit('/template-style-only');
+module('Acceptance | template style only', function(hooks) {
+  setupApplicationTest(hooks);
+  styleForSetup(hooks);
 
-  andThen(function() {
-    assert.equal(find('.template-only').css('color'), 'rgb(0, 0, 1)');
+  test('should be able to use a pod style with only the style file and a template', async function(assert) {
+    await visit('/template-style-only');
+
+    assert.equal(this.styleFor(`[class$=__template-only]`).color, 'rgb(0, 0, 1)');
   });
 });
