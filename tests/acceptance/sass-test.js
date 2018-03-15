@@ -1,72 +1,20 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+
+import styleForSetup from 'dummy/tests/setup/style-for';
 
 const TYPE = 'sass';
 
-moduleForAcceptance(`Acceptance | ${TYPE}`);
+module(`Acceptance | ${TYPE}`, function(hooks) {
+  setupApplicationTest(hooks);
+  styleForSetup(hooks);
 
-test('base rule followed', function(assert) {
-  visit(`/${TYPE}`);
+  test('mixin psudo elements do not get scoped', async function(assert) {
+    await visit(`/${TYPE}`);
 
-  andThen(function() {
-    assert.equal(find('.base').css('color'), 'rgb(0, 0, 1)');
-  });
-});
-
-test('nested rule followed', function(assert) {
-  visit(`/${TYPE}`);
-
-  andThen(function() {
-    assert.equal(find('.nested').css('color'), 'rgb(0, 0, 2)');
-  });
-});
-
-test('non class nested rule followed', function(assert) {
-  visit(`/${TYPE}`);
-
-  andThen(function() {
-    assert.equal(find('span span span').css('color'), 'rgb(0, 0, 3)');
-  });
-});
-
-test('BEM rule followed', function(assert) {
-  visit(`/${TYPE}`);
-
-  andThen(function() {
-    assert.equal(find('[class$=__element]').css('color'), 'rgb(0, 0, 4)');
-  });
-});
-
-test('BEM variant rule followed', function(assert) {
-  visit(`/${TYPE}`);
-
-  andThen(function() {
-    assert.equal(find('[class$=__element--variant]').css('color'), 'rgb(0, 0, 5)');
-  });
-});
-
-test('mixin psudo elements do not get scoped', function(assert) {
-  visit(`/${TYPE}`);
-
-  andThen(function() {
-    let item = find('[class$=__element--variant]');
-    item.addClass('mixin-extra');
-    assert.equal(item.css('color'), 'rgb(0, 0, 6)');
-  });
-});
-
-test('route style followed', function(assert) {
-  visit(`/${TYPE}`);
-
-  andThen(function() {
-    assert.equal(find(`div[class^="__${TYPE}"]`).css('color'), 'rgb(0, 1, 0)');
-  });
-});
-
-test('nested route style followed', function(assert) {
-  visit(`/${TYPE}/nested`);
-
-  andThen(function() {
-    assert.equal(find(`div[class*="__${TYPE}__nested"]`).css('color'), 'rgb(0, 2, 0)');
+    let element = this.element.querySelector('[class$=__element--variant]');
+    element.classList.add('mixin-extra');
+    assert.equal(window.getComputedStyle(element).color, 'rgb(0, 0, 6)');
   });
 });

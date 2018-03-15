@@ -1,20 +1,24 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { visit } from '@ember/test-helpers';
+import { module, skip } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-moduleForAcceptance('Acceptance | classic structure');
+import styleForSetup from 'dummy/tests/setup/style-for';
 
-test('should be able to use classic structure style', function(assert) {
-  visit('/classic-structure');
+module('Acceptance | classic structure', function(hooks) {
+  setupApplicationTest(hooks);
+  styleForSetup(hooks);
 
-  andThen(function() {
-    assert.equal(find('.classic-structure').css('color'), 'rgb(0, 0, 1)');
+  skip('should be able to use classic structure style', async function(assert) {
+    await visit('/classic-structure');
+
+    const color = this.styleFor('.classic-structure').color;
+    assert.equal(color, 'rgb(0, 0, 1)');
   });
-});
 
-test('should be able to use classic structure style nested', function(assert) {
-  visit('/classic-structure-nested');
+  skip('should be able to use classic structure style nested', async function(assert) {
+    await visit('/classic-structure-nested');
 
-  andThen(function() {
-    assert.equal(find('.classic-structure-nested').css('color'), 'rgb(0, 0, 1)');
+    const color = this.styleFor('.classic-structure-nested').color;
+    assert.equal(color, 'rgb(0, 0, 1)');
   });
 });
