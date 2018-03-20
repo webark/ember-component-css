@@ -232,7 +232,7 @@ You can build your own computed properties on top of `styleNamespace`. One use c
 classNameBindings: ['customBinding'],
   stateProperty: false,
   customBinding: computed('styleNamespace', 'stateProperty', function() {
-    if (this.get('stateProperty') {
+    if (this.get('stateProperty')) {
       return `${this.get('styleNamespace')}--state`;
     } else {
       return '';
