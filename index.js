@@ -126,7 +126,8 @@ module.exports = {
   },
 
   treeForParentAddonStyles: function(tree) {
-    return this.processComponentStyles(tree);
+    var parentAddonStyles = this.parent.treeForAddonStyles || function(t) { return t };
+    return parentAddonStyles.bind(this.parent)(this.processComponentStyles(tree));
   },
 
   treeForStyles: function(tree) {
