@@ -149,7 +149,12 @@ module.exports = {
       });
     }
 
-    var styleManifest = new StyleManifest(podStyles, {
+    // Modifies the tree that will be fed to the StyleManifest
+    var excludedStyles = new Funnel(podStyles, {
+      exclude: this.addonConfig.exclude || [],
+    });
+
+    var styleManifest = new StyleManifest(excludedStyles, {
       outputFileNameWithoutExtension: 'pod-styles',
       annotation: 'StyleManifest (ember-component-css combining all style files that there are extensions for)'
     });
