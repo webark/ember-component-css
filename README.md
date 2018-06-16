@@ -289,6 +289,38 @@ ENV['ember-component-css'] = {
 }
 ```
 
+**excludeFromManifest**
+
+Defaults to `[]`. Set this option to one or more matcher expression (regular expression, glob string, or function).
+Style files matching the expresion(s) will be namespaced but not imported in the `pod-styles` manifest. You will
+need to import the matching style files manually in your CSS. This can be useful when you need to control the order
+in which specific style files need to be imported.
+
+Example:
+You want to have a separate style file for each media-query breakpoint. You want to be sure that `_style-1366.scss`
+will be imported before `_style-960.scss`
+
+```
+.
+└── my-component/
+    ├── _style-1366.scss
+    ├── _style-960.scss
+    ├── main.scss
+    ├── component.js
+    └── template.hbs
+```
+
+```sass
+// main.scss
+@import "./_style-1366"
+@import "./_style-960"
+```
+
+```js
+ENV['ember-component-css'] = {
+  excludeFromManifest: ['**/_style-*']
+}
+```
 
 ### [The announcement from EmberConf 2015](https://youtu.be/T1zxaEKeq3E)
 [![CSS is hard - EmberConf 2015](http://f.cl.ly/items/1a3a3r1C1y0D060D3j3u/EmberConf%202015%20-%20CSS%20Is%20Hard%20-%20YouTube%202015-03-22%2018-33-41.jpg)](https://youtu.be/T1zxaEKeq3E)
