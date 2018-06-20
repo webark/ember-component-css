@@ -1,6 +1,6 @@
 {
   "name": "ember-component-css",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "An Ember CLI addon which allows you to specify styles for individual components",
   "keywords": [
     "ember-addon"

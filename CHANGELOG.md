@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.4"></a>
+## [0.6.4](https://github.com/ebryn/ember-component-css/compare/v0.6.3...v0.6.4) (2018-06-20)
+
+
+
 <a name="0.6.3"></a>
 ## [0.6.3](https://github.com/ebryn/ember-component-css/compare/v0.6.2...v0.6.3) (2018-02-26)
 
