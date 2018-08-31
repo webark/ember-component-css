@@ -24,7 +24,7 @@ ComponentLookup.reopen({
 Component.reopen({
   _componentIdentifier: computed({
     get() {
-      return (this._debugContainerKey || '').replace('component:', '');
+      return 'components/' + (this._debugContainerKey || '').replace('component:', '');
     }
   }),
 

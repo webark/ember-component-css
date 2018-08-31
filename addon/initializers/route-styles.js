@@ -10,7 +10,7 @@ Router.reopen({
     const classes = [];
     for (let i = 0; i < routes.length; i++) {
       let route = routes[i];
-      let currentPath = route.name.replace(/\./g, '/');
+      let currentPath = 'routes/' + route.name.replace(/\./g, '/');
 
       if (podNames[currentPath]) {
         getOwner(this).lookup(`controller:${route.name}`).set('styleNamespace', podNames[currentPath]);
