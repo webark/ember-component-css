@@ -9,8 +9,21 @@ var StyleManifest = require('broccoli-style-manifest');
 module.exports = {
 
   _getStyleFunnel: function() {
+    if (this.appConfig.EmberENV.FEATURES['ember-module-unification']) {
+      return this._getMUStyleFunnel();
+    }
     return new Merge([this._getPodStyleFunnel(), this._getClassicStyleFunnel()], {
       annotation: 'Merge (ember-component-css merge pod and classic styles)'
+    });
+  },
+
+  _getMUStyleFunnel: function() {
+    return new Funnel(this.projectRoot, {
+      srcDir: 'ui',
+      exclude: ['styles/**/*'],
+      include: ['**/*.{' + this.allowedStyleExtensions + ',}'],
+      allowEmpty: true,
+      annotation: 'Funnel (ember-component-css grab files)'
     });
   },
 
@@ -53,7 +66,7 @@ module.exports = {
     } else if (trees && trees.app) {
       projectRoot = trees.app;
     } else {
-      projectRoot = this.parent.root + '/app';
+      projectRoot = this.parent.root + '/src';
     }
 
     return projectRoot;
