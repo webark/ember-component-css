@@ -65,8 +65,10 @@ module.exports = {
       projectRoot = this.parent.root + '/addon';
     } else if (trees && trees.app) {
       projectRoot = trees.app;
-    } else {
+    } else if (this.appConfig.EmberENV.FEATURES['ember-module-unification']) {
       projectRoot = this.parent.root + '/src';
+    } else {
+      projectRoot = this.parent.root + '/app';
     }
 
     return projectRoot;
