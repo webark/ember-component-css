@@ -74,33 +74,18 @@ module.exports = {
     return projectRoot;
   },
 
-  _getEnvironment: function() {
-    if (!this._findHost) {
-      this._findHost = function findHostShim() {
-        let current = this;
-        let app;
-        do {
-          app = current.app || app;
-        } while (current.parent.parent && (current = current.parent));
-        return app;
-      };
-    }
-
-    return this._findHost().env;
-  },
-
   included: function(app) {
-    this._super.included.apply(this, arguments);
-
-    this.projectRoot = this._projectRoot(app.trees);
+    this._super.included.apply(this, arguments);  
 
     if (this._isAddon()) {
       this.parent.treeForMethods['addon-styles'] = 'treeForParentAddonStyles';
       this.parent.treeForParentAddonStyles = this.treeForParentAddonStyles.bind(this);
     }
 
-    this.appConfig = app.project.config(this._getEnvironment());
+    this.appConfig = app.project.config();
     this.addonConfig = this.appConfig['ember-component-css'] || {};
+    this.projectRoot = this._projectRoot(app.trees);
+    
     this.classicStyleDir = this.addonConfig.classicStyleDir || 'component-styles';
     this.terseClassNames = Boolean(this.addonConfig.terseClassNames);
     this.allowedStyleExtensions = app.registry.extensionsForType('css').filter(Boolean);
