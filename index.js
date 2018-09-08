@@ -125,7 +125,10 @@ module.exports = {
         annotation: 'Merge (ember-component-css merge all process styles for a complete list of styles)'
       });
 
+      // namespaceStyles=true prefixes all css class names: <addonname>__classname
+      // path or component debugKey must be "components:<addonname>@<componentname>"
       var podNames = new ExtractNames(allPodStyles, {
+        prefix: this._isAddon() && this.appConfig['ember-component-css'].namespaceStyles ? this.parent.name : '',
         classicStyleDir: this.classicStyleDir,
         terseClassNames: this.terseClassNames,
         annotation: 'Walk (ember-component-css extract class names from style paths)'
