@@ -9,7 +9,7 @@ var StyleManifest = require('broccoli-style-manifest');
 module.exports = {
 
   _getStyleFunnel: function() {
-    if (this.appConfig.EmberENV.FEATURES['ember-module-unification']) {
+    if (this.parent.isModuleUnification()) {
       return this._getMUStyleFunnel();
     }
     return new Merge([this._getPodStyleFunnel(), this._getClassicStyleFunnel()], {
@@ -33,7 +33,7 @@ module.exports = {
       exclude: ['styles/**/*'],
       include: ['**/*.{' + this.allowedStyleExtensions + ',}'],
       allowEmpty: true,
-      annotation: 'Funnel (ember-component-css grab files)'
+      annotation: 'Funnel (ember-component-css grab files)' + (this._isAddon() ? this.parent.name : '')
     });
   },
 
@@ -46,7 +46,7 @@ module.exports = {
   },
 
   _podDirectory: function() {
-    return this.appConfig.podModulePrefix && !this._isAddon() ? this.appConfig.podModulePrefix.replace(this.appConfig.modulePrefix, '') : '';
+    return this.appConfig.podModulePrefix && !this._isAddon() ? this.appConfig.podModulePrefix.replace(this.appConfig.modulePrefix, '') : '.';
   },
 
   _namespacingIsEnabled: function() {
@@ -61,19 +61,19 @@ module.exports = {
 
   _projectRoot: function(trees) {
     var projectRoot;
-    if (this._isAddon()) {
+    if (this.parent.isModuleUnification()) {
+      projectRoot = this.parent.root + '/src';
+    } else if (this._isAddon()) {
       projectRoot = this.parent.root + '/addon';
     } else if (trees && trees.app) {
       projectRoot = trees.app;
-    } else if (this.appConfig.EmberENV.FEATURES['ember-module-unification']) {
-      projectRoot = this.parent.root + '/src';
     } else {
       projectRoot = this.parent.root + '/app';
     }
 
     return projectRoot;
   },
-  
+
   _getEnvironment: function() {
     if (!this._findHost) {
       this._findHost = function findHostShim() {
@@ -90,7 +90,7 @@ module.exports = {
   },
 
   included: function(app) {
-    this._super.included.apply(this, arguments);  
+    this._super.included.apply(this, arguments);
 
     if (this._isAddon()) {
       this.parent.treeForMethods['addon-styles'] = 'treeForParentAddonStyles';
@@ -100,7 +100,7 @@ module.exports = {
     this.appConfig = app.project.config(this._getEnvironment());
     this.addonConfig = this.appConfig['ember-component-css'] || {};
     this.projectRoot = this._projectRoot(app.trees);
-    
+
     this.classicStyleDir = this.addonConfig.classicStyleDir || 'component-styles';
     this.terseClassNames = Boolean(this.addonConfig.terseClassNames);
     this.allowedStyleExtensions = app.registry.extensionsForType('css').filter(Boolean);
@@ -145,9 +145,7 @@ module.exports = {
   },
 
   treeForStyles: function(tree) {
-    if (!this._isAddon()) {
-      tree = this.processComponentStyles(tree);
-    }
+    tree = this.processComponentStyles(tree);
     return this._super.treeForStyles.call(this, tree);
   },
 
@@ -170,7 +168,7 @@ module.exports = {
     });
 
     var styleManifest = new StyleManifest(podStylesWithoutExcluded, {
-      outputFileNameWithoutExtension: 'pod-styles',
+      outputFileNameWithoutExtension: this._isAddon() ? this.parent.name + '-pod-styles' : 'pod-styles',
       annotation: 'StyleManifest (ember-component-css combining all style files that there are extensions for)'
     });
 
