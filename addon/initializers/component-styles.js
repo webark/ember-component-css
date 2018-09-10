@@ -24,7 +24,12 @@ ComponentLookup.reopen({
 Component.reopen({
   _componentIdentifier: computed({
     get() {
-      return 'components/' + (this._debugContainerKey || '').replace('component:', '');
+      const config = Ember.getOwner(this).resolveRegistration('config:environment');
+      let containerKey = this._debugContainerKey || '';
+      if (!containerKey.includes('@')) {
+        containerKey = containerKey.replace('component:', 'component:' + config.modulePrefix + '@');
+      }
+      return containerKey;
     }
   }),
 

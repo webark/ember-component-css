@@ -128,7 +128,6 @@ module.exports = {
       // namespaceStyles=true prefixes all css class names: <addonname>__classname
       // path or component debugKey must be "components:<addonname>@<componentname>"
       var podNames = new ExtractNames(allPodStyles, {
-        prefix: this._isAddon() && this.appConfig['ember-component-css'].namespaceStyles ? this.parent.name : '',
         classicStyleDir: this.classicStyleDir,
         terseClassNames: this.terseClassNames,
         annotation: 'Walk (ember-component-css extract class names from style paths)'
@@ -154,6 +153,9 @@ module.exports = {
 
   processComponentStyles: function(tree) {
     var podStyles = this._getStyleFunnel();
+    podStyles = new Funnel(podStyles, {
+      destDir: this._isAddon() ? this.parent.name : this.parent.name()
+    });
     this._allPodStyles.push(podStyles);
 
     if (this._namespacingIsEnabled()) {
