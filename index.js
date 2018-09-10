@@ -158,6 +158,7 @@ module.exports = {
 
     if (this._namespacingIsEnabled()) {
       podStyles = new ProcessStyles(podStyles, {
+        prefix: this._isAddon() && this.appConfig['ember-component-css'].namespaceStyles ? this.parent.name : '',
         extensions: this.allowedStyleExtensions,
         classicStyleDir: this.classicStyleDir,
         terseClassNames: this.terseClassNames,
