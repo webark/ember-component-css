@@ -98,7 +98,13 @@ module.exports = {
     }
 
     this.appConfig = app.project.config(this._getEnvironment());
-    this.addonConfig = this.appConfig['ember-component-css'] || {};
+    this.addonConfig = this.appConfig['ember-component-css'] || {
+      routeRootPaths: [],
+      componentRootPaths: []
+    };
+    if (this.appConfig.podModulePrefix) {
+      this.addonConfig.routeRootPaths.push(this.appConfig.podModulePrefix.split(this.appConfig.modulePrefix+'/')[1]);
+    }
     this.projectRoot = this._projectRoot(app.trees);
 
     this.classicStyleDir = this.addonConfig.classicStyleDir || 'component-styles';
@@ -110,6 +116,8 @@ module.exports = {
     var config = {
       "ember-component-css": {
         terseClassNames: false,
+        routeRootPaths: [],
+        componentRootPaths: [],
       },
     };
     if (enviroment === 'production') {
@@ -128,6 +136,7 @@ module.exports = {
       // namespaceStyles=true prefixes all css class names: <addonname>__classname
       // path or component debugKey must be "components:<addonname>@<componentname>"
       var podNames = new ExtractNames(allPodStyles, {
+        addonConfig: this.addonConfig,
         classicStyleDir: this.classicStyleDir,
         terseClassNames: this.terseClassNames,
         annotation: 'Walk (ember-component-css extract class names from style paths)'
@@ -160,7 +169,7 @@ module.exports = {
 
     if (this._namespacingIsEnabled()) {
       podStyles = new ProcessStyles(podStyles, {
-        prefix: this._isAddon() && this.appConfig['ember-component-css'].namespaceStyles ? this.parent.name : '',
+        addonConfig: this.addonConfig,
         extensions: this.allowedStyleExtensions,
         classicStyleDir: this.classicStyleDir,
         terseClassNames: this.terseClassNames,
