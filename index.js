@@ -126,7 +126,13 @@ module.exports = {
   },
 
   treeForParentAddonStyles: function(tree) {
-    return this.processComponentStyles(tree);
+    let defaultTree = tree;
+
+    if (this.parent.treeForAddonStyles) {
+      defaultTree = this.parent.treeForAddonStyles.apply(this.parent, arguments);
+    }
+
+    return this.processComponentStyles(defaultTree);
   },
 
   treeForStyles: function(tree) {
