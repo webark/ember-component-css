@@ -2,8 +2,7 @@
 
 An Ember CLI addon which allows you to specify component-specific style sheets in an app, addon, engine, or in-repo addon.
 
-Contributions are welcome! Feel free to open up a pull request or issue, and join the [#e-component-css](https://embercommunity.slack.com/messages/e-component-css/) channel in the [Ember Slack community](https://ember-community-slackin.herokuapp.com/) if you have further questions, concerns, or ideas. Thanks! :smile:
-
+Contributions are welcome! Feel free to open up a pull request or issue, and join the **#e-component-css** channel on the [official Ember Discord server](https://discord.gg/zT3asNS) if you have further questions, concerns, or ideas. Thanks! :smile:
 
 ## Installation
 
