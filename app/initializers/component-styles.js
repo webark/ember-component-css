@@ -2,7 +2,7 @@ export { default, initialize } from 'ember-component-css/initializers/component-
 
 import Ember from 'ember';
 
-import StyleNamespacingExtras from '../mixins/style-namespacing-extras';
+import StyleNamespacingExtras from 'ember-component-css/mixins/style-namespacing-extras';
 
 // eslint-disable-next-line ember/new-module-imports
 Ember.Component.reopen(StyleNamespacingExtras);
