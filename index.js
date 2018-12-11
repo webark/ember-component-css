@@ -8,7 +8,8 @@ const {
 
 module.exports = {
   _templateOnlyGlimmerComponents() {
-    return false;
+    const optionalFeaturesAddon = this.addons.find(a => a.name === '@ember/optional-features');
+    return optionalFeaturesAddon && optionalFeaturesAddon.isFeatureEnabled('template-only-glimmer-components');
   },
 
   _defaultOptions(enviroment) {
