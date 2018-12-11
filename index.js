@@ -172,5 +172,5 @@ module.exports = {
     return tree;
   },
 
-  name: 'ember-component-css'
+  name: require('./package').name
 };
