@@ -5,6 +5,7 @@ var Merge = require('broccoli-merge-trees');
 var ProcessStyles = require('./lib/pod-style.js');
 var ExtractNames = require('./lib/pod-names.js');
 var StyleManifest = require('broccoli-style-manifest');
+var Replace = require('broccoli-replace');
 
 module.exports = {
 
@@ -163,6 +164,15 @@ module.exports = {
     var styleManifest = new StyleManifest(podStylesWithoutExcluded, {
       outputFileNameWithoutExtension: 'pod-styles',
       annotation: 'StyleManifest (ember-component-css combining all style files that there are extensions for)'
+    });
+
+    // this is due to sass spcifically not allowing for ANY semicolons.
+    styleManifest = new Replace(styleManifest, {
+      files: ['**/*.sass'],
+      patterns: [{
+        match: /;/g,
+        replacement: '',
+      }],
     });
 
     tree = new Merge([podStyles, styleManifest, tree].filter(Boolean), {
