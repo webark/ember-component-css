@@ -1,8 +1,8 @@
 import Router from '@ember/routing/router';
 import { getOwner } from '@ember/application';
-
 import podNames from 'ember-component-css/pod-names';
 
+// This file is removed from the build in Ember 3.6+
 Router.reopen({
   didTransition(routes) {
     this._super(...arguments);
