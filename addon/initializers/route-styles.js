@@ -1,24 +1,12 @@
 import Router from '@ember/routing/router';
 import { getOwner } from '@ember/application';
-import podNames from 'ember-component-css/pod-names';
+import initRouteStyles from '../utils/init-route-styles';
 
 // This file is removed from the build in Ember 3.6+
 Router.reopen({
   didTransition(routes) {
     this._super(...arguments);
-
-    const classes = [];
-    for (let i = 0; i < routes.length; i++) {
-      let route = routes[i];
-      let currentPath = route.name.replace(/\./g, '/');
-
-      if (podNames[currentPath]) {
-        getOwner(this).lookup(`controller:${route.name}`).set('styleNamespace', podNames[currentPath]);
-        classes.push(podNames[currentPath]);
-      }
-    }
-
-    getOwner(this).lookup('controller:application').set('routeStyleNamespaceClassSet', classes.join(' '));
+    initRouteStyles(getOwner(this), routes);
   }
 });
 
