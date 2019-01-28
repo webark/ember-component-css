@@ -29,11 +29,11 @@ Component.reopen({
       // support /-components/ paths, debug key has full path
       let containerKey = this._debugContainerKey || '';
       containerKey = containerKey.replace('/' + config.modulePrefix + '/', '');
-      if (containerKey.split('/').length === 1) {
-        containerKey = containerKey.replace(':', ':components/');
-      }
       if (!containerKey.includes('@')) {
         containerKey = containerKey.replace('component:', 'component:' + config.modulePrefix + '@');
+      }
+      if (containerKey.split('/').length === 1) {
+        containerKey = containerKey.replace('@', '@components/');
       }
       return containerKey;
     }
