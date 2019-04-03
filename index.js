@@ -195,7 +195,7 @@ module.exports = {
     });
 
     var styleManifest = new StyleManifest(podStylesWithoutExcluded, {
-      outputFileNameWithoutExtension: 'pod-styles',
+      outputFileNameWithoutExtension: this._isAddon() ? this.parent.name + '-pod-styles' : 'pod-styles',
       annotation: 'StyleManifest (ember-component-css combining all style files that there are extensions for)'
     });
 
