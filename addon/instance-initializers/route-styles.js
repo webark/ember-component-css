@@ -4,7 +4,21 @@ import initRouteStyles from '../utils/init-route-styles';
 export function initialize(appInstance) {
   let router = appInstance.lookup('service:router');
   router.on('routeDidChange', function(transition) {
-    initRouteStyles(appInstance, transition.routeInfos);
+    let routeInfos = [];
+    let to = transition.to;
+
+    while (to) {
+      routeInfos.push(to);
+      to = to.parent;
+    }
+
+    routeInfos.reverse();
+
+    if (routeInfos.length === 0) {
+      routeInfos = transition.routeInfos;
+    }
+
+    initRouteStyles(appInstance, routeInfos);
   });
 }
 
