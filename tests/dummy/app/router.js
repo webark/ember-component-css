@@ -32,6 +32,7 @@ Router.map(function() {
   this.route('classic-structure');
   this.route('classic-structure-nested');
   this.route('unique-component-paths');
+  this.route('query-params');
 
   this.route('addon', function() {
     this.route('scss');
