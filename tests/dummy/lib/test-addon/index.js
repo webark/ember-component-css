@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = {
-  name: 'test-addon',
+  name: require('./package').name,
 
   isDevelopingAddon: function() {
     return true;
