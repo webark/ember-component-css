@@ -1,7 +1,10 @@
 import Component from '@ember/component';
 
 import layout from './template';
+import { styleNamespace } from './styles';
 
 export default Component.extend({
-  layout
+  classNameBindings: ['styleNamespace'],
+  styleNamespace,
+  layout,
 });

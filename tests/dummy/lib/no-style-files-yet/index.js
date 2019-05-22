@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = {
-  name: 'no-style-files-yet',
+  name: require('./package').name,
 
   isDevelopingAddon: function() {
     return true;

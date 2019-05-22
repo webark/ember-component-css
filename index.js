@@ -1,4 +1,6 @@
-'use strict';
+const path = require('path');
+
+const Funnel = require('broccoli-funnel');
 
 const {
   ColocatedNamespacedStyles,
@@ -21,39 +23,59 @@ module.exports = {
   },
 
   _options(registry) {
-    const options = (this.parent && this.parent.options) || (registry.app && registry.app.options) || {};
+    const {
+      emberCliStyles,
+    } = (this.parent && this.parent.options) || (registry.app && registry.app.options) || {};
 
-    return Object.assign(this._defaultOptions(), options.emberCliStyles);
+    return Object.assign(this._defaultOptions(), emberCliStyles);
+  },
+
+  _isAddon() {
+    return Boolean(this.parent.parent);
+  },
+
+  _baseNode(app) {
+    if (app.treePaths) {
+      return new Funnel(path.join(app.root, app.treePaths['addon']));
+    } else {
+      const appTree = (app.app || app).trees['app'];
+      if (typeof appTree === 'string') {
+        return new Funnel(path.join(app.project.root, appTree));
+      } else {
+        return appTree;
+      }
+    }
   },
 
   setupPreprocessorRegistry(type, registry) {
-    const isAddon = Boolean(this.parent.parent);
+    const baseNode = this._baseNode(registry.app);
     const templateOnly = this._templateOnlyGlimmerComponents();
 
-    const config = this._options(registry);
-    const terseClassNames = config.terseClassNames;
-    const excludeFromManifest = config.excludeFromManifest;
-    const includeDeprecatedPodStylesFile = config.includeDeprecatedPodStylesFile;
-
-    registry.add('css', new ColocatedNamespacedStyles({
+    const {
       terseClassNames,
       excludeFromManifest,
       includeDeprecatedPodStylesFile,
-      isAddon,
+    } = this._options(registry);
+
+    registry.add('css', new ColocatedNamespacedStyles({
       registry,
+      baseNode,
+      terseClassNames,
+      excludeFromManifest,
+      includeDeprecatedPodStylesFile,
     }));
 
     registry.add('js', new ColocatedNamespaceObjects({
-      isAddon,
-      templateOnly,
       registry,
+      baseNode,
+      templateOnly,
     }));
 
     if (templateOnly) {
       registry.add('template', new ColocatedNamespaceTemplates({
-        terseClassNames,
-        isAddon,
         registry,
+        baseNode,
+        terseClassNames,
       }));
     }
   },

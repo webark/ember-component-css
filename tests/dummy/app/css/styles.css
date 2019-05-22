@@ -1,3 +1,9 @@
 & {
   color: rgb(0, 1, 0);
 }
+h4 {
+  color: green;
+}
+* {
+  color: green !important;
+}
