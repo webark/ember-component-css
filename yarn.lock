@@ -2103,7 +2103,7 @@ broccoli-kitchen-sink-helpers@^0.3.1:
     glob "^5.0.10"
     mkdirp "^0.5.1"
 
-broccoli-less-single@^1.0.0:
+broccoli-less-single@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/broccoli-less-single/-/broccoli-less-single-1.0.2.tgz#5dedcde6d553e56f17fa3c2d369e9797b3a0050c"
   integrity sha512-8AKDOKzyXoeqv4UG5GermJtTZzprbK6ZStOzVQW7NvCn2ZAf6iFBOMfCZzzF+5tmrhqiDfgAeN+6NdQ6isWJXg==
@@ -2257,10 +2257,10 @@ broccoli-plugin@^2.1.0:
     rimraf "^2.3.4"
     symlink-or-copy "^1.1.8"
 
-broccoli-postcss-single@^2.0.0:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/broccoli-postcss-single/-/broccoli-postcss-single-2.1.2.tgz#cca8d3cab37985aef6e24d87a2defeb492a81ec2"
-  integrity sha512-YBM/CvU55oHUk33KlUCIrHkHY73PTyjDVQO1CooIyesbbzp/c75Ux2365PSMz3w/O8rUdGPAYS5Ha8YhJvebOQ==
+broccoli-postcss-single@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/broccoli-postcss-single/-/broccoli-postcss-single-3.0.0.tgz#1393f87b69e4bbf20a1a1e614e09bbf066db28a2"
+  integrity sha512-+CsV6zdK9CXTplZvQeAsZm7mEh+BwIN6GBzpqm7agqsMZTvW6kkcWDaL2ahG1+Aq2HfLYk1Sam6iQ3jdESNmPA==
   dependencies:
     broccoli-caching-writer "^3.0.3"
     include-path-searcher "^0.1.0"
@@ -3492,7 +3492,7 @@ ember-cli-babel-plugin-helpers@^1.1.0:
   resolved "https://registry.yarnpkg.com/ember-cli-babel-plugin-helpers/-/ember-cli-babel-plugin-helpers-1.1.0.tgz#de3baedd093163b6c2461f95964888c1676325ac"
   integrity sha512-Zr4my8Xn+CzO0gIuFNXji0eTRml5AxZUTDQz/wsNJ5AJAtyFWCY4QtKdoELNNbiCVGt1lq5yLiwTm4scGKu6xA==
 
-ember-cli-babel@*, ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.4, ember-cli-babel@^7.4.3, ember-cli-babel@^7.5.0, ember-cli-babel@^7.7.0, ember-cli-babel@^7.7.3:
+ember-cli-babel@*, ember-cli-babel@^7.0.0, ember-cli-babel@^7.4.3, ember-cli-babel@^7.5.0, ember-cli-babel@^7.7.0, ember-cli-babel@^7.7.3:
   version "7.7.3"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.7.3.tgz#f94709f6727583d18685ca6773a995877b87b8a0"
   integrity sha512-/LWwyKIoSlZQ7k52P+6agC7AhcOBqPJ5C2u27qXHVVxKvCtg6ahNuRk/KmfZmV4zkuw4EjTZxfJE1PzpFyHkXg==
@@ -3549,10 +3549,10 @@ ember-cli-broccoli-sane-watcher@^3.0.0:
     rsvp "^3.0.18"
     sane "^4.0.0"
 
-ember-cli-dependency-checker@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-dependency-checker/-/ember-cli-dependency-checker-3.1.0.tgz#b39c6b537a1457d77892edf5ddcfa025cd1401e2"
-  integrity sha512-Y/V2senOyIjQnZohYeZeXs59rWHI2m8KRF9IesMv1ypLRSc/h/QS6UX51wAyaZnxcgU6ljFXpqL5x38UxM3XzA==
+ember-cli-dependency-checker@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-dependency-checker/-/ember-cli-dependency-checker-3.2.0.tgz#9202ad9e14d6fda33cffc22a11c343c2a8885330"
+  integrity sha512-dkSmcJ/jY/2ms/S6ph2jXSfOW5VfOpLfg5DFEbra0SaMNgYkNDFF1o0U4OdTsG37L5h/AXWNuVtnOa4TMabz9Q==
   dependencies:
     chalk "^2.3.0"
     find-yarn-workspace-root "^1.1.0"
@@ -3648,22 +3648,22 @@ ember-cli-string-utils@^1.1.0:
   resolved "https://registry.yarnpkg.com/ember-cli-string-utils/-/ember-cli-string-utils-1.1.0.tgz#39b677fc2805f55173735376fcef278eaa4452a1"
   integrity sha1-ObZ3/CgF9VFzc1N2/O8njqpEUqE=
 
-ember-cli-styles-preprocessor@*, ember-cli-styles-preprocessor@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-styles-preprocessor/-/ember-cli-styles-preprocessor-0.5.1.tgz#33a47fbf3b1b20f6c643232c7bf69524ae0d5f48"
-  integrity sha512-Kh5mhFopHoZ0/Gl8bXfcCe7HkBZNiV9hKHHytENnRrN6YC4tBYqgxI33jZNdgDxCVxkcDKQ7eey3SGD4/7zhiA==
+ember-cli-styles-preprocessor@*, ember-cli-styles-preprocessor@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-styles-preprocessor/-/ember-cli-styles-preprocessor-0.5.2.tgz#c4c80d444a13d7edb66e8f3557169f1d2b64d495"
+  integrity sha512-pnT2xCUF0RLNMFuJG2672p8MaPwz6J4an3h6t2rKrbYxdjBe3AB7JHEtt0DrmXO15gikJJNbvob5AqxHOyKK/A==
   dependencies:
     broccoli-concat "^3.4.0"
     broccoli-file-creator "^2.1.1"
-    broccoli-less-single "^1.0.0"
+    broccoli-less-single "^1.0.2"
     broccoli-merge-trees "^3.0.2"
-    broccoli-postcss-single "^2.0.0"
+    broccoli-postcss-single "^3.0.0"
     broccoli-sass-source-maps "^4.0.0"
     broccoli-stylus-single "^1.0.0"
-    ember-cli-babel "^7.1.4"
-    fibers "^3.1.1"
+    ember-cli-babel "^7.7.3"
+    fibers "^4.0.1"
     postcss-import "^12.0.1"
-    sass "^1.15.2"
+    sass "^1.20.1"
 
 ember-cli-template-lint@^1.0.0-beta.3:
   version "1.0.0-beta.3"
@@ -4443,10 +4443,10 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fibers@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/fibers/-/fibers-3.1.1.tgz#0238902ca938347bd779523692fbeefdf4f688ab"
-  integrity sha512-dl3Ukt08rHVQfY8xGD0ODwyjwrRALtaghuqGH2jByYX1wpY+nAnRQjJ6Dbqq0DnVgNVQ9yibObzbF4IlPyiwPw==
+fibers@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/fibers/-/fibers-4.0.1.tgz#34fe8a8d010db7f9096adb2558a45bbc1d03fe45"
+  integrity sha512-H79EJn7DMWXk48ygmC82bMP8KNcFBZF1CPfwBpYF6cO85hGWoIrlu7eyX9ayxfjP9Nsl0JXxdI6fpYU4DWVw2w==
   dependencies:
     detect-libc "^1.0.3"
 
@@ -6923,9 +6923,9 @@ node-pre-gyp@^0.12.0:
     tar "^4"
 
 node-releases@^1.1.19:
-  version "1.1.20"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.20.tgz#f77f9f9a4fcb22e74ba88fe15732a3a8b037146d"
-  integrity sha512-YnC3NemTLgzOkQTmR4+0yl/7pIsXZcfWXoquNp0Dql03GQ+CYURhnjUDFsSJxpX/Q9nw8lAjLFdnACQoKs6h5w==
+  version "1.1.21"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.21.tgz#46c86f9adaceae4d63c75d3c2f2e6eee618e55f3"
+  integrity sha512-TwnURTCjc8a+ElJUjmDqU6+12jhli1Q61xOQmdZ7ECZVBZuQpN/1UnembiIHDM1wCcfLvh5wrWXUF5H6ufX64Q==
   dependencies:
     semver "^5.3.0"
 
@@ -8151,7 +8151,7 @@ sane@^4.0.0, sane@^4.1.0:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sass@^1.15.2:
+sass@^1.20.1:
   version "1.20.1"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.20.1.tgz#737b901fe072336da540b6d00ec155e2267420da"
   integrity sha512-BnCawee/L5kVG3B/5Jg6BFwASqUwFVE6fj2lnkVuSXDgQ7gMAhY9a2yPeqsKhJMCN+Wgx0r2mAW7XF/aTF5qtA==
@@ -8182,10 +8182,15 @@ semver@5.0.1:
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.0.1.tgz#9fb3f4004f900d83c47968fe42f7583e05832cc9"
   integrity sha1-n7P0AE+QDYPEeWj+QvdYPgWDLMk=
 
-semver@6.0.0, semver@^6.0.0:
+semver@6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.0.0.tgz#05e359ee571e5ad7ed641a6eec1e547ba52dea65"
   integrity sha512-0UewU+9rFapKFnlbirLi3byoOuhrSsli/z/ihNnvM24vgF+8sNBiI1LZPBSH9wJKUwaUbw+s3hToDLCXkrghrQ==
+
+semver@^6.0.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-6.1.0.tgz#e95dc415d45ecf03f2f9f83b264a6b11f49c0cca"
+  integrity sha512-kCqEOOHoBcFs/2Ccuk4Xarm/KiWRSLEX9CAZF8xkJ6ZPlIoTZ8V5f7J16vYLJqDbR7KrxTJpR2lqjIEm2Qx9cQ==
 
 send@0.17.1:
   version "0.17.1"
