@@ -16,9 +16,5 @@ export default function addComponentStyleNamespace(owner) {
         proto.classNameBindings = component.classNameBindings.concat('styleNamespace');
       }
     }
-
-    // else {
-    //   console.log(stylePath);
-    // }
   }
 }
