@@ -1,7 +1,8 @@
 import Route from '@ember/routing/route';
+import { later } from '@ember/runloop';
 
 export default Route.extend({
   model() {
-    return new Promise(resolve => setTimeout(resolve, 2000));
+    return new Promise(resolve => later(resolve, 500));
   }
 });
