@@ -6817,12 +6817,9 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
-"no-style-files-yet@file:./tests/dummy/lib/no-style-files-yet":
+"no-style-files-yet@link:./tests/dummy/lib/no-style-files-yet":
   version "0.0.0"
-  dependencies:
-    ember-cli-babel "*"
-    ember-cli-htmlbars "*"
-    ember-cli-styles-preprocessor "*"
+  uid ""
 
 node-int64@^0.4.0:
   version "0.4.0"
@@ -8106,12 +8103,9 @@ sax@^1.2.4:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-"second-test-addon@file:./tests/dummy/lib/second-test-addon":
+"second-test-addon@link:./tests/dummy/lib/second-test-addon":
   version "0.0.0"
-  dependencies:
-    ember-cli-babel "*"
-    ember-cli-htmlbars "*"
-    ember-cli-styles-preprocessor "*"
+  uid ""
 
 "semver@2 || 3 || 4 || 5", semver@^5.1.0, semver@^5.2.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
   version "5.6.0"
@@ -8735,12 +8729,9 @@ terser@^3.7.5:
     source-map "~0.6.1"
     source-map-support "~0.5.10"
 
-"test-addon@file:./tests/dummy/lib/test-addon":
+"test-addon@link:./tests/dummy/lib/test-addon":
   version "0.0.0"
-  dependencies:
-    ember-cli-babel "*"
-    ember-cli-htmlbars "*"
-    ember-cli-styles-preprocessor "*"
+  uid ""
 
 testem@^2.9.2:
   version "2.14.0"

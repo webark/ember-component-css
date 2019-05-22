@@ -13,7 +13,6 @@
     "test": "tests"
   },
   "scripts": {
-    "prepublish": "node ./bin/install-test-addons.js",
     "release": "standard-version",
     "build": "ember build",
     "lint:hbs": "ember-template-lint .",
@@ -65,11 +64,11 @@
     "eslint-plugin-ember": "^6.3.0",
     "eslint-plugin-node": "^8.0.1",
     "loader.js": "^4.7.0",
-    "no-style-files-yet": "file:./tests/dummy/lib/no-style-files-yet",
+    "no-style-files-yet": "link:./tests/dummy/lib/no-style-files-yet",
     "qunit-dom": "^0.8.4",
-    "second-test-addon": "file:./tests/dummy/lib/second-test-addon",
+    "second-test-addon": "link:./tests/dummy/lib/second-test-addon",
     "standard-version": "^5.0.2",
-    "test-addon": "file:./tests/dummy/lib/test-addon"
+    "test-addon": "link:./tests/dummy/lib/test-addon"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
