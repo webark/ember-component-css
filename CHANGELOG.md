@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.8"></a>
+## [0.6.8](https://github.com/ebryn/ember-component-css/compare/v0.6.7...v0.6.8) (2019-05-23)
+
+
+### Bug Fixes
+
+* **addon support:** setting the '_allPodStyles' on the host application to hopefully avoid issues with multiple copys ([7e00c02](https://github.com/ebryn/ember-component-css/commit/7e00c02))
+
+
+
 <a name="0.6.7"></a>
 ## [0.6.7](https://github.com/ebryn/ember-component-css/compare/v0.6.5...v0.6.7) (2019-01-19)
 
