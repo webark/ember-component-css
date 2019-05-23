@@ -61,7 +61,7 @@ module.exports = {
     return projectRoot;
   },
 
-  _getEnvironment: function() {
+  _getHostApp: function() {
     if (!this._findHost) {
       this._findHost = function findHostShim() {
         let current = this;
@@ -73,7 +73,11 @@ module.exports = {
       };
     }
 
-    return this._findHost().env;
+    return this._findHost();
+  },
+
+  _getEnvironment: function() {
+    return this._getHostApp().env;
   },
 
   included: function(app) {
@@ -86,6 +90,11 @@ module.exports = {
       this.parent.treeForParentAddonStyles = this.treeForParentAddonStyles.bind(this);
     }
 
+    var hostapp = this._getHostApp();
+    if (!hostapp._allPodStyles) {
+      hostapp._allPodStyles = [];
+    }
+    this._allPodStyles = hostapp._allPodStyles;
     this.appConfig = app.project.config(this._getEnvironment());
     this.addonConfig = this.appConfig['ember-component-css'] || {};
     this.classicStyleDir = this.addonConfig.classicStyleDir || 'component-styles';
