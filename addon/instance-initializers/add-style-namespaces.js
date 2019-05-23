@@ -4,22 +4,24 @@ import addComponentStyleNamespace from 'ember-component-css/utils/add-component-
 export function initialize(appInstance) {
   const router = appInstance.lookup('service:router');
   router.on('routeDidChange', function(transition) {
-    addRouteStyleNamespace(appInstance, nestedRoutes(transition.to.name));
+    addRouteStyleNamespace(appInstance, nestedRoutes(transition.to));
   });
 
   router.on('routeWillChange', function(transition) {
     if (/loading$/.test(transition.to.name) && transition.isActive) {
-      addRouteStyleNamespace(appInstance, nestedRoutes(transition.to.name));
+      addRouteStyleNamespace(appInstance, nestedRoutes(transition.to));
     }
   });
 
   addComponentStyleNamespace(appInstance);
 }
 
-function nestedRoutes(routeName) {
-  return routeName.split('.').reduce(function(allRoutes, routePart) {
-    return allRoutes.concat(allRoutes.slice(-1).concat(routePart).join('.'));
-  }, []);
+function nestedRoutes(route, routeNames = []) {
+  routeNames.push(route.name);
+  if (route.parent) {
+    return nestedRoutes(route.parent, routeNames);
+  }
+  return routeNames;
 }
 
 export default {
