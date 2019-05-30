@@ -38,6 +38,11 @@ Router.map(function() {
     this.route('scss');
     this.route('less');
   });
+
+  this.route('loading-state', function() {
+    this.route('base');
+    this.route('waiting');
+  });
 });
 
 export default Router;

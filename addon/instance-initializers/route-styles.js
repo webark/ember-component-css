@@ -4,22 +4,26 @@ import initRouteStyles from '../utils/init-route-styles';
 export function initialize(appInstance) {
   let router = appInstance.lookup('service:router');
   router.on('routeDidChange', function(transition) {
-    let routeInfos = [];
-    let to = transition.to;
-
-    while (to) {
-      routeInfos.push(to);
-      to = to.parent;
-    }
-
-    routeInfos.reverse();
-
-    if (routeInfos.length === 0) {
-      routeInfos = transition.routeInfos;
-    }
-
-    initRouteStyles(appInstance, routeInfos);
+    initRouteStyles(appInstance, nestedRouteNames(transition.to));
   });
+
+  router.on('routeWillChange', function(transition) {
+    if (/_loading$/.test(transition.to.name) && transition.isActive) {
+      const routeNames = nestedRouteNames(transition.to)
+        // loading route names are set with an _loading even though
+        // their path is -loading
+        .map(name => name.replace(/_loading$/, '-loading'));
+      initRouteStyles(appInstance, routeNames);
+    }
+  });
+}
+
+function nestedRouteNames(route, routeNames = []) {
+  routeNames.push(route.name);
+  if (route.parent) {
+    return nestedRouteNames(route.parent, routeNames);
+  }
+  return routeNames;
 }
 
 export default {

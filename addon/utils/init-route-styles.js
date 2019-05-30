@@ -1,16 +1,18 @@
 import podNames from 'ember-component-css/pod-names';
 
-export default function initRouteStyles(owner, routes) {
+export default function initRouteStyles(owner, routeNames) {
   const classes = [];
-  for (let i = 0; i < routes.length; i++) {
-    let route = routes[i];
-    let currentPath = route.name.replace(/\./g, '/');
+  for (let i = 0; i < routeNames.length; i++) {
+    const routeName = routeNames[i];
+    const styleNamespace = podNames[routeName.replace(/\./g, '/')];
 
-    if (podNames[currentPath]) {
-      owner
-        .lookup(`controller:${route.name}`)
-        .set('styleNamespace', podNames[currentPath]);
-      classes.push(podNames[currentPath]);
+    if (styleNamespace) {
+      classes.push(styleNamespace);
+
+      const controller = owner.lookup(`controller:${routeName}`);
+      if (controller) {
+        controller.set('styleNamespace', styleNamespace);
+      }
     }
   }
 
