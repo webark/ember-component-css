@@ -6,8 +6,17 @@ import initRouteStyles from '../utils/init-route-styles';
 Router.reopen({
   didTransition(routes) {
     this._super(...arguments);
-    initRouteStyles(getOwner(this), routes);
-  }
+    initRouteStyles(getOwner(this), routes.map(route => route.name));
+  },
+
+  intermediateTransitionTo() {
+    this._super(...arguments);
+    const routes = this._routerMicrolib.currentHandlerInfos;
+    const routeNames = routes.map(route => route._handler.routeName.replace(/_loading$/, '-loading'))
+
+    initRouteStyles(getOwner(this), routeNames);
+  },
+
 });
 
 export function initialize() {}
