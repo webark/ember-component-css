@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/ebryn/ember-component-css/compare/v0.6.9...v0.7.0) (2019-06-03)
+
+
+### Bug Fixes
+
+* **loading-route-styleNamespaces:** we needed to hack around and add in some extra hooks to take care of loading routes ([04db211](https://github.com/ebryn/ember-component-css/commit/04db211))
+
+
+
 <a name="0.6.9"></a>
 ## [0.6.9](https://github.com/ebryn/ember-component-css/compare/v0.6.8...v0.6.9) (2019-05-23)
 
