@@ -16,7 +16,10 @@ export default function initRouteStyles(owner, routeNames) {
     }
   }
 
-  owner
-    .lookup('controller:application')
-    .set('routeStyleNamespaceClassSet', classes.join(' '));
+  let controller = owner
+    .lookup('controller:application');
+
+  if (controller) {
+    controller.set('routeStyleNamespaceClassSet', classes.join(' '));
+  }
 }

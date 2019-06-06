@@ -2,7 +2,7 @@ import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 import { scheduleOnce } from '@ember/runloop';
 
-moduleForAcceptance(`Acceptance | Unique Paths`);
+moduleForAcceptance(`Acceptance | loading state`);
 
 test('loading state is styled', function(assert) {
   visit(`/loading-state/base`);

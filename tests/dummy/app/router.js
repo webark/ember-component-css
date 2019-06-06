@@ -43,6 +43,10 @@ Router.map(function() {
     this.route('base');
     this.route('waiting');
   });
+
+  this.route('error-state', function() {
+    this.route('handled');
+  });
 });
 
 export default Router;
