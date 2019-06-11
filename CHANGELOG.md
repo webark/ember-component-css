@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.2"></a>
+## [0.7.2](https://github.com/ebryn/ember-component-css/compare/v0.7.1...v0.7.2) (2019-06-11)
+
+
+### Bug Fixes
+
+* **broken transition:** there's a chance that at times a transition will not have a 'to', so handling that case ([756e89e](https://github.com/ebryn/ember-component-css/commit/756e89e))
+
+
+
 <a name="0.7.1"></a>
 ## [0.7.1](https://github.com/ebryn/ember-component-css/compare/v0.7.0...v0.7.1) (2019-06-10)
 
