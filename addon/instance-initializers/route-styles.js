@@ -8,7 +8,7 @@ export function initialize(appInstance) {
   });
 
   router.on('routeWillChange', function(transition) {
-    if (/_loading$/.test(transition.to.name) && transition.isActive) {
+    if (transition.to && /_loading$/.test(transition.to.name) && transition.isActive) {
       const routeNames = nestedRouteNames(transition.to)
         // loading route names are set with an _loading even though
         // their path is -loading
