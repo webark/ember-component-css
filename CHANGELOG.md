@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.3"></a>
+## [0.7.3](https://github.com/ebryn/ember-component-css/compare/v0.7.2...v0.7.3) (2019-06-22)
+
+
+### Bug Fixes
+
+* **route styles:** sometimes there is no 'to' in a route, and so we need to gaurd against that. fixes [#323](https://github.com/ebryn/ember-component-css/issues/323) ([157388d](https://github.com/ebryn/ember-component-css/commit/157388d))
+
+
+
 <a name="0.7.2"></a>
 ## [0.7.2](https://github.com/ebryn/ember-component-css/compare/v0.7.1...v0.7.2) (2019-06-11)
 
