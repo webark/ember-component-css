@@ -18,8 +18,11 @@ export function initialize(appInstance) {
   });
 }
 
-function nestedRouteNames(route, routeNames = []) {
-  routeNames.push(route.name);
+function nestedRouteNames(route = {}, routeNames = []) {
+  if (route.name) {
+    routeNames.push(route.name);
+  }
+
   if (route.parent) {
     return nestedRouteNames(route.parent, routeNames);
   }
