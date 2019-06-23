@@ -47,6 +47,8 @@ Router.map(function() {
   this.route('error-state', function() {
     this.route('handled');
   });
+
+  this.route('aborted-state');
 });
 
 export default Router;
