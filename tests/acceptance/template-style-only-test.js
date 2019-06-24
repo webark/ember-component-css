@@ -4,7 +4,7 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import styleForSetup from 'dummy/tests/setup/style-for';
 
-module('Acceptance | template style only', function(hooks) {
+module.skip('Acceptance | template style only', function(hooks) {
   setupApplicationTest(hooks);
   styleForSetup(hooks);
 
