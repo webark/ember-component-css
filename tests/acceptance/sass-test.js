@@ -1,4 +1,4 @@
-import { visit } from '@ember/test-helpers';
+import { visit, find } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
@@ -13,7 +13,7 @@ module(`Acceptance | ${TYPE}`, function(hooks) {
   test('mixin psudo elements do not get scoped', async function(assert) {
     await visit(`/${TYPE}`);
 
-    let element = this.element.querySelector('[class$=__element--variant]');
+    const element = find('[class$=__element--variant]');
     element.classList.add('mixin-extra');
     assert.equal(window.getComputedStyle(element).color, 'rgb(0, 0, 6)');
   });
