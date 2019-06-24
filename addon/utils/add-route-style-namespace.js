@@ -1,6 +1,3 @@
-const ROUTE_CLASS_SET_PROPERTY_NAME = 'routeStyleNamespaceClassSet';
-const ROUTE_CLASS_SINGLE_PROPERTY_NAME = 'styleNamespace';
-
 export default function addRouteStyleNamespace(owner, routes) {
   const classes = [];
 
@@ -9,10 +6,10 @@ export default function addRouteStyleNamespace(owner, routes) {
     const controller = owner.lookup(`controller:${name}`);
 
     if (styleNamespace && controller) {
-      controller.set(ROUTE_CLASS_SINGLE_PROPERTY_NAME, styleNamespace);
+      controller.set('styleNamespace', styleNamespace);
       classes.push(styleNamespace);
     }
   }
 
-  owner.lookup('controller:application').set(ROUTE_CLASS_SET_PROPERTY_NAME, classes.join(' '));
+  owner.lookup('controller:application').set('routeStyleNamespaceClassSet', classes.join(' '));
 }
