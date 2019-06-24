@@ -1,13 +1,17 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { visit, currentURL } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-moduleForAcceptance('Acceptance | aborted state');
+import styleForSetup from 'dummy/tests/setup/style-for';
 
-test('when aborting it should finish the transition and not error', function(assert) {
-  visit('/aborted-state');
+module('Acceptance | aborted state', function(hooks) {
+  setupApplicationTest(hooks);
+  styleForSetup(hooks);
 
+  test('should still render for aborted stte', async function(assert) {
+    await visit('/css/aborted-state');
 
-  andThen(function() {
-    assert.equal(currentURL(), '/template-style-only');
+    assert.equal(currentURL(), '/css/nested');
+    assert.equal(this.styleFor('[class$=__nested]').color, 'rgb(0, 2, 0)');
   });
 });

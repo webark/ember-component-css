@@ -1,29 +1,42 @@
 import addRouteStyleNamespace from 'ember-component-css/utils/add-route-style-namespace';
 import addComponentStyleNamespace from 'ember-component-css/utils/add-component-style-namespace';
 
+
 export function initialize(appInstance) {
-  const router = appInstance.lookup('service:router');
-  router.on('routeDidChange', function(transition) {
-    addRouteStyleNamespace(appInstance, nestedRoutes(transition.to));
+  let router = appInstance.lookup('service:router');
+  router.on('routeDidChange', function({ to }) {
+    if (likeRouteInfo(to)) {
+      addRouteStyleNamespace(appInstance, nestedRouteNames(to));
+    }
   });
 
-  router.on('routeWillChange', function(transition) {
-    if (/loading$/.test(transition.to.name) && transition.isActive) {
-      addRouteStyleNamespace(appInstance, nestedRoutes(transition.to));
+  router.on('routeWillChange', function({ to, isActive }) {
+    if (likeRouteInfo(to)) {
+      if (/_loading$/.test(to.name) && isActive) {
+        const routeNames = nestedRouteNames(to)
+          // loading route names are set with an _loading even though
+          // their path is -loading
+          .map(name => name.replace(/_loading$/, '-loading'));
+        addRouteStyleNamespace(appInstance, routeNames);
+      }
     }
   });
 
   addComponentStyleNamespace(appInstance);
 }
 
-function nestedRoutes(route, routeNames = []) {
-  routeNames.push(route.name);
-  if (route.parent) {
-    return nestedRoutes(route.parent, routeNames);
+function nestedRouteNames({ name, parent }, routeNames = []) {
+  routeNames.push(name);
+  if (parent) {
+    return nestedRouteNames(parent, routeNames);
   }
   return routeNames;
 }
 
+function likeRouteInfo(info) {
+  return info && typeof info === 'object' && info.hasOwnProperty('name');
+}
+
 export default {
   initialize
-};
+}
