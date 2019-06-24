@@ -9,6 +9,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('css', function() {
     this.route('nested');
+    this.route('aborted-state');
   });
 
   this.route('scss', function() {
@@ -37,6 +38,7 @@ Router.map(function() {
     this.route('scss');
     this.route('less');
   });
+
 });
 
 export default Router;
