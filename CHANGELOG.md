@@ -73,17 +73,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 
-<a name="0.6.6"></a>
-## [0.6.6](https://github.com/ebryn/ember-component-css/compare/v0.6.5...v0.6.6) (2019-01-19)
-
-
-### Bug Fixes
-
-* **deprication:** updated to fix the outdated merge and use object.assign instead ([8b46279](https://github.com/ebryn/ember-component-css/commit/8b46279))
-* **sass support:** latest sass now throws an eerro if semi colons are presnet, removing them from the style manifest. fixes issue [#301](https://github.com/ebryn/ember-component-css/issues/301) ([697e48c](https://github.com/ebryn/ember-component-css/commit/697e48c))
-
-
-
 <a name="0.6.5"></a>
 ## [0.6.5](https://github.com/ebryn/ember-component-css/compare/v0.6.4...v0.6.5) (2018-09-10)
 
