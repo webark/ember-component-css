@@ -145,7 +145,9 @@ If you are extending the `include` method in your addon, please make sure you ca
   }
 ```
 
-Finally, be sure "ember-component-css" is listed under the "dependencies" key of your addon's `package.json` file, rather than "devDependencies". Additionally, if your addon is compiling the expected CSS into the host's `vendor.css` output, but the expected classes are not being set on your components' HTML elements, you will need to [run your addon _after_ ember-component-css](https://ember-cli.com/extending/#configuring-your-ember-addon-properties):
+Be sure "ember-component-css" is listed under the "dependencies" key of your addon's `package.json` file, rather than "devDependencies". Don't forget, if you are using `ember-cli-sass` for your addon's styles, it will need to be in "dependencies" as well.
+
+Finally, if your addon is compiling the expected CSS into the host's `vendor.css` output, but the expected classes are not being set on your components' HTML elements, you will need to [run your addon _after_ ember-component-css](https://ember-cli.com/extending/#configuring-your-ember-addon-properties):
 ```js
 // package.json
 {
