@@ -55,7 +55,6 @@ module.exports = {
     }));
 
     registry.add('template', new ColocatedNamespaceTemplates({
-      baseNode,
       terseClassNames,
     }));
   },
