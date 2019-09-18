@@ -26,7 +26,8 @@ module.exports = {
     if (app.treePaths) {
       return new Funnel(path.join(app.root, app.treePaths.addon));
     } else {
-      const appTree = (app.app || app).trees.app;
+      const trees = (app.app || app).trees;
+      const appTree = trees.src || trees.app;
       if (typeof appTree === 'string') {
         return new Funnel(path.join(app.project.root, appTree));
       } else {
@@ -36,8 +37,10 @@ module.exports = {
   },
 
   setupPreprocessorRegistry(type, registry) {
+    if (type === 'self') return;
+    const app = registry.app;
     const baseNode = this._baseNode(registry.app);
-    const { terseClassNames } = this._options(registry.app);
+    const { terseClassNames } = this._options(registry.app.project.root);
 
     registry.add('css', new ColocateStyles({
       getExtentions: registry.extensionsForType.bind(registry),
@@ -52,9 +55,11 @@ module.exports = {
     registry.add('js', new ColocatedNamespaceObjects({
       getExtentions: registry.extensionsForType.bind(registry),
       baseNode,
+      hasSrc: !!(app.app || app).trees.src
     }));
 
     registry.add('template', new ColocatedNamespaceTemplates({
+      baseNode,
       terseClassNames,
     }));
   },
