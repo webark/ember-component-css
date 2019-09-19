@@ -24,6 +24,9 @@ module.exports = {
 
   _baseNode(app) {
     if (app.treePaths) {
+      if (app.isModuleUnification()) {
+        return new Funnel(path.join(app.root, app.treePaths.src));
+      }
       return new Funnel(path.join(app.root, app.treePaths.addon));
     } else {
       const trees = (app.app || app).trees;
@@ -39,8 +42,10 @@ module.exports = {
   setupPreprocessorRegistry(type, registry) {
     if (type === 'self') return;
     const app = registry.app;
-    const baseNode = this._baseNode(registry.app);
+    const baseNode = this._baseNode(app);
     const { terseClassNames } = this._options(registry.app.project.root);
+
+    const isModuleUnification = app.project ? app.project.isModuleUnification() : app.isModuleUnification();
 
     registry.add('css', new ColocateStyles({
       getExtentions: registry.extensionsForType.bind(registry),
@@ -55,7 +60,7 @@ module.exports = {
     registry.add('js', new ColocatedNamespaceObjects({
       getExtentions: registry.extensionsForType.bind(registry),
       baseNode,
-      hasSrc: !!(app.app || app).trees.src
+      isModuleUnification: isModuleUnification
     }));
 
     registry.add('template', new ColocatedNamespaceTemplates({
