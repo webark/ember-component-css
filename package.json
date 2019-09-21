@@ -27,19 +27,15 @@
     "broccoli-funnel": "^2.0.2",
     "broccoli-merge-trees": "^3.0.2",
     "broccoli-persistent-filter": "^2.3.1",
-    "broccoli-plugin": "^3.0.0",
-    "broccoli-replace": "^0.12.0",
     "broccoli-style-manifest": "^1.5.2",
     "broccoli-tree-walker": "^1.0.0",
     "ember-cli-babel": "^7.11.0",
     "fs-extra": "^8.1.0",
-    "fs-tree-diff": "^2.0.1",
     "md5": "^2.2.1",
     "postcss": "^7.0.17",
     "postcss-less": "^3.1.4",
     "postcss-scss": "^2.0.0",
-    "postcss-selector-namespace": "^3.0.1",
-    "walk-sync": "^2.0.2"
+    "postcss-selector-namespace": "^3.0.1"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.7.0",
