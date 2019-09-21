@@ -1,23 +1,24 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { visit, click } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+
 import { scheduleOnce } from '@ember/runloop';
 
-moduleForAcceptance(`Acceptance | loading state`);
+import styleForSetup from 'dummy/tests/setup/style-for';
 
-test('loading state is styled', function(assert) {
-  visit(`/loading-state/base`);
+module('Acceptance | loading state', function(hooks) {
+  setupApplicationTest(hooks);
+  styleForSetup(hooks);
 
-  andThen(function() {
-    click(find('a'));
-    assert.equal(find('h1').css('color'), 'rgb(0, 0, 14)');
-
-    scheduleOnce('afterRender', function() {
-      assert.equal(find('h2').css('color'), 'rgb(1, 0, 13)');
-    });
-
+  test('loading state is styled', async function(assert) {
+    await visit('/loading-state/base');
+    assert.equal(this.styleFor('h1').color, 'rgb(0, 0, 14)');
+    const tranitionCLick = click('a[title=Waiting]');
+    function loadingCheck() {
+      assert.equal(this.styleFor('h2').color, 'rgb(1, 0, 13)');
+    }
+    scheduleOnce('afterRender', this, loadingCheck);
+    await tranitionCLick;
+    assert.equal(this.styleFor('h3').color, 'rgb(0, 0, 13)');
   });
-
-  andThen(function() {
-    assert.equal(find('h3').css('color'), 'rgb(0, 0, 13)');
-  })
 });

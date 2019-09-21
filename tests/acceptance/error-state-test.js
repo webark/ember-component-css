@@ -1,13 +1,16 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { visit, currentURL } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-moduleForAcceptance(`Acceptance | error state`);
+import styleForSetup from 'dummy/tests/setup/style-for';
 
-test('handled error state does not throw', function(assert) {
-  visit(`/error-state/handled`);
+module('Acceptance | error state', function(hooks) {
+  setupApplicationTest(hooks);
+  styleForSetup(hooks);
 
-  andThen(function() {
+  test('handled error state does not throw', async function(assert) {
+    await visit('/error-state/handled');
     assert.equal(currentURL(), '/error-state');
-    assert.equal(find('h1').css('color'), 'rgb(0, 0, 14)');
-  })
+    assert.equal(this.styleFor('h1').color, 'rgb(0, 0, 14)');
+  });
 });
