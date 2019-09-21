@@ -1,19 +1,20 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { visit, click, currentURL } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-moduleForAcceptance(`Acceptance | query params`);
+import styleForSetup from 'dummy/tests/setup/style-for';
 
-test('route style with query params', function(assert) {
-  visit(`/query-params`);
+module('Acceptance | query params', function(hooks) {
+  setupApplicationTest(hooks);
+  styleForSetup(hooks);
 
-  andThen(function() {
-    assert.equal(find(`div[class^="__query-params"]`).css('color'), 'rgb(0, 1, 0)');
+  test('route style with query params', async function(assert) {
+    await visit('/query-params');
 
-    click('a.foo-bar');
+    assert.equal(this.styleFor('div[class^="__query-params"]').color, 'rgb(0, 1, 0)');
 
-    andThen(function() {
-      assert.equal(currentURL(), '/query-params?foo=bar');
-      assert.equal(find(`div[class^="__query-params"]`).css('color'), 'rgb(0, 1, 0)');
-    });
+    await click('a.foo-bar');
+    assert.equal(currentURL(), '/query-params?foo=bar');
+    assert.equal(this.styleFor('div[class^="__query-params"]').color, 'rgb(0, 1, 0)');
   });
 });

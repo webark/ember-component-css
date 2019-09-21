@@ -33,12 +33,23 @@ Router.map(function() {
   this.route('classic-structure');
   this.route('classic-structure-nested');
   this.route('unique-component-paths');
+  this.route('query-params');
 
   this.route('addon', function() {
     this.route('scss');
     this.route('less');
   });
 
+  this.route('loading-state', function() {
+    this.route('base');
+    this.route('waiting');
+  });
+
+  this.route('error-state', function() {
+    this.route('handled');
+  });
+
+  this.route('aborted-state');
 });
 
 export default Router;
