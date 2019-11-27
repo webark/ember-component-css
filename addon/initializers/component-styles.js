@@ -1,25 +1,8 @@
-import Ember from "ember";
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
-import { getOwner } from '@ember/application';
 
 import podNames from 'ember-component-css/pod-names';
-
-const {
-  ComponentLookup,
-} = Ember;
-
-ComponentLookup.reopen({
-  componentFor(name, owner) {
-    owner = owner.hasRegistration ? owner : getOwner(this);
-
-    if (podNames[name] && !owner.hasRegistration(`component:${name}`)) {
-      owner.register(`component:${name}`, Component);
-    }
-    return this._super(...arguments);
-  },
-});
 
 Component.reopen({
   _componentIdentifier: computed({
