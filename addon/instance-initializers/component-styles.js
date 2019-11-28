@@ -13,6 +13,7 @@ export function initialize(appInstance) {
     if (podNames[name] && !owner.hasRegistration(`component:${name}`)) {
       owner.register(`component:${name}`, Component);
     }
+    
     return originalComponentFor(...arguments);
   };
 }
