@@ -19,7 +19,9 @@ Component.reopen({
 
   styleNamespace: computed({
     get() {
-      return podNames[this.get('_componentIdentifier')] || '';
+      let fromLayout = this._tryComponentName(this.get('layout.referrer.moduleName'));
+      let componentId = this.get('_componentIdentifier');
+      return podNames[fromLayout || componentId] || '';
     }
   }),
 
@@ -37,6 +39,20 @@ Component.reopen({
       this.classNames = this.classNames.concat(this.get('styleNamespace'));
     }
   },
+
+  _tryComponentName(modulePath) {
+    if(!modulePath) {
+      return;
+    }
+    let terminator = 'components/';
+    let pathSegementToRemove = /.+\/components\//;
+    modulePath = modulePath.replace(/\.\w+$/, '');
+    
+    modulePath = modulePath.substr(modulePath.lastIndexOf(terminator) + terminator.length ).replace(pathSegementToRemove, '')
+    modulePath = modulePath.replace(/\/template/, '');
+
+    return modulePath;
+  }
 });
 
 export function initialize() {}

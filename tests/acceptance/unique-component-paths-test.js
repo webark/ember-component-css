@@ -1,9 +1,9 @@
-import { test } from 'qunit';
+import { skip } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 
 moduleForAcceptance(`Acceptance | unique component paths`);
 
-test('base rule followed', function(assert) {
+skip('base rule followed', function(assert) {
   visit(`/unique-component-paths`);
 
   andThen(function() {
