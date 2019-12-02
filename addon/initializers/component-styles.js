@@ -4,10 +4,24 @@ import { alias } from '@ember/object/computed';
 
 import podNames from 'ember-component-css/pod-names';
 
+function identifierFromLayoutModuleName(modulePath = '') {
+  const terminator = 'components/';
+  const pathSegementToRemove = /.+\/components\//;
+
+  return modulePath.replace(/\.\w+$/, '')
+    .substr(modulePath.lastIndexOf(terminator) + terminator.length )
+    .replace(pathSegementToRemove, '')
+    .replace(/\/template/, '');
+}
+
+function identifierFromDebugContainerKey(debugContainerKey = '') {
+  return debugContainerKey.replace('component:', '');
+}
+
 Component.reopen({
   _componentIdentifier: computed({
     get() {
-      return (this._debugContainerKey || '').replace('component:', '');
+      return identifierFromLayoutModuleName(this.get('layout.referrer.moduleName')) || identifierFromDebugContainerKey(this._debugContainerKey);
     }
   }),
 
@@ -19,16 +33,9 @@ Component.reopen({
 
   styleNamespace: computed({
     get() {
-      let fromLayout = this._tryComponentName(this.get('layout.referrer.moduleName'));
-      let componentId = this.get('_componentIdentifier');
-      return podNames[fromLayout || componentId] || '';
+      return podNames[this.get('_componentIdentifier')] || '';
     }
   }),
-
-  // componentCssClassName: deprecatingAlias('styleNamespace', {
-  //   id: 'ember-component-css.deprecate-componentCssClassName',
-  //   until: '0.7.0',
-  // }),
 
   componentCssClassName: alias('styleNamespace'),
 
@@ -39,20 +46,6 @@ Component.reopen({
       this.classNames = this.classNames.concat(this.get('styleNamespace'));
     }
   },
-
-  _tryComponentName(modulePath) {
-    if(!modulePath) {
-      return;
-    }
-    let terminator = 'components/';
-    let pathSegementToRemove = /.+\/components\//;
-    modulePath = modulePath.replace(/\.\w+$/, '');
-    
-    modulePath = modulePath.substr(modulePath.lastIndexOf(terminator) + terminator.length ).replace(pathSegementToRemove, '')
-    modulePath = modulePath.replace(/\/template/, '');
-
-    return modulePath;
-  }
 });
 
 export function initialize() {}
