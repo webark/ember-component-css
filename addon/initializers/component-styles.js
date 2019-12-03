@@ -20,7 +20,7 @@ function identifierFromDebugContainerKey(debugContainerKey = '') {
 
 Component.reopen({
   _componentIdentifier: computed({
-    get() { 
+    get() {
       return identifierFromLayoutModuleName(this.get('layout.referrer.moduleName')) || identifierFromDebugContainerKey(this._debugContainerKey);
     }
   }),
