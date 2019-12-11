@@ -18,7 +18,7 @@ module.exports = {
     };
   },
 
-  _options({ options: { emberCliStyles } = {}}) {
+  _options({ options: { emberCliStyles } = {} }) {
     return Object.assign(this._defaultOptions(), emberCliStyles);
   },
 
@@ -45,16 +45,18 @@ module.exports = {
     const baseNode = this._baseNode(app);
     const { terseClassNames } = this._options(registry.app.project.root);
 
-    const isModuleUnification = app.project ? app.project.isModuleUnification() : app.isModuleUnification();
+    const isModuleUnification = app.isModuleUnification && app.isModuleUnification() || app.project.isModuleUnification();
 
     registry.add('css', new ColocateStyles({
       getExtentions: registry.extensionsForType.bind(registry),
       baseNode,
+      isModuleUnification
     }));
 
     registry.add('css', new NamespaceStyles({
       getExtentions: registry.extensionsForType.bind(registry),
       terseClassNames,
+      isModuleUnification
     }));
 
     registry.add('js', new ColocatedNamespaceObjects({
@@ -66,6 +68,7 @@ module.exports = {
     registry.add('template', new ColocatedNamespaceTemplates({
       baseNode,
       terseClassNames,
+      isModuleUnification
     }));
   },
 
