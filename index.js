@@ -45,7 +45,10 @@ module.exports = {
     const baseNode = this._baseNode(app);
     const { terseClassNames } = this._options(registry.app.project.root);
 
-    const isModuleUnification = app.isModuleUnification && app.isModuleUnification() || app.project.isModuleUnification();
+    let isModuleUnification = app.isModuleUnification && app.isModuleUnification();
+    if (app.isModuleUnification === undefined) {
+      isModuleUnification = app.project.isModuleUnification();
+    }
 
     registry.add('css', new ColocateStyles({
       getExtentions: registry.extensionsForType.bind(registry),
