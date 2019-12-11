@@ -50,16 +50,16 @@ module.exports = {
       isModuleUnification = app.project.isModuleUnification();
     }
 
+    console.log('isModuleUnification', app.name, isModuleUnification);
+
     registry.add('css', new ColocateStyles({
       getExtentions: registry.extensionsForType.bind(registry),
-      baseNode,
-      isModuleUnification
+      baseNode
     }));
 
     registry.add('css', new NamespaceStyles({
       getExtentions: registry.extensionsForType.bind(registry),
-      terseClassNames,
-      isModuleUnification
+      terseClassNames
     }));
 
     registry.add('js', new ColocatedNamespaceObjects({
@@ -70,8 +70,7 @@ module.exports = {
 
     registry.add('template', new ColocatedNamespaceTemplates({
       baseNode,
-      terseClassNames,
-      isModuleUnification
+      terseClassNames
     }));
   },
 
