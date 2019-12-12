@@ -57,12 +57,14 @@ module.exports = {
 
     registry.add('css', new NamespaceStyles({
       getExtentions: registry.extensionsForType.bind(registry),
-      terseClassNames
+      terseClassNames,
+      prefix: app.name
     }));
 
     registry.add('js', new ColocatedNamespaceObjects({
       getExtentions: registry.extensionsForType.bind(registry),
       baseNode,
+      prefix: app.name,
       isModuleUnification: isModuleUnification
     }));
 
