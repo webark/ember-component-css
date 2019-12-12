@@ -50,8 +50,6 @@ module.exports = {
       isModuleUnification = app.project.isModuleUnification();
     }
 
-    console.log('isModuleUnification', app.name, isModuleUnification);
-
     registry.add('css', new ColocateStyles({
       getExtentions: registry.extensionsForType.bind(registry),
       baseNode
