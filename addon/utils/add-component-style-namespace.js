@@ -1,4 +1,3 @@
-
 export default function addComponentStyleNamespace(owner) {
   const styles = owner.lookup('container-debug-adapter:main').catalogEntriesByType('styles');
 

@@ -1,10 +1,7 @@
 'use strict';
 
-const path = require('path');
-
-const Funnel = require('broccoli-funnel');
-
 const {
+  MoveAddonColocatedStyles,
   ColocateStyles,
   NamespaceStyles,
   ColocatedNamespaceObjects,
@@ -12,50 +9,51 @@ const {
 } = require('./lib/colocate-namespace.js');
 
 module.exports = {
-  _defaultOptions(enviroment = true) {
+  _defaultOptions(registry) {
     return {
-      terseClassNames: enviroment === 'production',
+      terseClassNames: false,
+      baseName: registry.app.name,
+      getCssExtentions: registry.extensionsForType.bind(registry, 'css'),
     };
   },
 
-  _options({ options: { emberCliStyles } = {}}) {
-    return Object.assign(this._defaultOptions(), emberCliStyles);
+  _overrideOptions({ options = {} }) {
+    return {
+      terseClassNames: options.enviroment,
+      ...options.emberCliStyleOptions,
+    };
   },
 
-  _baseNode(app) {
-    if (app.treePaths) {
-      return new Funnel(path.join(app.root, app.treePaths.addon));
-    } else {
-      const appTree = (app.app || app).trees.app;
-      if (typeof appTree === 'string') {
-        return new Funnel(path.join(app.project.root, appTree));
-      } else {
-        return appTree;
-      }
-    }
+  _options(registry) {
+    return {
+      ...this._defaultOptions(registry),
+      ...this._overrideOptions(registry),
+    };
+  },
+
+  isAddon() {
+    return Boolean(this.parent.parent);
   },
 
   setupPreprocessorRegistry(type, registry) {
-    const baseNode = this._baseNode(registry.app);
-    const { terseClassNames } = this._options(registry.app);
+    const options = this._options(registry);
 
-    registry.add('css', new ColocateStyles({
-      getExtentions: registry.extensionsForType.bind(registry),
-      baseNode,
-    }));
+    if (this.isAddon()) {
+      this.addAddonStyleHack(registry, options);
+    }
+    
+    registry.add('css', new ColocateStyles(options));
+    registry.add('css', new NamespaceStyles(options));
+    registry.add('js', new ColocatedNamespaceObjects(options));
+    registry.add('template', new ColocatedNamespaceTemplates(options));
+  },
 
-    registry.add('css', new NamespaceStyles({
-      getExtentions: registry.extensionsForType.bind(registry),
-      terseClassNames,
-    }));
+  addAddonStyleHack(registry, options) {
+    const addonRealDir = require('path').join(registry.app.root, registry.app.treePaths.addon);
 
-    registry.add('js', new ColocatedNamespaceObjects({
-      getExtentions: registry.extensionsForType.bind(registry),
-      baseNode,
-    }));
-
-    registry.add('template', new ColocatedNamespaceTemplates({
-      terseClassNames,
+    registry.add('css', new MoveAddonColocatedStyles({
+      addonRealDir,
+      ...options,
     }));
   },
 
