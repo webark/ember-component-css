@@ -34,7 +34,7 @@ function nestedRouteNames({ name, parent }, routeNames = []) {
 }
 
 function likeRouteInfo(info) {
-  return info && typeof info === 'object' && info.hasOwnProperty('name');
+  return info && typeof info === 'object' && Object.prototype.hasOwnProperty.call(info, 'name');
 }
 
 export default {
