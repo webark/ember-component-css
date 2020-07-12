@@ -218,7 +218,7 @@ module.exports = {
     });
 
     tree = new Merge([podStyles, styleManifest, tree].filter(Boolean), {
-      annotation: 'Merge (ember-component-css merge namespacedStyles with style manafest)'
+      annotation: 'Merge (ember-component-css merge namespacedStyles with style manifest)'
     });
 
     return tree;
