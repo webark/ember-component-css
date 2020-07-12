@@ -2,7 +2,7 @@ export default function addRouteStyleNamespace(owner, routes) {
   const classes = [];
 
   for (const name of routes) {
-    const { styleNamespace } = owner.lookup(`styles:${name}`) || {};
+    const { styleNamespace } = owner.lookup(`style:${name}`) || {};
     const controller = owner.lookup(`controller:${name}`);
 
     if (styleNamespace && controller) {

@@ -4,7 +4,7 @@ module.exports = {
   extends: 'octane',
   rules: {
     'no-implicit-this': {
-      allow: ['styleNamespace'],
+      allow: ['style-namespace'],
     },
   },
 };
