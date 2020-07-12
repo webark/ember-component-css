@@ -4,7 +4,7 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import styleForSetup from 'dummy/tests/setup/style-for';
 
-module.skip(`Acceptance | Unique Paths`, function(hooks) {
+module(`Acceptance | Unique Paths`, function(hooks) {
   setupApplicationTest(hooks);
   styleForSetup(hooks);
 
