@@ -73,7 +73,7 @@
     "no-style-files-yet": "file:./tests/dummy/lib/no-style-files-yet",
     "qunit-dom": "^0.8.0",
     "second-test-addon": "file:./tests/dummy/lib/second-test-addon",
-    "standard-version": "^4.4.0",
+    "standard-version": "^8.0.1",
     "test-addon": "file:./tests/dummy/lib/test-addon"
   },
   "engines": {
