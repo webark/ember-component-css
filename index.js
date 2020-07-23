@@ -5,8 +5,11 @@ const {
   ColocateStyles,
   NamespaceStyles,
   ColocatedNamespaceObjects,
-  ColocatedNamespaceTemplates,
 } = require('./lib/colocate-namespace.js');
+
+const {
+  NamespaceModifierAst,
+} = require('./lib/namespace-modifier-ast');
 
 module.exports = {
   _defaultOptions(registry) {
@@ -45,7 +48,8 @@ module.exports = {
     registry.add('css', new ColocateStyles(options));
     registry.add('css', new NamespaceStyles(options));
     registry.add('js', new ColocatedNamespaceObjects(options));
-    registry.add('template', new ColocatedNamespaceTemplates(options));
+
+    registry.add('htmlbars-ast-plugin', new NamespaceModifierAst());
   },
 
   addAddonStyleHack(registry, options) {
