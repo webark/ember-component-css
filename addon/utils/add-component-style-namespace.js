@@ -1,9 +1,11 @@
-export default function addComponentStyleNamespace(owner) {
-  const styles = owner.lookup('container-debug-adapter:main').catalogEntriesByType('style');
+import processStyleType from 'ember-component-css/utils/process-style-type';
 
-  for (const stylePath of styles) {
-    const component = owner.lookup(`component:${stylePath}`);
-    const { styleNamespace } = owner.lookup(`style:${stylePath}`) || {};
+export default function addComponentStyleNamespace(owner) {
+  const styles = processStyleType(owner);
+
+  for (const styleRegisterPath of styles) {
+    const component = owner.lookup(`component:${styleRegisterPath}`);
+    const { styleNamespace } = owner.lookup(`style:${styleRegisterPath}`) || {};
 
     if (styleNamespace && component) {
       const proto = Object.getPrototypeOf(component);
