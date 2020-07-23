@@ -1,15 +1,16 @@
 const STYLE_EXETNSTIONS = [
-  'scss',
-  'less',
   'css',
+  'less',
+  'scss',
   'sass',
   'styl',
 ];
 
-const EXTENTION_REGEX = `.(${STYLE_EXETNSTIONS.join('|')})$`;
+// eslint-disable-next-line no-useless-escape
+const EXTENTION_REGEX = `\.(${STYLE_EXETNSTIONS.join('|')})$`;
 
 function formatFullName(stylePath) {
-  return stylePath.replace(new RegExp(`(/styles?)?${EXTENTION_REGEX}`), '').replace(/.*?\//, '');
+  return stylePath.replace(new RegExp(`(/(styles?|index))?${EXTENTION_REGEX}`), '').replace(/.*?\//, '').replace(/^components\//, '');
 }
 
 export default function addComponentStyleNamespace(owner) {
@@ -18,6 +19,7 @@ export default function addComponentStyleNamespace(owner) {
   return STYLE_EXETNSTIONS.reduce(function(allStyles, extention) {
     return allStyles.concat(owner.lookup('container-debug-adapter:main').catalogEntriesByType(extention));
   }, [])
+    .filter((value, index, self) => self.indexOf(value) === index)
     .filter(stylePath => styleFileExtentionRegEx.test(stylePath))
     .map(stylePath => {
       const fullName = formatFullName(stylePath);
