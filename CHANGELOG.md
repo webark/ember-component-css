@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.3](https://github.com/ebryn/ember-component-css/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2020-07-25)
+
 ## [1.0.0-alpha.2](https://github.com/ebryn/ember-component-css/compare/v0.7.4...v1.0.0-alpha.2) (2020-07-25)
 
 
