@@ -1,6 +1,26 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.0.0-alpha.2](https://github.com/ebryn/ember-component-css/compare/v0.7.4...v1.0.0-alpha.2) (2020-07-25)
+
+
+### Bug Fixes
+
+* **lint:** removed an extraneous semi colon ([2a2981e](https://github.com/ebryn/ember-component-css/commit/2a2981e))
+* **nested routes:** handledling nested route style names appropriatly ([92a7d93](https://github.com/ebryn/ember-component-css/commit/92a7d93))
+* **template only components:** checking the templates only feature correctly ([40aa8c3](https://github.com/ebryn/ember-component-css/commit/40aa8c3))
+* sometimes `.trees['app']` is a string, and sometimes a node. ([bcc390e](https://github.com/ebryn/ember-component-css/commit/bcc390e))
+* using local rather then imported so access the actual variable ([595b54b](https://github.com/ebryn/ember-component-css/commit/595b54b))
+
+
+### Features
+
+* **co location:** added tests and modifications for co location ([c445569](https://github.com/ebryn/ember-component-css/commit/c445569))
+* **namespace modifier:** moving to an element modifer rather then a helper. This can be used anywhere, but is needed for template only components ([47ab6db](https://github.com/ebryn/ember-component-css/commit/47ab6db))
+* **namespacing:** updated architecture to better facilitate namespacing ([af2dac1](https://github.com/ebryn/ember-component-css/commit/af2dac1))
+* **style registry:** registering style types based off of style file extentions ([a042519](https://github.com/ebryn/ember-component-css/commit/a042519))
+* **style-namepace:** switched to using a helper for the raw 'style-namespace' in templates ([757a81a](https://github.com/ebryn/ember-component-css/commit/757a81a))
 
 <a name="0.7.4"></a>
 ## [0.7.4](https://github.com/ebryn/ember-component-css/compare/v0.7.3...v0.7.4) (2019-06-24)
