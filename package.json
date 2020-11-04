@@ -46,6 +46,7 @@
     "walk-sync": "^1.0.1"
   },
   "devDependencies": {
+    "@embroider/test-setup": "^0.30.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-cli": "~3.7.1",
     "ember-cli-dependency-checker": "^3.0.0",
@@ -74,7 +75,10 @@
     "qunit-dom": "^0.8.0",
     "second-test-addon": "file:./tests/dummy/lib/second-test-addon",
     "standard-version": "^4.4.0",
-    "test-addon": "file:./tests/dummy/lib/test-addon"
+    "test-addon": "file:./tests/dummy/lib/test-addon",
+    "@embroider/core": "*",
+    "@embroider/webpack": "*",
+    "@embroider/compat": "*"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"

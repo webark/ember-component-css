@@ -1,6 +1,7 @@
 'use strict';
 
 const getChannelURL = require('ember-source-channel-url');
+const { embroiderSafe, embroiderOptimized } = require('@embroider/test-setup');
 
 module.exports = function() {
   return Promise.all([
@@ -11,6 +12,8 @@ module.exports = function() {
     return {
       useYarn: true,
       scenarios: [
+        embroiderSafe(),
+        embroiderOptimized(),
         {
           name: 'ember-lts-2.16',
           env: {
