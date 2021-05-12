@@ -38,7 +38,7 @@
     "ember-getowner-polyfill": "^2.2.0",
     "fs-tree-diff": "^0.5.9",
     "md5": "^2.2.1",
-    "postcss": "^7.0.6",
+    "postcss": "^8.2.10",
     "postcss-less": "^3.1.0",
     "postcss-scss": "^2.0.0",
     "postcss-selector-namespace": "^2.0.0",
