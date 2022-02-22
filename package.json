@@ -77,7 +77,7 @@
     "test-addon": "file:./tests/dummy/lib/test-addon"
   },
   "engines": {
-    "node": "6.* || 8.* || >= 10.*"
+    "node": "12.* || 14.* || >= 16"
   },
   "ember-addon": {
     "before": [
