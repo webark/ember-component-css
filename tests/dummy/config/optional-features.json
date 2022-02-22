@@ -1,3 +1,6 @@
 {
-  "jquery-integration": false
+  "application-template-wrapper": true,
+  "default-async-observers": false,
+  "jquery-integration": true,
+  "template-only-glimmer-components": false
 }
