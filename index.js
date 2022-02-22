@@ -134,7 +134,7 @@ module.exports = {
     }
 
     let checker = new VersionChecker(this);
-    let ember = checker.forEmber();
+    let ember = checker.for(`ember-source`);
     let superTree = this._super.treeForAddon.call(this, tree);
 
     // Allow to opt-out from automatic Component.reopen()
@@ -176,7 +176,7 @@ module.exports = {
     }
 
     let checker = new VersionChecker(this);
-    let ember = checker.forEmber();
+    let ember = checker.for(`ember-source`);
     if (ember.isAbove('3.6.0')) {
       return new Funnel(tree, {
         exclude: ["initializers/route-styles.js"],
