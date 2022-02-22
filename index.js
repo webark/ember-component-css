@@ -132,9 +132,22 @@ module.exports = {
         annotation: 'Merge (ember-component-css merge names with addon tree)'
       });
     }
+
     let checker = new VersionChecker(this);
     let ember = checker.forEmber();
     let superTree = this._super.treeForAddon.call(this, tree);
+
+    // Allow to opt-out from automatic Component.reopen()
+    if (this.addonConfig.patchClassicComponent === false) {
+      superTree = new Funnel(superTree, {
+        exclude: [
+          'ember-component-css/initializers/component-styles.js'
+        ],
+        annotation:
+          "Funnel (ember-component-css exclude addon/initializers/component-styles.js per config)"
+      });
+    }
+
     if (ember.isAbove('3.6.0')) {
       return new Funnel(superTree, {
         exclude: ['ember-component-css/initializers/route-styles.js'],
@@ -151,6 +164,17 @@ module.exports = {
   },
 
   treeForApp: function(tree) {
+    // Allow to opt-out from automatic Component.reopen()
+    if (this.addonConfig.patchClassicComponent === false) {
+      tree = new Funnel(tree, {
+        exclude: [
+          "initializers/component-styles.js"
+        ],
+        annotation:
+          "Funnel (ember-component-css exclude app/initializers/component-styles.js per config)"
+      });
+    }
+
     let checker = new VersionChecker(this);
     let ember = checker.forEmber();
     if (ember.isAbove('3.6.0')) {
