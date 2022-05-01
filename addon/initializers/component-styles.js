@@ -1,30 +1,27 @@
-import Ember from "ember";
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
-import { getOwner } from '@ember/application';
 
 import podNames from 'ember-component-css/pod-names';
 
-const {
-  ComponentLookup,
-} = Ember;
+function identifierFromLayoutModuleName(modulePath = '') {
+  const terminator = 'components/';
+  const pathSegementToRemove = /.+\/components\//;
 
-ComponentLookup.reopen({
-  componentFor(name, owner) {
-    owner = owner.hasRegistration ? owner : getOwner(this);
+  return modulePath.replace(/\.\w+$/, '')
+    .substr(modulePath.lastIndexOf(terminator) + terminator.length )
+    .replace(pathSegementToRemove, '')
+    .replace(/\/template/, '');
+}
 
-    if (podNames[name] && !owner.hasRegistration(`component:${name}`)) {
-      owner.register(`component:${name}`, Component);
-    }
-    return this._super(...arguments);
-  },
-});
+function identifierFromDebugContainerKey(debugContainerKey = '') {
+  return debugContainerKey.replace('component:', '');
+}
 
 Component.reopen({
   _componentIdentifier: computed({
     get() {
-      return (this._debugContainerKey || '').replace('component:', '');
+      return identifierFromLayoutModuleName(this.get('layout.referrer.moduleName')) || identifierFromDebugContainerKey(this._debugContainerKey);
     }
   }),
 
@@ -39,11 +36,6 @@ Component.reopen({
       return podNames[this.get('_componentIdentifier')] || '';
     }
   }),
-
-  // componentCssClassName: deprecatingAlias('styleNamespace', {
-  //   id: 'ember-component-css.deprecate-componentCssClassName',
-  //   until: '0.7.0',
-  // }),
 
   componentCssClassName: alias('styleNamespace'),
 
