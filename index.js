@@ -11,7 +11,7 @@ let VersionChecker = require("ember-cli-version-checker");
 module.exports = {
 
   _getStyleFunnel: function() {
-    return new Merge([this._getPodStyleFunnel(), this._getClassicStyleFunnel()], {
+    return new Merge([this._getPodStyleFunnel(), this._getClassicStyleFunnel(),this._getColocatedComponentsStyleFunnel()], {
       annotation: 'Merge (ember-component-css merge pod and classic styles)'
     });
   },
@@ -31,6 +31,15 @@ module.exports = {
       include: ['styles/' + this.classicStyleDir + '/**/*.{' + this.allowedStyleExtensions + ',}'],
       allowEmpty: true,
       annotation: 'Funnel (ember-component-css grab classic files)'
+    });
+  },
+
+  _getColocatedComponentsStyleFunnel: function() {
+    return new Funnel(this.projectRoot, {
+      srcDir: 'components',
+      include: ['**/*.{' + this.allowedStyleExtensions + ',}'],
+      allowEmpty: true,
+      annotation: 'Funnel (ember-component-css grab colocated components files)'
     });
   },
 
